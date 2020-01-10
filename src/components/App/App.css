@@ -11,15 +11,10 @@ body {
 form {
     background-color: #dbd5d5;
     width: 30%;
-    height: 250px;
+    height: 300px;
     margin: 20px auto;
     padding: 25px;
     border-radius: 2px;
-}
-
-input {
-    margin: 5px;
-    margin-bottom: 10px;
 }
 
 .log-in, .log-out, .register {
