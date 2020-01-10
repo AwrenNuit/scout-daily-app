@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 class LoginPage extends Component {
-  
+
   state = {
     username: '',
     password: '',
@@ -44,9 +44,10 @@ class LoginPage extends Component {
           </h2>
         )}
         <form onSubmit={this.login}>
-          <h1>Login</h1>
-          <div>
-            <center>
+          <center>
+            <img src="/images/logo.png" alt="Scout Daily Logo" height="150px"/>
+            <h1>Login</h1>
+            <div>
 
               <TextField
                 id="outlined-basic"
@@ -59,27 +60,23 @@ class LoginPage extends Component {
                 style={{width:"90%",marginBottom:"20px",backgroundColor:"white"}}
               />
 
-            </center>
-          </div>
-          <div>
-            <center>
+            </div>
+            <div>
 
-            <TextField
-              id="outlined-basic"
-              label="password"
-              variant="outlined"
-              name="password"
-              type="password"
-              size="small"
-              value={this.state.password}
-              onChange={this.handleInputChangeFor('password')}
-              style={{width:"90%",marginBottom:"20px",backgroundColor:"white"}}
-            />
+              <TextField
+                id="outlined-basic"
+                label="password"
+                variant="outlined"
+                name="password"
+                type="password"
+                size="small"
+                value={this.state.password}
+                onChange={this.handleInputChangeFor('password')}
+                style={{width:"90%",marginBottom:"20px",backgroundColor:"white"}}
+              />
 
-            </center>
-          </div>
-          <div>
-            <center>
+            </div>
+            <div>
               <Button 
                 variant="contained" 
                 color="primary"
@@ -89,19 +86,17 @@ class LoginPage extends Component {
               >
                 Log in
               </Button>
-            </center>
-          </div>
-          <hr />
-          <div>
-            <center>
+            </div>
+            <hr />
+            <div>
               <Button 
                 onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
-                style={{textTransform:"lowercase",marginTop:"10px"}}
+                style={{textTransform:"lowercase",marginTop:"10px",color:"#EEE"}}
               >
                 register
               </Button>
-            </center>
-          </div>
+            </div>
+          </center>
         </form>
       </div>
     );

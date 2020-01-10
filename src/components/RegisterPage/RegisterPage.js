@@ -44,9 +44,10 @@ class RegisterPage extends Component {
           </h2>
         )}
         <form onSubmit={this.registerUser}>
-          <h1>Register</h1>
-          <div>
-            <center>
+          <center>
+            <img src="/images/logo.png" alt="Scout Daily Logo" height="150px"/>
+            <h1>Register</h1>
+            <div>
 
               <TextField
                 id="outlined-basic"
@@ -59,10 +60,8 @@ class RegisterPage extends Component {
                 style={{width:"90%",marginBottom:"20px",backgroundColor:"white"}}
               />
 
-            </center>
-          </div>
-          <div>
-            <center>
+            </div>
+            <div>
 
               <TextField
                 id="outlined-basic"
@@ -76,10 +75,8 @@ class RegisterPage extends Component {
                 style={{width:"90%",marginBottom:"20px",backgroundColor:"white"}}
               />
 
-            </center>
-          </div>
-          <div>
-            <center>
+            </div>
+            <div>
               <Button 
                 variant="contained" 
                 color="primary"
@@ -89,19 +86,17 @@ class RegisterPage extends Component {
               >
                 Register
               </Button>
-            </center>
-          </div>
-          <hr />
-          <div>
-            <center>
-            <Button 
-              onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
-              style={{textTransform:"lowercase",marginTop:"10px"}}
-            >
-              cancel
-            </Button>
-            </center>
-          </div>
+            </div>
+            <hr />
+            <div>
+              <Button 
+                onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
+                style={{textTransform:"lowercase",marginTop:"10px",color:"#EEE"}}
+              >
+                cancel
+              </Button>
+            </div>
+          </center>
         </form>
       </div>
     );
