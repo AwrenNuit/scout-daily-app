@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Footer from '../Footer/Footer';
 
 class RegisterPage extends Component {
 
@@ -92,12 +93,14 @@ class RegisterPage extends Component {
               <Button 
                 onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
                 style={{textTransform:"lowercase",marginTop:"10px",color:"#EEE"}}
+                disableRipple="true"
               >
                 cancel
               </Button>
             </div>
           </center>
         </form>
+        <Footer />
       </div>
     );
   }
