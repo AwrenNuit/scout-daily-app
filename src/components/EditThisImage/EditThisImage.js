@@ -10,17 +10,28 @@ class EditThisImage extends Component{
   render(){
     return(
       <center>
-        {/* {this.props.reduxState.map(image=> */}
-          <div>
-            <Fab color="secondary" aria-label="edit" style={{position:"relative",float:"right",top:"40px"}}>
-              <DeleteForeverIcon />
-            </Fab>
-            <img src="https://image.shutterstock.com/image-photo/mountains-during-sunset-beautiful-natural-260nw-407021107.jpg" alt="pic" style={{width:"90%",marginBottom:"20px",borderRadius:"20px"}} />
-            {/* <div className="img" style={{backgroundImage:`url(https://prime-solo-test.s3.us-east-2.amazonaws.com/${image.image_url})`}}></div> */}
-          </div>
-        {/* )} */}
         <div>
-          <TextField id="outlined-basic" label="update caption" variant="outlined" multiline style={{width:"90%",marginBottom:"20px"}} />
+          <Fab color="secondary" aria-label="edit" style={{position:"relative",float:"right",top:"40px"}}>
+            <DeleteForeverIcon />
+          </Fab>
+          {this.props.reduxState.map(image=>
+            <div key={image.id}>
+              <div 
+                className="img" 
+                style={{backgroundImage:`url(https://scout-daily.s3.us-east-2.amazonaws.com/${image.image_url})`,width:"90%",marginBottom:"20px",borderRadius:"20px"}}>
+              </div>
+            </div>
+          )}
+        </div>
+        <div>
+          <TextField 
+            id="outlined-basic" 
+            label="update caption" 
+            variant="outlined" 
+            defaultValue={this.props.reduxState.caption}
+            multiline 
+            style={{width:"90%",marginBottom:"20px"}} 
+          />
         </div>
         <div>
           <Button 
@@ -39,7 +50,7 @@ class EditThisImage extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.dailyPrompt
+  reduxState: reduxState.thisImageReducer
 });
 
 export default connect(putReduxStateOnProps)(EditThisImage);
