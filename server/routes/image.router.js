@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require(`../modules/pool`);
 
 router.get('/', (req, res) => {
-  let SQLquery = `SELECT * FROM images;`;
+  let SQLquery = `SELECT * FROM image;`;
   pool.query(SQLquery)
   .then(response=>{
       res.send(response.rows);
@@ -14,10 +14,24 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get('/:id', (req, res) => {
+  let id = [req.params.id];
+  let SQLquery = `SELECT * FROM image
+                  WHERE id = $1;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.send(response.rows);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /:id GET ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
 router.post('/', (req, res) => {
   console.log('req.body-----------------------------------------', req.body);
   let id = [req.body.data];
-  let SQLquery = `INSERT INTO images (image_url)
+  let SQLquery = `INSERT INTO image (image_url)
                   VALUES($1);`;
   pool.query(SQLquery, id)
   .then(response=>{

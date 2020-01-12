@@ -4,7 +4,7 @@ import {takeLatest, put} from 'redux-saga/effects';
 // GET all images
 function* getAllImage(action){
   try{
-      const getResponse = yield axios.get(`/api/image/all`, action.payload);
+      const getResponse = yield axios.get(`/api/image`, action.payload);
       yield put({type: `SET_ALL_IMAGE`, payload: getResponse.data});
   }
   catch(error){
@@ -15,7 +15,7 @@ function* getAllImage(action){
 // GET this image to edit
 function* getThisImage(action){
   try{
-      const getResponse = yield axios.get(`/api/image/this`, action.payload);
+      const getResponse = yield axios.get(`/api/image/${action.payload}`);
       yield put({type: `SET_THIS_IMAGE`, payload: getResponse.data});
   }
   catch(error){
