@@ -20,7 +20,7 @@ class EditThisImage extends Component{
           </div>
         {/* )} */}
         <div>
-          <TextField id="outlined-basic" label="existing caption" variant="outlined" multiline style={{width:"90%",marginBottom:"20px"}} />
+          <TextField id="outlined-basic" label="update caption" variant="outlined" multiline style={{width:"90%",marginBottom:"20px"}} />
         </div>
         <div>
           <Button 
