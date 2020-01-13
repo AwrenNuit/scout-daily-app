@@ -28,7 +28,7 @@ class Profile extends Component{
             </span>
           )} */}
         </div>
-        <NavBar />
+        <NavBar history={this.props.history.location.pathname} />
       </>
     );
   }

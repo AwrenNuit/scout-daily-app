@@ -10,7 +10,7 @@ class Home extends Component{
       <>
         <DailyPrompt />
         <RenderAllImage />
-        <NavBar />
+        <NavBar history={this.props.history.location.pathname} />
       </>
     );
   }

@@ -28,7 +28,7 @@ class PostImage extends Component{
             Post
           </Button>
         </div>
-        <NavBar />
+        <NavBar history={this.props.history.location.pathname} />
       </>
     );
   }

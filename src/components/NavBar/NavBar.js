@@ -13,48 +13,47 @@ import PersonIcon from '@material-ui/icons/Person';
 import PersonOutlinedIcon from '@material-ui/icons/PersonOutlined';
 import Button from '@material-ui/core/Button';
 
-
 class NavBar extends Component{
   render(){
     return(
       <footer className="nav">
-        {<Route path='/home' /> ? 
+        {this.props.history === '/home' ? 
           <Button disableRipple="true" style={{width:"80px",gridArea:"home"}}>
             <HomeIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
           :
           <Button disableRipple="true" style={{width:"80px",gridArea:"home"}}>
-            <HomeOutlinedIcon fontSize="small" style={{color:"#EEE"}} />
+            <HomeOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
         }
 
-        {<Route path='/search' /> ? 
+        {this.props.history === '/search' ? 
           <Button disableRipple="true" style={{width:"80px",gridArea:"search"}}>
             <SearchIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
           :
           <Button disableRipple="true" style={{width:"80px",gridArea:"search"}}>
-            <SearchOutlinedIcon fontSize="small" style={{color:"#EEE"}} />
+            <SearchOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
         }
         
-        {<Route path='/addphoto' /> ?
+        {this.props.history === '/addphoto' ?
           <Button disableRipple="true" style={{width:"80px",gridArea:"photo"}}>
             <AddAPhotoIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
           :
           <Button disableRipple="true" style={{width:"80px",gridArea:"photo"}}>
-            <AddAPhotoOutlinedIcon fontSize="small" style={{color:"#EEE"}} />
+            <AddAPhotoOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
         }
         
-        {<Route path='/profile' /> ?
+        {this.props.history === '/profile' ?
           <Button disableRipple="true" style={{width:"80px",gridArea:"profile"}}>
             <PersonIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
           :
           <Button disableRipple="true" style={{width:"80px",gridArea:"profile"}}>
-            <PersonOutlinedIcon fontSize="small" style={{color:"#EEE"}} />
+            <PersonOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
         }
         
