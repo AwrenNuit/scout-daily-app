@@ -38,11 +38,22 @@ function* getUserDetails(action){
 // PUT (update) user bio
 function* putUserBio(action){
   try{
-      yield axios.put(`/api/user/details`, {data: action.payload});
+      yield axios.put(`/api/user/details/bio`, {data: action.payload});
       yield put({type: `GET_USER_DETAILS`});
   }
   catch(error){
-      console.log('error in GET user details', error);
+      console.log('error in PUT user bio', error);
+  }
+}
+
+// PUT (update) user bio
+function* putUsername(action){
+  try{
+      yield axios.put(`/api/user/details/username`, {data: action.payload});
+      yield put({type: `GET_USER_DETAILS`});
+  }
+  catch(error){
+      console.log('error in PUT username', error);
   }
 }
 
@@ -50,6 +61,7 @@ function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest('GET_USER_DETAILS', getUserDetails);
   yield takeLatest('UPDATE_BIO', putUserBio);
+  yield takeLatest('UPDATE_USERNAME', putUsername);
 }
 
 export default userSaga;

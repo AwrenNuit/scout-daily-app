@@ -28,7 +28,7 @@ router.get('/details', (req, res) => {
 });
 
 // PUT (update) current user's bio
-router.put('/details', (req, res) => {
+router.put('/details/bio', (req, res) => {
   let id = [req.body.data, req.user.id];
   let SQLquery = `UPDATE "user"
                   SET bio = $1
@@ -38,7 +38,23 @@ router.put('/details', (req, res) => {
       res.send(response.rows);
   })
   .catch(error=>{
-    console.log('ERROR IN /details GET ---------------------------------------->', error);
+    console.log('ERROR IN /details/bio GET ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
+// PUT (update) current user's username
+router.put('/details/username', (req, res) => {
+  let id = [req.body.data, req.user.id];
+  let SQLquery = `UPDATE "user"
+                  SET username = $1
+                  WHERE id = $2;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.send(response.rows);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /details/username GET ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });
