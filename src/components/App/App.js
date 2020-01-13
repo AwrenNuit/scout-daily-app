@@ -48,6 +48,11 @@ class App extends Component {
             />
 
             <ProtectedRoute
+              path="/edit-photo/:id"
+              component={PostImage}
+            />
+
+            <ProtectedRoute
               exact
               path="/profile"
               component={Profile}
