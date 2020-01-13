@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
+import {Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import './NavBar.css';
 
 import HomeIcon from '@material-ui/icons/Home';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import SearchIcon from '@material-ui/icons/Search';
+import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import AddAPhotoOutlinedIcon from '@material-ui/icons/AddAPhotoOutlined';
 import PersonIcon from '@material-ui/icons/Person';
+import PersonOutlinedIcon from '@material-ui/icons/PersonOutlined';
 import Button from '@material-ui/core/Button';
 
 
@@ -13,18 +18,46 @@ class NavBar extends Component{
   render(){
     return(
       <footer className="nav">
-        <Button disableRipple="true" style={{width:"80px",gridArea:"home"}}>
-          <HomeIcon fontSize="large" style={{color:"#EEE"}} />
-        </Button>
-        <Button disableRipple="true" style={{width:"80px",gridArea:"search"}}>
-          <SearchIcon fontSize="large" style={{color:"#EEE"}} />
-        </Button>
-        <Button disableRipple="true" style={{width:"80px",gridArea:"photo"}}>
-          <AddAPhotoIcon fontSize="large" style={{color:"#EEE"}} />
-        </Button>
-        <Button disableRipple="true" style={{width:"80px",gridArea:"profile"}}>
-          <PersonIcon fontSize="large" style={{color:"#EEE"}} />
-        </Button>
+        {<Route path='/home' /> ? 
+          <Button disableRipple="true" style={{width:"80px",gridArea:"home"}}>
+            <HomeIcon fontSize="large" style={{color:"#EEE"}} />
+          </Button>
+          :
+          <Button disableRipple="true" style={{width:"80px",gridArea:"home"}}>
+            <HomeOutlinedIcon fontSize="small" style={{color:"#EEE"}} />
+          </Button>
+        }
+
+        {<Route path='/search' /> ? 
+          <Button disableRipple="true" style={{width:"80px",gridArea:"search"}}>
+            <SearchIcon fontSize="large" style={{color:"#EEE"}} />
+          </Button>
+          :
+          <Button disableRipple="true" style={{width:"80px",gridArea:"search"}}>
+            <SearchOutlinedIcon fontSize="small" style={{color:"#EEE"}} />
+          </Button>
+        }
+        
+        {<Route path='/addphoto' /> ?
+          <Button disableRipple="true" style={{width:"80px",gridArea:"photo"}}>
+            <AddAPhotoIcon fontSize="large" style={{color:"#EEE"}} />
+          </Button>
+          :
+          <Button disableRipple="true" style={{width:"80px",gridArea:"photo"}}>
+            <AddAPhotoOutlinedIcon fontSize="small" style={{color:"#EEE"}} />
+          </Button>
+        }
+        
+        {<Route path='/profile' /> ?
+          <Button disableRipple="true" style={{width:"80px",gridArea:"profile"}}>
+            <PersonIcon fontSize="large" style={{color:"#EEE"}} />
+          </Button>
+          :
+          <Button disableRipple="true" style={{width:"80px",gridArea:"profile"}}>
+            <PersonOutlinedIcon fontSize="small" style={{color:"#EEE"}} />
+          </Button>
+        }
+        
       </footer>
     );
   }
