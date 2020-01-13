@@ -27,6 +27,7 @@ class PostImage extends Component{
             Post
           </Button>
         </div>
+        <NavBar />
       </>
     );
   }

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './Profile.css';
 import Button from '@material-ui/core/Button';
+import NavBar from '../NavBar/NavBar';
 
 class Profile extends Component{
 
@@ -27,6 +28,7 @@ class Profile extends Component{
             </span>
           )} */}
         </div>
+        <NavBar />
       </>
     );
   }
