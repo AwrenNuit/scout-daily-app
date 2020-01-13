@@ -13,16 +13,16 @@ class NavBar extends Component{
   render(){
     return(
       <footer className="nav">
-        <Button disableRipple="true" style={{margin:"0 2px"}}>
+        <Button disableRipple="true" style={{width:"80px",gridArea:"home"}}>
           <HomeIcon fontSize="large" style={{color:"#EEE"}} />
         </Button>
-        <Button disableRipple="true" style={{margin:"0 2px"}}>
+        <Button disableRipple="true" style={{width:"80px",gridArea:"search"}}>
           <SearchIcon fontSize="large" style={{color:"#EEE"}} />
         </Button>
-        <Button disableRipple="true" style={{margin:"0 2px"}}>
+        <Button disableRipple="true" style={{width:"80px",gridArea:"photo"}}>
           <AddAPhotoIcon fontSize="large" style={{color:"#EEE"}} />
         </Button>
-        <Button disableRipple="true" style={{margin:"0 2px"}}>
+        <Button disableRipple="true" style={{width:"80px",gridArea:"profile"}}>
           <PersonIcon fontSize="large" style={{color:"#EEE"}} />
         </Button>
       </footer>

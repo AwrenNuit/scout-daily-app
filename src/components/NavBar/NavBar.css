@@ -6,5 +6,11 @@ footer {
   height: 50px;
   background-color: #393E46;
   color: #EEE;
-  text-align: center;
-}
+  justify-items: center;}
+
+.nav {
+  display: grid;
+  width: 100%;
+  grid-template-areas: 
+    'home search photo profile';
+  }
