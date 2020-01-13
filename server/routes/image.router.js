@@ -14,7 +14,7 @@ router.get('/all', (req, res) => {
   });
 });
 
-router.get('/following', (req, res) => {
+router.get('/following/avatar', (req, res) => {
   let id = [req.user.id];
   let SQLquery = `SELECT * FROM following
                   WHERE user_id = $1;`;
@@ -23,7 +23,21 @@ router.get('/following', (req, res) => {
       res.send(response.rows);
   })
   .catch(error=>{
-    console.log('ERROR IN /following GET ---------------------------------------->', error);
+    console.log('ERROR IN /following/avatar GET ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
+router.get('/following/feed', (req, res) => {
+  let id = [req.user.id];
+  let SQLquery = `SELECT * FROM image
+                  WHERE user_id = $1;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.send(response.rows);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /following/feed GET ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });

@@ -12,14 +12,25 @@ function* getAllImage(action){
   }
 }
 
-// GET images of followed users
+// GET avatars of followed users
 function* getFollowedAvatar(action){
   try{
-      const getResponse = yield axios.get(`/api/image/following`, action.payload);
+      const getResponse = yield axios.get(`/api/image/following/avatar`, action.payload);
       yield put({type: `SET_FOLLOWING`, payload: getResponse.data});
   }
   catch(error){
       console.log('error in GET followed user avatars', error);
+  }
+}
+
+// GET images of followed users for main feed
+function* getImageFeed(action){
+  try{
+      const getResponse = yield axios.get(`/api/image/following/feed`, action.payload);
+      yield put({type: `SET_IMAGE_FEED`, payload: getResponse.data});
+  }
+  catch(error){
+      console.log('error in GET feed images', error);
   }
 }
 
@@ -48,6 +59,7 @@ function* postImage(action){
 function* imageSaga() {
   yield takeLatest('GET_ALL_IMAGE', getAllImage);
   yield takeLatest('GET_FOLLOWING', getFollowedAvatar);
+  yield takeLatest('GET_IMAGE_FEED', getImageFeed);
   yield takeLatest('GET_THIS_IMAGE', getThisImage);
   yield takeLatest('POST_IMAGE', postImage);  
 }
