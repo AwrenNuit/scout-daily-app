@@ -1,91 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import './Profile.css';
-import Button from '@material-ui/core/Button';
 import NavBar from '../NavBar/NavBar';
+import RenderUserImage from '../RenderUserImage/RenderUserImage';
+import UserDetails from '../UserDetails/UserDetails';
 
 class Profile extends Component{
-
-  state = {
-    username: '',
-    editUsername: false,
-    bio: '',
-    editBio: false
-  }
-  componentDidMount(){
-    this.props.dispatch({type: `GET_ALL_IMAGE`});
-    this.props.dispatch({type: `GET_USER_DETAILS`});
-  }
-
-  editDetails = (propName, propValue, propEdit) => {
-    this.setState({
-      [propName]: propValue,
-      [propEdit]:true
-    });
-  }
-
-  handleChange = (e, propName) => {
-    this.setState({[propName]:e.target.value});
-  }
-
-  saveBioChange = () => {
-    this.props.dispatch({type: `UPDATE_BIO`, payload: this.state.bio});
-    this.setState({editBio:false});
-  }
-
-  saveUsernameChange = () => {
-    this.props.dispatch({type: `UPDATE_USERNAME`, payload: this.state.username});
-    this.setState({editUsername:false});
-  }
 
   render(){
     return(
       <>
-        <div className="main-details-container">
-        {JSON.stringify(this.state)}
-          {this.props.userDetails.map(details =>
-            <div className="user-details-container">
-              <img className="avatar" src="https://media-exp1.licdn.com/dms/image/C4E03AQE-v_eVE9CJAg/profile-displayphoto-shrink_200_200/0?e=1584576000&v=beta&t=2U4Yq2BPhgoqdAuEQniqRhEKMUGBG1xkc9bh8OKRIxg" alt="" />
-
-              {this.state.editUsername ? 
-                <>
-                  <input onChange={(event)=>this.handleChange(event, 'username')} value={this.state.username} /> 
-                  <button onClick={this.saveUsernameChange}>Save</button>
-                </>
-                :
-                <span className="username" onClick={()=>this.editDetails('username', details.username, 'editUsername')}>{details.username}</span>
-              }
-
-              {this.state.editBio ? 
-                <>
-                  <input onChange={(event)=>this.handleChange(event, 'bio')} value={this.state.bio} /> 
-                  <button onClick={this.saveBioChange}>Save</button>
-                </>
-                :
-                <span className="bio" onClick={()=>this.editDetails('bio', details.bio, 'editBio')}>{details.bio}</span>
-              }
-
-              <Button variant="contained" color="primary" style={{gridArea:"following",height:"25px"}}>
-                Following
-              </Button>
-
-            </div>
-          )}
-        </div>
-        <div>
-          {this.props.allImage ? this.props.allImage.map(image=>
-              <span key={image.id}>
-                  {/* <div className="img" style={{backgroundImage:`url(https://scout-daily.s3.us-east-2.amazonaws.com/${image.image_url})`}}></div> */}
-                <Link to={"/edit-photo/"+image.id}>
-                  <img src={image.image_url} alt={image.description} />
-                </Link>
-              </span>
-            )
-            :
-            <p>Add some pics! :)</p>
-          }
-        </div>
+        <UserDetails />
+        <RenderUserImage />
         <NavBar history={this.props.history.location.pathname} />
       </>
     );
