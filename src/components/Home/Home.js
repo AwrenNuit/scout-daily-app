@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import DailyPrompt from '../DailyPrompt/DailyPrompt';
+import NavBar from '../NavBar/NavBar';
+import RenderAllImage from '../RenderAllImage/RenderAllImage';
 
 class Home extends Component{
 
@@ -8,13 +9,11 @@ class Home extends Component{
     return(
       <>
         <DailyPrompt />
+        <RenderAllImage />
+        <NavBar />
       </>
     );
   }
 }
 
-const putReduxStateOnProps = (reduxState)=>({
-  reduxState
-});
-
-export default connect(putReduxStateOnProps)(Home);
+export default Home;
