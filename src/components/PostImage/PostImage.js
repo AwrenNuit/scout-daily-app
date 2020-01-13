@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import RenderImage from '../RenderImage/RenderImage';
+import NavBar from '../NavBar/NavBar';
 class PostImage extends Component{
 
   render(){
