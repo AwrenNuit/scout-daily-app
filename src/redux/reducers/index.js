@@ -5,6 +5,7 @@ import user from './userReducer';
 import dailyPrompt from './dailyPromptReducer';
 import allImage from './allImageReducer';
 import thisImage from './thisImageReducer';
+import following from './followingReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   dailyPrompt, // stores daily photography prompt
   allImage, // stores all user images
   thisImage, // stores image being edited
+  following, // stores followed page's avatars
 });
 
 export default rootReducer;
