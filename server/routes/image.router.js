@@ -2,14 +2,28 @@ const express = require(`express`);
 const router = express.Router();
 const pool = require(`../modules/pool`);
 
-router.get('/', (req, res) => {
+router.get('/all', (req, res) => {
   let SQLquery = `SELECT * FROM image;`;
   pool.query(SQLquery)
   .then(response=>{
       res.send(response.rows);
   })
   .catch(error=>{
-    console.log('ERROR IN / GET ---------------------------------------->', error);
+    console.log('ERROR IN /all GET ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
+router.get('/following', (req, res) => {
+  let id = [req.user.id];
+  let SQLquery = `SELECT * FROM following
+                  WHERE user_id = $1;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.send(response.rows);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /following GET ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });
