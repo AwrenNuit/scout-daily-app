@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import './NavBar.css';
 
@@ -22,9 +22,12 @@ class NavBar extends Component{
             <HomeIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
           :
-          <Button disableRipple="true" style={{width:"80px",gridArea:"home"}}>
-            <HomeOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
-          </Button>
+          <Link to='/home'>
+            <Button disableRipple="true" style={{width:"80px",gridArea:"home"}}>
+              <HomeOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
+            </Button>
+            </Link>
+
         }
 
         {this.props.history === '/search' ? 
@@ -32,19 +35,23 @@ class NavBar extends Component{
             <SearchIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
           :
-          <Button disableRipple="true" style={{width:"80px",gridArea:"search"}}>
-            <SearchOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
-          </Button>
+          <Link to='/search'>
+            <Button disableRipple="true" style={{width:"80px",gridArea:"search"}}>
+              <SearchOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
+            </Button>
+          </Link>
         }
         
-        {this.props.history === '/addphoto' ?
+        {this.props.history === '/add-photo' ?
           <Button disableRipple="true" style={{width:"80px",gridArea:"photo"}}>
             <AddAPhotoIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
           :
-          <Button disableRipple="true" style={{width:"80px",gridArea:"photo"}}>
-            <AddAPhotoOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
-          </Button>
+          <Link to='/add-photo'>
+            <Button disableRipple="true" style={{width:"80px",gridArea:"photo"}}>
+              <AddAPhotoOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
+            </Button>
+          </Link>
         }
         
         {this.props.history === '/profile' ?
@@ -52,9 +59,11 @@ class NavBar extends Component{
             <PersonIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
           :
-          <Button disableRipple="true" style={{width:"80px",gridArea:"profile"}}>
-            <PersonOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
-          </Button>
+          <Link to='/profile'>
+            <Button disableRipple="true" style={{width:"80px",gridArea:"profile"}}>
+              <PersonOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
+            </Button>
+          </Link>
         }
         
       </footer>
