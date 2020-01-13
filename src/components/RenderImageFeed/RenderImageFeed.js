@@ -22,7 +22,7 @@ class RenderAllImage extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.imageFeedreducer
+  reduxState: reduxState.imageFeedReducer
 });
 
 export default connect(putReduxStateOnProps)(RenderAllImage);

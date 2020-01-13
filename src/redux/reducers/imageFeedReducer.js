@@ -5,4 +5,4 @@ const imageFeedReducer = (state=[], action) => {
   return state;
 }
 
-export default allImageReducer;
+export default imageFeedReducer;

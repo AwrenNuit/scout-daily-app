@@ -4,7 +4,7 @@ import {takeLatest, put} from 'redux-saga/effects';
 // GET all images
 function* getAllImage(action){
   try{
-      const getResponse = yield axios.get(`/api/image/all`, action.payload);
+      const getResponse = yield axios.get(`/api/image/all`);
       yield put({type: `SET_ALL_IMAGE`, payload: getResponse.data});
   }
   catch(error){
