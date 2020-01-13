@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import './Following.css';
 
 class Following extends Component{
 
@@ -9,7 +10,7 @@ class Following extends Component{
           {this.props.reduxState.map(image =>
             <div>
               <img className="avatar" src={"https://scout-daily.s3.us-east-2.amazonaws.com/"+image.image_url} alt={image.username} />
-              <span>{image.username}</span>
+              <div>{image.username}</div>
             </div>
           )}
       </>
