@@ -41,7 +41,7 @@ class UserDetails extends Component{
     return(
       <div className="main-details-container">
         {this.props.reduxState.map(details =>
-          <div className="user-details-container">
+          <div key={details.id} className="user-details-container">
             <img className="avatar" src="https://media-exp1.licdn.com/dms/image/C4E03AQE-v_eVE9CJAg/profile-displayphoto-shrink_200_200/0?e=1584576000&v=beta&t=2U4Yq2BPhgoqdAuEQniqRhEKMUGBG1xkc9bh8OKRIxg" alt="" />
 
             {this.state.editUsername ? 

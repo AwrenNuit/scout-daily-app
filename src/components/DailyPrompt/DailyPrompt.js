@@ -13,7 +13,7 @@ class DailyPrompt extends Component{
       <>
         <h1>Today's Prompt: 
           {this.props.reduxState.map(prompt=>
-            <span> {prompt.prompt}</span>
+            <span key={prompt.id}> {prompt.prompt}</span>
           )}
         </h1>
       </>

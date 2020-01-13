@@ -18,12 +18,12 @@ class NavBar extends Component{
     return(
       <footer className="nav">
         {this.props.history === '/home' ? 
-          <Button disableRipple="true" style={{width:"80px",gridArea:"home"}}>
+          <Button disableRipple={true} style={{width:"80px",gridArea:"home"}}>
             <HomeIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
           :
           <Link to='/home'>
-            <Button disableRipple="true" style={{width:"80px",gridArea:"home"}}>
+            <Button disableRipple={true} style={{width:"80px",gridArea:"home"}}>
               <HomeOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
             </Button>
             </Link>
@@ -31,36 +31,36 @@ class NavBar extends Component{
         }
 
         {this.props.history === '/search' ? 
-          <Button disableRipple="true" style={{width:"80px",gridArea:"search"}}>
+          <Button disableRipple={true} style={{width:"80px",gridArea:"search"}}>
             <SearchIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
           :
           <Link to='/search'>
-            <Button disableRipple="true" style={{width:"80px",gridArea:"search"}}>
+            <Button disableRipple={true} style={{width:"80px",gridArea:"search"}}>
               <SearchOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
             </Button>
           </Link>
         }
         
         {this.props.history === '/add-photo' ?
-          <Button disableRipple="true" style={{width:"80px",gridArea:"photo"}}>
+          <Button disableRipple={true} style={{width:"80px",gridArea:"photo"}}>
             <AddAPhotoIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
           :
           <Link to='/add-photo'>
-            <Button disableRipple="true" style={{width:"80px",gridArea:"photo"}}>
+            <Button disableRipple={true} style={{width:"80px",gridArea:"photo"}}>
               <AddAPhotoOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
             </Button>
           </Link>
         }
         
         {this.props.history === '/profile' ?
-          <Button disableRipple="true" style={{width:"80px",gridArea:"profile"}}>
+          <Button disableRipple={true} style={{width:"80px",gridArea:"profile"}}>
             <PersonIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
           :
           <Link to='/profile'>
-            <Button disableRipple="true" style={{width:"80px",gridArea:"profile"}}>
+            <Button disableRipple={true} style={{width:"80px",gridArea:"profile"}}>
               <PersonOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
             </Button>
           </Link>

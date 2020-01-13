@@ -93,7 +93,7 @@ class LoginPage extends Component {
               <Button 
                 onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
                 style={{textTransform:"lowercase",marginTop:"10px",color:"#EEE"}}
-                disableRipple="true"
+                disableRipple={true}
               >
                 register
               </Button>
