@@ -10,6 +10,8 @@ import {connect} from 'react-redux';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Home from '../Home/Home';
 import './App.css';
+import PostImage from '../PostImage/PostImage';
+import Profile from '../Profile/Profile';
 
 class App extends Component {
   componentDidMount () {
@@ -31,6 +33,24 @@ class App extends Component {
               exact
               path="/home"
               component={Home}
+            />
+
+            {/* <ProtectedRoute
+              exact
+              path="/search"
+              component={Search}
+            /> */}
+
+            <ProtectedRoute
+              exact
+              path="/addphoto"
+              component={PostImage}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/profile"
+              component={Profile}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
