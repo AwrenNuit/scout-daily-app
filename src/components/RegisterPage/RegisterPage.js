@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Footer from '../Footer/Footer';
+import LoginFooter from '../LoginFooter/LoginFooter';
 
 class RegisterPage extends Component {
 
@@ -100,7 +100,7 @@ class RegisterPage extends Component {
             </div>
           </center>
         </form>
-        <Footer />
+        <LoginFooter />
       </div>
     );
   }
