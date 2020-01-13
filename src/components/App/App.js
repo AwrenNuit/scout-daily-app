@@ -43,7 +43,7 @@ class App extends Component {
 
             <ProtectedRoute
               exact
-              path="/addphoto"
+              path="/add-photo"
               component={PostImage}
             />
 
