@@ -12,6 +12,37 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
+// GET current user's details
+router.get('/details', (req, res) => {
+  let id = [req.user.id];
+  let SQLquery = `SELECT * FROM "user"
+                  WHERE id = $1;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.send(response.rows);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /details GET ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
+// PUT (update) current user's bio
+router.put('/details', (req, res) => {
+  let id = [req.body.data, req.user.id];
+  let SQLquery = `UPDATE "user"
+                  SET bio = $1
+                  WHERE id = $2;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.send(response.rows);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /details GET ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted

@@ -24,8 +24,32 @@ function* fetchUser() {
   }
 }
 
+// GET user details
+function* getUserDetails(action){
+  try{
+      const getResponse = yield axios.get(`/api/user/details`);
+      yield put({type: `SET_USER_DETAILS`, payload: getResponse.data});
+  }
+  catch(error){
+      console.log('error in GET user details', error);
+  }
+}
+
+// PUT (update) user bio
+function* putUserBio(action){
+  try{
+      yield axios.put(`/api/user/details`, {data: action.payload});
+      yield put({type: `GET_USER_DETAILS`});
+  }
+  catch(error){
+      console.log('error in GET user details', error);
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('GET_USER_DETAILS', getUserDetails);
+  yield takeLatest('UPDATE_BIO', putUserBio);
 }
 
 export default userSaga;
