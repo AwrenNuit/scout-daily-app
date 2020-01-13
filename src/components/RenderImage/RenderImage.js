@@ -11,18 +11,18 @@ class RenderImage extends Component{
   render(){
     return(
       <>
-        {this.props.reduxState.map(image=>
+        {/* {this.props.reduxState.map(image=>
           <span key={image.id}>
             <div className="img" style={{backgroundImage:`url(https://scout-daily.s3.us-east-2.amazonaws.com/${image.image_url})`}}></div>
           </span>
-        )}
+        )} */}
       </>
     );
   }
 }
 
-const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.allImageReducer
-});
+// const putReduxStateOnProps = (reduxState)=>({
+//   reduxState: reduxState.allImageReducer
+// });
 
-export default connect(putReduxStateOnProps)(RenderImage);
+export default connect()(RenderImage);

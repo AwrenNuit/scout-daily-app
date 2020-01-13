@@ -34,8 +34,4 @@ class PostImage extends Component{
   }
 }
 
-const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.dailyPrompt
-});
-
-export default connect(putReduxStateOnProps)(PostImage);
+export default connect()(PostImage);
