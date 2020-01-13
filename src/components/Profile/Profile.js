@@ -74,14 +74,17 @@ class Profile extends Component{
           )}
         </div>
         <div>
-          {this.props.allImage.map(image=>
-            <span key={image.id}>
-                {/* <div className="img" style={{backgroundImage:`url(https://scout-daily.s3.us-east-2.amazonaws.com/${image.image_url})`}}></div> */}
-              <Link to={"/edit-photo/"+image.id}>
-                <img src={image.image_url} alt={image.description} />
-              </Link>
-            </span>
-          )}
+          {this.props.allImage ? this.props.allImage.map(image=>
+              <span key={image.id}>
+                  {/* <div className="img" style={{backgroundImage:`url(https://scout-daily.s3.us-east-2.amazonaws.com/${image.image_url})`}}></div> */}
+                <Link to={"/edit-photo/"+image.id}>
+                  <img src={image.image_url} alt={image.description} />
+                </Link>
+              </span>
+            )
+            :
+            <p>Add some pics! :)</p>
+          }
         </div>
         <NavBar history={this.props.history.location.pathname} />
       </>

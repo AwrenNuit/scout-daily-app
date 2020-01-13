@@ -12,10 +12,11 @@ class RenderAllImage extends Component{
     return(
       <>
         {this.props.reduxState ? this.props.reduxState.map(image=>
-          <span key={image.id}>
-            <div className="all-img" style={{backgroundImage:`url(https://scout-daily.s3.us-east-2.amazonaws.com/${image.image_url})`}}></div>
-          </span>
-        ) : <p>Follow someone</p>}
+            <span key={image.id}>
+              <div className="all-img" style={{backgroundImage:`url(https://scout-daily.s3.us-east-2.amazonaws.com/${image.image_url})`}}></div>
+            </span>
+          ) : <p>Follow someone</p>
+        }
       </>
     );
   }
