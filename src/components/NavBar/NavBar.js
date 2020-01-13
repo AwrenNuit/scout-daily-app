@@ -6,7 +6,6 @@ import HomeIcon from '@material-ui/icons/Home';
 import SearchIcon from '@material-ui/icons/Search';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import PersonIcon from '@material-ui/icons/Person';
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import Button from '@material-ui/core/Button';
 
 
@@ -25,9 +24,6 @@ class NavBar extends Component{
         </Button>
         <Button disableRipple="true" style={{margin:"0 2px"}}>
           <PersonIcon fontSize="large" style={{color:"#EEE"}} />
-        </Button>
-        <Button disableRipple="true" style={{margin:"0 2px"}}>
-          <PeopleAltIcon fontSize="large" style={{color:"#EEE"}} />
         </Button>
       </footer>
     );
