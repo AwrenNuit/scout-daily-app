@@ -1,6 +1,18 @@
 import axios from 'axios';
 import {takeLatest, put} from 'redux-saga/effects';
 
+
+// DELETE image
+function* deleteImage(action){
+  try{
+      yield axios.delete(`/api/image/${action.payload}`);
+      yield put({type: `GET_IMAGE`});
+  }
+  catch(error){
+      console.log('error in DELETE image', error);
+  }
+}
+
 // GET all images
 function* getAllImage(action){
   try{
@@ -56,12 +68,25 @@ function* postImage(action){
   }
 }
 
+// PUT (update) image caption
+function* updateImageCaption(action){
+  try{
+      yield axios.put(`/api/image/caption`, action.payload);
+      yield put({type: `GET_IMAGE`});
+  }
+  catch(error){
+      console.log('error in PUT image caption', error);
+  }
+}
+
 function* imageSaga() {
+  yield takeLatest('DELETE_IMAGE', deleteImage);  
   yield takeLatest('GET_ALL_IMAGE', getAllImage);
   yield takeLatest('GET_FOLLOWING', getFollowedAvatar);
   yield takeLatest('GET_IMAGE_FEED', getImageFeed);
   yield takeLatest('GET_THIS_IMAGE', getThisImage);
-  yield takeLatest('POST_IMAGE', postImage);  
+  yield takeLatest('POST_IMAGE', postImage); 
+  yield takeLatest('UPDATE_CAPTION', updateImageCaption); 
 }
 
 export default imageSaga;

@@ -1,4 +1,8 @@
-footer {
+.nav {
+  display: grid;
+  width: 100%;
+  grid-template-areas: 
+    'home search photo profile';
   position: fixed;
   left: 0;
   bottom: 0;
@@ -6,11 +10,5 @@ footer {
   height: 50px;
   background-color: #393E46;
   color: #EEE;
-  justify-items: center;}
-
-.nav {
-  display: grid;
-  width: 100%;
-  grid-template-areas: 
-    'home search photo profile';
-  }
+  justify-items: center;
+}

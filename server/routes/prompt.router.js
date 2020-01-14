@@ -4,6 +4,7 @@ const router = express.Router();
 
 // GET daily photography prompt
 router.get('/', (req, res) => {
+  let id = [new Date()];
   const SQLquery = `SELECT * FROM prompt 
                     LIMIT 1;`;
   pool.query(SQLquery)

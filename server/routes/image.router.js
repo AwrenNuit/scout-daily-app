@@ -2,6 +2,20 @@ const express = require(`express`);
 const router = express.Router();
 const pool = require(`../modules/pool`);
 
+router.delete('/:id', (req, res) => {
+  let id = [req.params.id];
+  let SQLquery = `DELETE FROM image
+                  WHERE id = $1;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.sendStatus(200);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /:id DELETE ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
 router.get('/all', (req, res) => {
   let SQLquery = `SELECT * FROM image;`;
   pool.query(SQLquery)
@@ -48,7 +62,7 @@ router.get('/:id', (req, res) => {
                   WHERE id = $1;`;
   pool.query(SQLquery, id)
   .then(response=>{
-      res.send(response.rows);
+      res.send(response.rows[0]);
   })
   .catch(error=>{
     console.log('ERROR IN /:id GET ---------------------------------------->', error);
@@ -57,7 +71,6 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  console.log('req.body-----------------------------------------', req.body);
   let id = [req.body.data];
   let SQLquery = `INSERT INTO image (image_url)
                   VALUES($1);`;
@@ -67,6 +80,21 @@ router.post('/', (req, res) => {
   })
   .catch(error=>{
     console.log('ERROR IN / POST ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
+router.put('/caption', (req, res) => {
+  let id = [req.body.caption, req.body.id];
+  let SQLquery = `UPDATE image
+                  SET caption = $1
+                  WHERE id = $2;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.sendStatus(201);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /caption PUT ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });

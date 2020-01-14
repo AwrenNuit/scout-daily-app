@@ -12,6 +12,7 @@ import Home from '../Home/Home';
 import './App.css';
 import PostImage from '../PostImage/PostImage';
 import Profile from '../Profile/Profile';
+import EditThisImage from '../EditThisImage/EditThisImage';
 
 class App extends Component {
   componentDidMount () {
@@ -49,7 +50,7 @@ class App extends Component {
 
             <ProtectedRoute
               path="/edit-photo/:id"
-              component={PostImage}
+              component={EditThisImage}
             />
 
             <ProtectedRoute

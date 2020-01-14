@@ -44,7 +44,7 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form onSubmit={this.login}>
+        <form className="login-form" onSubmit={this.login}>
           <center>
             <img src="/images/logo.png" alt="Scout Daily Logo" height="150px"/>
             <h1>Login</h1>

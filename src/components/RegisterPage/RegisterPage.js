@@ -44,7 +44,7 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
-        <form onSubmit={this.registerUser}>
+        <form className="register-form" onSubmit={this.registerUser}>
           <center>
             <img src="/images/logo.png" alt="Scout Daily Logo" height="150px"/>
             <h1>Register</h1>
