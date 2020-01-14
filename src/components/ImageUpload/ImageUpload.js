@@ -3,10 +3,16 @@ import {connect} from 'react-redux';
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader';
 
 const dropzoneStyle = {
-    border: '1px solid black',
-    height: '50px',
-    width: '200px',
-    cursor: 'pointer'
+    backgroundColor: '#3f51b5',
+    color: 'white',
+    fontSize: '14.5px',
+    fontFamily: 'Roboto, sans-serif',
+    height: '37px',
+    width: '90%',
+    borderRadius: '4px',
+    boxShadow: '0 1px 2px grey',
+    cursor: 'pointer',
+    marginBottom: '10px',
 }
 
 class ImageUpload extends Component{
@@ -29,7 +35,7 @@ class ImageUpload extends Component{
     // For text on Dropzone button
     const innerEl = (
       <div className='zone'>
-        <p>Post Image</p>
+        <p style={{position:"relative",top:'13px'}}>POST IMAGE</p>
       </div>
     )
 
