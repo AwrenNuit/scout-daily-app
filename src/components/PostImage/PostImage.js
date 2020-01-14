@@ -18,9 +18,7 @@ class PostImage extends Component{
   }
 
   handleFileChange = (event) => {
-    this.setState({
-      file: URL.createObjectURL(event.target.files[0])
-    });
+    this.setState({file: URL.createObjectURL(event.target.files[0])});
   }
 
   render(){
@@ -31,7 +29,7 @@ class PostImage extends Component{
             <img className="add-image-preview" src={this.state.file}/>
             <input type="file" onChange={this.handleFileChange}/>
           </div>
-          {/* <ImageUpload /> */}
+          {/* <ImageUpload caption={this.state.caption} /> */}
         </div>
         <div>
           <TextField 

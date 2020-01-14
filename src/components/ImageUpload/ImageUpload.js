@@ -13,7 +13,8 @@ class ImageUpload extends Component{
 
   // Dispatch uploaded file to database
   handleFinishedUpload = info => {
-    this.props.dispatch({type: `POST_IMAGE`, payload: info.filename});
+    this.props.dispatch({type: `POST_IMAGE`, payload: {image_url: info.filename, caption: this.props.caption}});
+    this.props.history.push('/home');
   }
 
   render(){
@@ -28,7 +29,7 @@ class ImageUpload extends Component{
     // For text on Dropzone button
     const innerEl = (
       <div className='zone'>
-        <p>Upload</p>
+        <p>Post Image</p>
       </div>
     )
 
