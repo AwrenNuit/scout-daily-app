@@ -42,7 +42,7 @@ class PostImage extends Component{
                   width={250}
                   height={250}
                   border={50}
-                  color={[20, 20, 20, 0.8]} // RGBA
+                  color={[0, 0, 0, 0.8]} // RGBA
                   scale={this.state.scale || 1}
                   rotate={0}
                 />
