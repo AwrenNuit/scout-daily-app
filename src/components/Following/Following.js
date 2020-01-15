@@ -5,6 +5,10 @@ import NavBar from '../NavBar/NavBar';
 
 class Following extends Component{
 
+  componentDidMount(){
+    this.props.dispatch({type: `GET_FOLLOWING`});
+  }
+
   render(){
     return(
       <>
