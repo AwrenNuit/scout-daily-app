@@ -6,13 +6,15 @@ import TextField from '@material-ui/core/TextField';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import NavBar from '../NavBar/NavBar';
 import AvatarEditor from 'react-avatar-editor';
+import axios from 'axios';
 
 class PostImage extends Component{
 
   state = {
     caption: '',
     file: null,
-    scale: 0
+    scale: 0,
+    image: ''
   }
 
   handleCaptionChange = (e) => {
@@ -30,6 +32,36 @@ class PostImage extends Component{
     });
   }
 
+  onClickSave = () => {
+    if (this.editor) {
+      const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
+      // let qwert = this.dataURItoBlob(canvasScaled);
+      // console.log(qwert);
+      // this.setState({image: canvasScaled});
+      // axios.post(`/test-upload`, {data: canvasScaled})
+      // .then(response => {
+      //   // handle your response;
+      // }).catch(error => {
+      //   // handle your error
+      // });
+    }
+  }
+
+//   dataURItoBlob = (dataURI) => {
+//     var binary = atob(dataURI.split(',')[1]);
+//     var array = [];
+//     for(var i = 0; i < binary.length; i++) {
+//         array.push(binary.charCodeAt(i));
+//     }
+//     return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+// }
+
+  // db = () => {
+  //   this.props.dispatch({type: `SEND`, payload: canvasScaled});
+  // }
+
+  setEditorRef = (editor) => this.editor = editor
+
   render(){
     return(
       <center>
@@ -38,6 +70,7 @@ class PostImage extends Component{
             {this.state.file ?
               <>
                 <AvatarEditor
+                  ref={this.setEditorRef}
                   image={this.state.file}
                   width={250}
                   height={250}
@@ -53,6 +86,8 @@ class PostImage extends Component{
               <div className="whitespace"></div>
             }
             <input type="file" onChange={this.handleFileChange}/>
+            <button onClick={this.onClickSave}>SAVE</button>
+            {/* <img src={this.state.image} alt="test" /> */}
           </div>
         </div>
         <div>
@@ -72,9 +107,10 @@ class PostImage extends Component{
             color="primary"
             type="submit"
             value="Save"
+            onClick={this.db}
             style={{width:"90%",marginBottom:"10px"}}
           >
-            Post Image
+            Post Image (db)
           </Button>
 
           <ImageUpload caption={this.state.caption} />

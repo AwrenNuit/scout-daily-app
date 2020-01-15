@@ -68,6 +68,17 @@ function* postImage(action){
   }
 }
 
+// POST image
+function* postTEST(action){
+  try{
+      yield axios.post(`/api/image/test`, {data: action.payload});
+      yield put({type: `GET_IMAGE`});
+  }
+  catch(error){
+      console.log('error in POST image', error);
+  }
+}
+
 // PUT (update) image caption
 function* updateImageCaption(action){
   try{
@@ -86,6 +97,7 @@ function* imageSaga() {
   yield takeLatest('GET_IMAGE_FEED', getImageFeed);
   yield takeLatest('GET_THIS_IMAGE', getThisImage);
   yield takeLatest('POST_IMAGE', postImage); 
+  yield takeLatest('SEND', postTEST); 
   yield takeLatest('UPDATE_CAPTION', updateImageCaption); 
 }
 
