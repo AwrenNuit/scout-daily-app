@@ -1,0 +1,29 @@
+.other-user-details-container {
+  display: grid;
+  grid-template-areas: 
+    'avatar avatar username username username'
+    'avatar avatar bio bio bio'
+    'avatar avatar follow follow follow';
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.main-details-container {
+  text-align: center;
+}
+
+.avatar {
+  grid-area: avatar;
+  height:100px;
+  width:100px;
+  border-radius:50%;
+  margin-top: 10px;
+}
+
+.username {
+  grid-area: username;
+}
+
+.bio {
+  grid-area: bio;
+}
