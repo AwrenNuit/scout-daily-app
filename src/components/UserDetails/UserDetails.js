@@ -19,7 +19,7 @@ class UserDetails extends Component{
   editDetails = (propName, propValue, propEdit) => {
     this.setState({
       [propName]: propValue,
-      [propEdit]:true
+      [propEdit]: true
     });
   }
 
@@ -44,20 +44,14 @@ class UserDetails extends Component{
           <div key={details.id} className="user-details-container">
             <img className="avatar" src="https://media-exp1.licdn.com/dms/image/C4E03AQE-v_eVE9CJAg/profile-displayphoto-shrink_200_200/0?e=1584576000&v=beta&t=2U4Yq2BPhgoqdAuEQniqRhEKMUGBG1xkc9bh8OKRIxg" alt="" />
 
-            {this.state.editUsername ? 
-              <>
-                <input onChange={(event)=>this.handleChange(event, 'username')} value={this.state.username} /> 
-                <button onClick={this.saveUsernameChange}>Save</button>
-              </>
+            {this.state.editUsername && !this.state.editBio ? 
+              <input onChange={(event)=>this.handleChange(event, 'username')} onBlur={this.saveUsernameChange} value={this.state.username} /> 
               :
               <span className="username" onClick={()=>this.editDetails('username', details.username, 'editUsername')}>{details.username}</span>
             }
 
-            {this.state.editBio ? 
-              <>
-                <input onChange={(event)=>this.handleChange(event, 'bio')} value={this.state.bio} /> 
-                <button onClick={this.saveBioChange}>Save</button>
-              </>
+            {this.state.editBio && !this.state.editUsername ? 
+              <input onChange={(event)=>this.handleChange(event, 'bio')} onBlur={this.saveBioChange} value={this.state.bio} /> 
               :
               <span className="bio" onClick={()=>this.editDetails('bio', details.bio, 'editBio')}>{details.bio}</span>
             }
