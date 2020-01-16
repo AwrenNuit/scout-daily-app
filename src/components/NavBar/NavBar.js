@@ -19,7 +19,7 @@ class NavBar extends Component{
       <footer className="nav">
         {this.props.history === '/home' ? 
           <Button disableRipple={true} style={{width:"80px",gridArea:"home"}}>
-            <HomeIcon fontSize="large" style={{color:"#EEE"}} />
+            <HomeIcon fontSize="large" style={{color:"#dfbdff"}} />
           </Button>
           :
           <Link to='/home'>
@@ -32,7 +32,7 @@ class NavBar extends Component{
 
         {this.props.history === '/search' ? 
           <Button disableRipple={true} style={{width:"80px",gridArea:"search"}}>
-            <SearchIcon fontSize="large" style={{color:"#EEE"}} />
+            <SearchIcon fontSize="large" style={{color:"#dfbdff"}} />
           </Button>
           :
           <Link to='/search'>
@@ -44,7 +44,7 @@ class NavBar extends Component{
         
         {this.props.history === '/add-photo' ?
           <Button disableRipple={true} style={{width:"80px",gridArea:"photo"}}>
-            <AddAPhotoIcon fontSize="large" style={{color:"#EEE"}} />
+            <AddAPhotoIcon fontSize="large" style={{color:"#dfbdff"}} />
           </Button>
           :
           <Link to='/add-photo'>
@@ -56,7 +56,7 @@ class NavBar extends Component{
         
         {this.props.history === '/profile' ?
           <Button disableRipple={true} style={{width:"80px",gridArea:"profile"}}>
-            <PersonIcon fontSize="large" style={{color:"#EEE"}} />
+            <PersonIcon fontSize="large" style={{color:"#dfbdff"}} />
           </Button>
           :
           <Link to='/profile'>
