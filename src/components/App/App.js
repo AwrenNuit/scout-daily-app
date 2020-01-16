@@ -68,12 +68,12 @@ class App extends Component {
               component={Following}
             />
 
-            <ProtectedRoute
+            <Route
               path="/profile/:id"
               component={OtherProfile}
             />
 
-            <ProtectedRoute
+            <Route
               path="/view-image/:id"
               component={ViewThisImage}
             />
