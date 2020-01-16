@@ -93,24 +93,9 @@ router.get('/view/:id', (req, res) => {
 
 // POST new image
 router.post('/', (req, res) => {
-  let id = [req.body.data];
-  let SQLquery = `INSERT INTO image (image_url)
-                  VALUES($1);`;
-  pool.query(SQLquery, id)
-  .then(response=>{
-      res.sendStatus(201);
-  })
-  .catch(error=>{
-    console.log('ERROR IN / POST ---------------------------------------->', error);
-    res.sendStatus(500);
-  });
-});
-
-// TEST POST ROUTE
-router.post('/test', (req, res) => {
-  let id = [req.body.data];
-  let SQLquery = `INSERT INTO image (image_url)
-                  VALUES($1);`;
+  let id = [req.body.image, req.body.caption];
+  let SQLquery = `INSERT INTO image (image_url, caption)
+                  VALUES($1, $2);`;
   pool.query(SQLquery, id)
   .then(response=>{
       res.sendStatus(201);

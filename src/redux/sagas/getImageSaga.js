@@ -71,19 +71,8 @@ function* getThisImageView(action){
 // POST image
 function* postImage(action){
   try{
-      yield axios.post(`/api/image`, {data: action.payload});
-      yield put({type: `GET_IMAGE`});
-  }
-  catch(error){
-      console.log('error in POST image', error);
-  }
-}
-
-// POST image
-function* postTEST(action){
-  try{
-      yield axios.post(`/api/image/test`, {data: action.payload});
-      yield put({type: `GET_IMAGE`});
+      yield axios.post(`/api/image`, action.payload);
+      yield put({type: `GET_ALL_IMAGE`});
   }
   catch(error){
       console.log('error in POST image', error);
@@ -109,7 +98,6 @@ function* imageSaga() {
   yield takeLatest('GET_THIS_IMAGE', getThisImage);
   yield takeLatest('VIEW_THIS_IMAGE', getThisImageView);
   yield takeLatest('POST_IMAGE', postImage); 
-  yield takeLatest('SEND', postTEST); 
   yield takeLatest('UPDATE_CAPTION', updateImageCaption); 
 }
 
