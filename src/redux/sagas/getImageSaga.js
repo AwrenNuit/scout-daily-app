@@ -24,7 +24,7 @@ function* deleteImage(action){
 }
 
 // GET all images
-function* getAllImage(action){
+function* getAllUserImage(action){
   try{
       const getResponse = yield axios.get(`/api/image/all`);
       yield put({type: `SET_ALL_IMAGE`, payload: getResponse.data});
@@ -103,7 +103,7 @@ function* updateImageCaption(action){
 function* imageSaga() {
   yield takeLatest(`ADD_LIKE`, addLike);
   yield takeLatest('DELETE_IMAGE', deleteImage);  
-  yield takeLatest('GET_ALL_USER_IMAGE', getAllImage);
+  yield takeLatest('GET_ALL_USER_IMAGE', getAllUserImage);
   yield takeLatest('GET_FOLLOWING', getFollowedAvatar);
   yield takeLatest('GET_IMAGE_FEED', getImageFeed);
   yield takeLatest('GET_THIS_IMAGE', getThisImage);
