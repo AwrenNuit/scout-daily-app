@@ -98,9 +98,9 @@ router.get('/:id', (req, res) => {
 
 // GET this image to view
 router.get('/view/:id', (req, res) => {
-  let id = [req.params.id, req.user.id];
+  let id = [req.params.id];
   let SQLquery = `SELECT * FROM image
-                  WHERE id = $1 AND user_id = $2;`;
+                  WHERE id = $1;`;
   pool.query(SQLquery, id)
   .then(response=>{
       res.send(response.rows[0]);

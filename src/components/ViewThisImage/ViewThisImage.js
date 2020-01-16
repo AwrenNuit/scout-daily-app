@@ -5,22 +5,8 @@ import NavBar from '../NavBar/NavBar';
 
 class ViewThisImage extends Component{
 
-  state = {
-    caption: '',
-    id: ''
-  }
-
   componentDidMount(){
     this.props.dispatch({type: `VIEW_THIS_IMAGE`, payload: this.props.match.params.id});
-  }
-
-  componentDidUpdate(prevProps){
-    if(this.props.reduxState !== prevProps.reduxState){
-      this.setState({
-        caption: this.props.reduxState.caption,
-        id: this.props.reduxState.id
-      });
-    }
   }
 
   handleLike = (id) => {
@@ -30,12 +16,13 @@ class ViewThisImage extends Component{
   render(){
     return(
       <>
+      {JSON.stringify(this.props.reduxState)}
         <center>
           <div>
             <div>
-              <img className="img" src={this.props.reduxState.image_url} alt={this.props.reduxState.description} />
+              <img className="img" src={this.props.reduxState.image_url} alt={this.props.reduxState.caption} />
             </div>
-            <div>{this.state.caption}</div>
+            <div>{this.props.reduxState.caption}</div>
             <div onClick={()=>this.handleLike(this.props.reduxState.id)}>Like</div>
           </div>
           <div>COMMENTS GO HERE</div>
