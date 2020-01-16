@@ -15,7 +15,6 @@ class RenderUserImage extends Component{
         {this.props.reduxState ? 
           this.props.reduxState.map(image=>
             <span key={image.id}>
-                {/* <div className="img" style={{backgroundImage:`url(https://scout-daily.s3.us-east-2.amazonaws.com/${image.image_url})`}}></div> */}
               <Link to={"/view-photo/"+image.id}>
                 <img className="other-user-img" src={image.image_url} alt={image.description} />
               </Link>

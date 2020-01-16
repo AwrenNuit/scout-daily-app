@@ -22,8 +22,10 @@
 
 .username {
   grid-area: username;
+  cursor: default;
 }
 
 .bio {
   grid-area: bio;
+  cursor: default;
 }

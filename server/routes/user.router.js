@@ -27,6 +27,21 @@ router.get('/details', (req, res) => {
   });
 });
 
+// GET other user's details
+router.get('/details/:id', (req, res) => {
+  let id = [req.params.id];
+  let SQLquery = `SELECT * FROM "user"
+                  WHERE id = $1;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.send(response.rows);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /details/:id GET ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
 // POST user follow
 router.post('/follow', (req, res) => {
   let id = [req.user.id, req.body.data];

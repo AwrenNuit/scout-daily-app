@@ -8,7 +8,7 @@ class OtherProfile extends Component{
   render(){
     return(
       <>
-        <OtherUserDetails />
+        <OtherUserDetails id={this.props.match.params.id} />
         <RenderOtherUserImage />
         <NavBar history={this.props.history.location.pathname} />
       </>

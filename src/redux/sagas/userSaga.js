@@ -35,6 +35,17 @@ function* addFollow(action){
   }
 }
 
+// GET other user details
+function* getOtherUserDetails(action){
+  try{
+      const getResponse = yield axios.get(`/api/user/details/${action.payload}`);
+      yield put({type: `SET_OTHER_USER_DETAILS`, payload: getResponse.data});
+  }
+  catch(error){
+      console.log('error in GET other user details', error);
+  }
+}
+
 // GET user details
 function* getUserDetails(action){
   try{
@@ -71,6 +82,7 @@ function* putUsername(action){
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest('ADD_FOLLOW', addFollow);
+  yield takeLatest('GET_OTHER_USER_DETAILS', getOtherUserDetails);
   yield takeLatest('GET_USER_DETAILS', getUserDetails);
   yield takeLatest('UPDATE_BIO', putUserBio);
   yield takeLatest('UPDATE_USERNAME', putUsername);
