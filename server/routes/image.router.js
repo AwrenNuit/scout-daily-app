@@ -20,7 +20,6 @@ router.delete('/:id', (req, res) => {
 
 // GET all images
 router.get('/all', (req, res) => {
-  console.log('IN THERE--------------------------', req.user.id);
   let id = [req.user.id];
   let SQLquery = `SELECT * FROM image
                   WHERE user_id = $1;`;
@@ -59,7 +58,6 @@ router.get('/following/feed', (req, res) => {
                   WHERE f.user_id = $1;`;
   pool.query(SQLquery, id)
   .then(response=>{
-    console.log('response---------------------------', response.rows);
       res.send(response.rows);
   })
   .catch(error=>{

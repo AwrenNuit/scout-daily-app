@@ -4,7 +4,6 @@ import {takeLatest, put} from 'redux-saga/effects';
 // GET daily prompt
 function* getPrompt(action){
   try{
-    console.log('in saga');
       const getResponse = yield axios.get(`/api/prompt`, action.payload);
       yield put({type: `SET_PROMPT`, payload: getResponse.data});
   }

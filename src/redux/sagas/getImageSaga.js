@@ -49,7 +49,6 @@ function* getFollowedAvatar(action){
 function* getImageFeed(action){
   try{
       const getResponse = yield axios.get(`/api/image/following/feed`);
-      console.log('response:', getResponse);
       yield put({type: `SET_IMAGE_FEED`, payload: getResponse.data});
   }
   catch(error){
