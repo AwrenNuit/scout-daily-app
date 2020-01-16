@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
+import './RenderImageFeed.css';
 
 class RenderImageFeed extends Component{
 
@@ -16,15 +17,18 @@ class RenderImageFeed extends Component{
   render(){
     return(
       <>
-        {this.props.reduxState ? this.props.reduxState.map(image=>
+        {this.props.reduxState ? 
+          this.props.reduxState.map(image=>
             <span key={image.id}>
               <Link to={"/view-photo/"+image.id}>
-                <img src={image.image_url} alt={image.caption} />
+                <img className="feed-img" src={image.image_url} alt={image.caption} />
               </Link>
               <div>{image.caption}</div>
               <div onClick={()=>this.handleLike(image.id)}>Like</div>
             </span>
-          ) : <p>Follow someone</p>
+          ) 
+          : 
+          <p>Follow someone</p>
         }
       </>
     );
