@@ -60,11 +60,6 @@ class EditThisImage extends Component{
             >
               <DeleteForeverIcon />
             </Fab>
-
-                {/* <div 
-                  className="img" 
-                  style={{backgroundImage:`url(https://scout-daily.s3.us-east-2.amazonaws.com/${image.image_url})`,width:"90%",marginBottom:"20px",borderRadius:"20px"}}>
-                </div> */}
             <div>
             <img className="img" src={this.props.reduxState.image_url} alt={this.props.reduxState.description} />
             </div>

@@ -77,7 +77,7 @@ class UserDetails extends Component{
             } */}
 
 
-            <img className="avatar" src="https://media-exp1.licdn.com/dms/image/C4E03AQE-v_eVE9CJAg/profile-displayphoto-shrink_200_200/0?e=1584576000&v=beta&t=2U4Yq2BPhgoqdAuEQniqRhEKMUGBG1xkc9bh8OKRIxg" alt="" />
+            <img className="avatar" src={details.avatar} alt={details.username} />
 
             {this.state.editUsername && !this.state.editBio ? 
               <input onChange={(event)=>this.handleChange(event, 'username')} onBlur={this.saveUsernameChange} value={this.state.username} /> 
@@ -98,7 +98,7 @@ class UserDetails extends Component{
           </div>
         )}
       </div>
-    )
+    );
   }
 }
 
