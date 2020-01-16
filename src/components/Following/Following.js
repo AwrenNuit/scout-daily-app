@@ -35,7 +35,7 @@ class Following extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.followingReducer
+  reduxState: reduxState.followingAvatar
 });
 
 export default connect(putReduxStateOnProps)(Following);

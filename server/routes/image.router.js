@@ -34,8 +34,10 @@ router.get('/all', (req, res) => {
 // GET all followed user's avatars
 router.get('/following/avatar', (req, res) => {
   let id = [req.user.id];
-  let SQLquery = `SELECT * FROM following
-                  WHERE user_id = $1;`;
+  let SQLquery = `SELECT "user".id, user.username, user.avatar FROM "user"
+                  JOIN following ON following.user_id = "user".id
+                  GROUP BY "user".id
+                  WHERE following.user_id = $1;`;
   pool.query(SQLquery, id)
   .then(response=>{
       res.send(response.rows);
