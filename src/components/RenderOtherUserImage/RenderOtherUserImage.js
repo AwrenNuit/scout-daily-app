@@ -12,10 +12,11 @@ class RenderUserImage extends Component{
   render(){
     return(
       <div>
+        {JSON.stringify(this.props.reduxState)}
         {this.props.reduxState ? 
           this.props.reduxState.map(image=>
             <span key={image.id}>
-              <Link to={"/view-photo/"+image.id}>
+              <Link to={"/view-image/"+image.id}>
                 <img className="other-user-img" src={image.image_url} alt={image.description} />
               </Link>
             </span>
