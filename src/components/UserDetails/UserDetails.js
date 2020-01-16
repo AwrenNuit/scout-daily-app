@@ -91,7 +91,7 @@ class UserDetails extends Component{
               <span className="bio" onClick={()=>this.editDetails('bio', details.bio, 'editBio')}>{details.bio}</span>
             }
 
-            <Button variant="contained" color="primary" onClick={this.handleFollowing} style={{gridArea:"following",height:"25px"}}>
+            <Button variant="contained" color="primary" onClick={this.handleFollowing} style={{gridArea:"following",height:"25px",backgroundColor:"#bc75ff"}}>
               Following
             </Button>
 

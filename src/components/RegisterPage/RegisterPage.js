@@ -83,7 +83,7 @@ class RegisterPage extends Component {
                 color="primary"
                 type="submit"
                 value="Register"
-                style={{width:"90%",marginBottom:"10px"}}
+                style={{width:"90%",marginBottom:"10px",backgroundColor:"#bc75ff"}}
               >
                 Register
               </Button>

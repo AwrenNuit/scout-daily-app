@@ -83,7 +83,7 @@ class LoginPage extends Component {
                 color="primary"
                 type="submit"
                 value="Log In"
-                style={{width:"90%",marginBottom:"10px"}}
+                style={{width:"90%",marginBottom:"10px",backgroundColor:"#bc75ff"}}
               >
                 Log in
               </Button>
