@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 class RenderUserImage extends Component{
 
   UNSAFE_componentWillMount(){
-    this.props.dispatch({type: `GET_ALL_OTHER_USER_IMAGE`});
+    this.props.dispatch({type: `GET_ALL_OTHER_USER_IMAGE`, payload: this.props.id});
   }
 
   render(){
@@ -29,7 +29,7 @@ class RenderUserImage extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.allImage
+  reduxState: reduxState.otherUserImage
 });
 
 export default connect(putReduxStateOnProps)(RenderUserImage);

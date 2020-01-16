@@ -18,7 +18,7 @@ router.delete('/:id', (req, res) => {
   });
 });
 
-// GET all images
+// GET all user images
 router.get('/all', (req, res) => {
   let id = [req.user.id];
   let SQLquery = `SELECT * FROM image
@@ -29,6 +29,21 @@ router.get('/all', (req, res) => {
   })
   .catch(error=>{
     console.log('ERROR IN /all GET ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
+// GET all other user images
+router.get('/all/:id', (req, res) => {
+  let id = [req.params.id];
+  let SQLquery = `SELECT * FROM image
+                  WHERE user_id = $1;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.send(response.rows);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /all/:id GET ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });

@@ -10,6 +10,7 @@ import imageFeed from './imageFeedReducer';
 import userDetails from './userDetailsReducer';
 import viewThisImage from './viewThisImage';
 import otherUserDetails from './otherUserDetailsReducer';
+import otherUserImage from './allOtherUserImageReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   userDetails, // stores current user's details
   viewThisImage, // stores image being viewed
   otherUserDetails, // stores other user's details
+  otherUserImage, // stores other user's images
 });
 
 export default rootReducer;

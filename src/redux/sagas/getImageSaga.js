@@ -23,14 +23,25 @@ function* deleteImage(action){
   }
 }
 
-// GET all images
+// GET all other user images
+function* getAllOtherUserImage(action){
+  try{
+      const getResponse = yield axios.get(`/api/image/all/${action.payload}`);
+      yield put({type: `SET_ALL_OTHER_USER_IMAGE`, payload: getResponse.data});
+  }
+  catch(error){
+      console.log('error in GET all other user images', error);
+  }
+}
+
+// GET all user images
 function* getAllUserImage(action){
   try{
       const getResponse = yield axios.get(`/api/image/all`);
       yield put({type: `SET_ALL_IMAGE`, payload: getResponse.data});
   }
   catch(error){
-      console.log('error in GET all images', error);
+      console.log('error in GET all user images', error);
   }
 }
 
@@ -102,7 +113,8 @@ function* updateImageCaption(action){
 
 function* imageSaga() {
   yield takeLatest(`ADD_LIKE`, addLike);
-  yield takeLatest('DELETE_IMAGE', deleteImage);  
+  yield takeLatest('DELETE_IMAGE', deleteImage);
+  yield takeLatest('GET_ALL_OTHER_USER_IMAGE', getAllOtherUserImage);
   yield takeLatest('GET_ALL_USER_IMAGE', getAllUserImage);
   yield takeLatest('GET_FOLLOWING', getFollowedAvatar);
   yield takeLatest('GET_IMAGE_FEED', getImageFeed);
