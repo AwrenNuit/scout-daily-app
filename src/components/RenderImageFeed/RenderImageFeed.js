@@ -19,7 +19,7 @@ class RenderImageFeed extends Component{
         {this.props.reduxState ? this.props.reduxState.map(image=>
             <span key={image.id}>
               <Link to={"/view-photo/"+image.id}>
-                <div className="all-img" style={{backgroundImage:`url(https://scout-daily.s3.us-east-2.amazonaws.com/${image.image_url})`}}></div>
+                <div className="all-img" style={{backgroundImage:`url(${image.image_url})`}}></div>
               </Link>
               <div>{image.caption}</div>
               <span onClick={()=>this.handleLike(image.user_id)}>Like</span>
