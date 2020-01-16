@@ -87,7 +87,7 @@ class EditThisImage extends Component{
               type="submit"
               value="Save"
               onClick={this.handleSave}
-              style={{width:"90%",marginBottom:"10px"}}
+              style={{width:"90%",marginBottom:"10px",backgroundColor:"#bc75ff"}}
             >
               Save
             </Button>
