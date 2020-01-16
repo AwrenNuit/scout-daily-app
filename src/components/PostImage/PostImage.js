@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import NavBar from '../NavBar/NavBar';
 import AvatarEditor from 'react-avatar-editor';
-import axios from 'axios';
+// import axios from 'axios';
 
 class PostImage extends Component{
 
@@ -14,7 +14,7 @@ class PostImage extends Component{
     caption: '',
     file: null,
     scale: 0,
-    image: ''
+    // image: ''
   }
 
   handleCaptionChange = (e) => {
@@ -35,9 +35,10 @@ class PostImage extends Component{
   onClickSave = () => {
     if (this.editor) {
       const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
+      this.props.dispatch({type: `SEND`, payload: canvasScaled});
       // let qwert = this.dataURItoBlob(canvasScaled);
       // console.log(qwert);
-      this.setState({image: canvasScaled});
+      // this.setState({image: canvasScaled});
       // axios.post(`/test-upload`, {data: canvasScaled})
       // .then(response => {
       //   // handle your response;
@@ -57,7 +58,7 @@ class PostImage extends Component{
 // }
 
   // db = () => {
-  //   this.props.dispatch({type: `SEND`, payload: canvasScaled});
+    // this.props.dispatch({type: `SEND`, payload: canvasScaled});
   // }
 
   setEditorRef = (editor) => this.editor = editor
@@ -111,10 +112,8 @@ class PostImage extends Component{
             onClick={this.db}
             style={{width:"90%",marginBottom:"10px"}}
           >
-            Post Image (db)
+            Post it!
           </Button>
-
-          <ImageUpload caption={this.state.caption} />
         </div>
         <NavBar history={this.props.history.location.pathname} />
       </center>
