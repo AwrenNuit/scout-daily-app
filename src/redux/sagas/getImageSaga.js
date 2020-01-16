@@ -16,7 +16,7 @@ function* addLike(action){
 function* deleteImage(action){
   try{
       yield axios.delete(`/api/image/${action.payload}`);
-      yield put({type: `GET_ALL_IMAGE`});
+      yield put({type: `GET_ALL_USER_IMAGE`});
   }
   catch(error){
       console.log('error in DELETE image', error);
@@ -82,7 +82,7 @@ function* getThisImageView(action){
 function* postImage(action){
   try{
       yield axios.post(`/api/image`, action.payload);
-      yield put({type: `GET_ALL_IMAGE`});
+      yield put({type: `GET_ALL_USER_IMAGE`});
   }
   catch(error){
       console.log('error in POST image', error);
@@ -103,7 +103,7 @@ function* updateImageCaption(action){
 function* imageSaga() {
   yield takeLatest(`ADD_LIKE`, addLike);
   yield takeLatest('DELETE_IMAGE', deleteImage);  
-  yield takeLatest('GET_ALL_IMAGE', getAllImage);
+  yield takeLatest('GET_ALL_USER_IMAGE', getAllImage);
   yield takeLatest('GET_FOLLOWING', getFollowedAvatar);
   yield takeLatest('GET_IMAGE_FEED', getImageFeed);
   yield takeLatest('GET_THIS_IMAGE', getThisImage);
