@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 
-class RenderAllImage extends Component{
+class RenderImageFeed extends Component{
 
   // GET images to render
   componentDidMount(){
@@ -29,4 +29,4 @@ const putReduxStateOnProps = (reduxState)=>({
   reduxState: reduxState.imageFeedReducer
 });
 
-export default connect(putReduxStateOnProps)(RenderAllImage);
+export default connect(putReduxStateOnProps)(RenderImageFeed);
