@@ -16,18 +16,19 @@ class Following extends Component{
   render(){
     return(
       <>
-      {this.props.reduxState ?
-      <>
-        {this.props.reduxState.map(image =>
-          <div>
-            <img className="avatar" onClick={()=>this.handleClick(image.id)} src={image.image_url} alt={image.username} />
-            <div>{image.username}</div>
+        <h2 className="heading-2">Following</h2>
+        {this.props.reduxState ?
+          <div className="following-main-flex" >
+            {this.props.reduxState.map(image =>
+              <div className="following-col" key={image.id}>
+                <img className="following-avatar" onClick={()=>this.handleClick(image.id)} src={image.avatar} alt={image.username} />
+                <div>{image.username}</div>
+              </div>
+            )}
           </div>
-        )}
-      </>
-      :
-      <p>Not following anyone</p>
-      }
+          :
+          <p>Not following anyone</p>
+        }
         <NavBar />
       </>
     );
