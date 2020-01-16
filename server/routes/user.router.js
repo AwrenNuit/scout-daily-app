@@ -34,7 +34,7 @@ router.get('/details/:id', (req, res) => {
                   WHERE id = $1;`;
   pool.query(SQLquery, id)
   .then(response=>{
-      res.send(response.rows);
+      res.send(response.rows[0]);
   })
   .catch(error=>{
     console.log('ERROR IN /details/:id GET ---------------------------------------->', error);
