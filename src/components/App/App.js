@@ -14,6 +14,8 @@ import PostImage from '../PostImage/PostImage';
 import Profile from '../Profile/Profile';
 import EditThisImage from '../EditThisImage/EditThisImage';
 import Following from '../Following/Following';
+import OtherProfile from '../OtherProfile/OtherProfile';
+import ViewThisImage from '../ViewThisImage/ViewThisImage';
 
 class App extends Component {
   componentDidMount () {
@@ -64,6 +66,16 @@ class App extends Component {
               exact
               path="/following"
               component={Following}
+            />
+
+            <ProtectedRoute
+              path="/profile/:id"
+              component={OtherProfile}
+            />
+
+            <ProtectedRoute
+              path="/view-image/:id"
+              component={ViewThisImage}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
