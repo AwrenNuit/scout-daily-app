@@ -36,6 +36,7 @@ class PostImage extends Component{
     if (this.editor) {
       const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
       this.props.dispatch({type: `SEND`, payload: canvasScaled});
+      this.history.push('/profile');
       // let qwert = this.dataURItoBlob(canvasScaled);
       // console.log(qwert);
       // this.setState({image: canvasScaled});
