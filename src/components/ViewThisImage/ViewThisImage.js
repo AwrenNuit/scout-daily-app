@@ -40,7 +40,7 @@ class ViewThisImage extends Component{
               <img className="img" src={this.props.reduxState.image_url} alt={this.props.reduxState.description} />
             </div>
             <div>{this.state.caption}</div>
-            <div onClick={()=>this.handleLike(image.id)}>Like</div>
+            <div onClick={()=>this.handleLike(this.props.reduxState.id)}>Like</div>
           </div>
           <div>COMMENTS GO HERE</div>
         </center>
