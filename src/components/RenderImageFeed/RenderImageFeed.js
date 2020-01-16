@@ -22,7 +22,7 @@ class RenderImageFeed extends Component{
                 <div className="all-img" style={{backgroundImage:`url(${image.image_url})`}}></div>
               </Link>
               <div>{image.caption}</div>
-              <span onClick={()=>this.handleLike(image.id)}>Like</span>
+              <div onClick={()=>this.handleLike(image.id)}>Like</div>
             </span>
           ) : <p>Follow someone</p>
         }

@@ -8,7 +8,7 @@ function* addLike(action){
       yield put({type: `GET_IMAGE_FEED`});
   }
   catch(error){
-      console.log('error in PUT ilike', error);
+      console.log('error in PUT like', error);
   }
 }
 

@@ -27,21 +27,22 @@ class ViewThisImage extends Component{
     }
   }
 
+  handleLike = (id) => {
+    this.props.dispatch({type: `ADD_LIKE`, payload: id});
+  }
+
   render(){
     return(
       <>
         <center>
           <div>
-
-                {/* <div 
-                  className="img" 
-                  style={{backgroundImage:`url(https://scout-daily.s3.us-east-2.amazonaws.com/${image.image_url})`,width:"90%",marginBottom:"20px",borderRadius:"20px"}}>
-                </div> */}
             <div>
-            <img className="img" src={this.props.reduxState.image_url} alt={this.props.reduxState.description} />
+              <img className="img" src={this.props.reduxState.image_url} alt={this.props.reduxState.description} />
             </div>
+            <div>{this.state.caption}</div>
+            <div onClick={()=>this.handleLike(image.id)}>Like</div>
           </div>
-          <div>{this.state.caption}</div>
+          <div>COMMENTS GO HERE</div>
         </center>
         <NavBar />
       </>
