@@ -124,4 +124,20 @@ router.put('/caption', (req, res) => {
   });
 });
 
+// PUT route to update like count
+router.put('/like', (req, res) => {
+  let id = [eq.body.id];
+  let SQLquery = `UPDATE image
+                  SET likes = likes+1
+                  WHERE id = $1;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.sendStatus(201);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /like PUT ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
 module.exports = router;
