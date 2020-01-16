@@ -42,11 +42,27 @@ router.get('/details/:id', (req, res) => {
   });
 });
 
-// POST user follow
-router.post('/follow', (req, res) => {
-  let id = [req.user.id, req.body.data];
+// GET following table data
+router.get('/following/details', (req, res) => {
+  let id = [req.user.id];
   let SQLquery = `SELECT * FROM following
-                  WHERE user_id = $1 AND connection_id = $2;`;
+                  WHERE user_id = $1;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.send(response.rows);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /following/details GET ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
+// POST user follow
+router.post('/following', (req, res) => {
+  let id = [req.user.id, req.body.data];
+  console.log('-------------------------------', id);
+  let SQLquery = `INSERT INTO following (user_id, connection_id)
+                  VALUES($1, $2);`;
   pool.query(SQLquery, id)
   .then(response=>{
       res.send(response.rows);

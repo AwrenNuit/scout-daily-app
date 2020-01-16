@@ -7,6 +7,7 @@ class OtherUserDetails extends Component{
 
   componentDidMount(){
     this.props.dispatch({type: `GET_OTHER_USER_DETAILS`, payload: this.props.id});
+    this.props.dispatch({type: `GET_FOLLOWING_DETAILS`, payload: this.props.id});
   }
 
   handleFollow = (id) => {
@@ -16,6 +17,8 @@ class OtherUserDetails extends Component{
   render(){
     return(
       <div className="main-details-container">
+        {JSON.stringify(this.props.reduxState)}
+        {JSON.stringify(this.props.following)}
         {this.props.reduxState.map(details =>
           <div key={details.id} className="other-user-details-container">
             <img className="avatar" src={details.avatar} alt={details.username} />
@@ -35,7 +38,8 @@ class OtherUserDetails extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.otherUserDetails
+  reduxState: reduxState.otherUserDetails,
+  following: reduxState.followingDetails
 });
 
 export default connect(putReduxStateOnProps)(OtherUserDetails);
