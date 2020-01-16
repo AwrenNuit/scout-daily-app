@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// import PropTypes from "prop-types";
+// import { withStyles } from "@material-ui/core/styles";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import LoginFooter from '../LoginFooter/LoginFooter';
+
+// const styles = theme => ({
+//   label: {
+//     borderColor: 'pink',
+//   }
+// });
 
 class LoginPage extends Component {
 
@@ -34,6 +42,7 @@ class LoginPage extends Component {
   }
 
   render() {
+    // const { classes } = this.props;
     return (
       <div>
         {this.props.errors.loginMessage && (
@@ -59,6 +68,9 @@ class LoginPage extends Component {
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
                 style={{width:"90%",marginBottom:"20px",backgroundColor:"white"}}
+                // InputProps={{
+                //   classes: { notchedOutline: classes.specialOutline }
+                // }}
               />
 
             </div>
@@ -112,5 +124,10 @@ class LoginPage extends Component {
 const mapStateToProps = state => ({
   errors: state.errors,
 });
+
+// For Material-UI
+// LoginPage.propTypes = {
+//   classes: PropTypes.object.isRequired
+// };
 
 export default connect(mapStateToProps)(LoginPage);

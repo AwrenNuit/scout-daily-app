@@ -37,7 +37,7 @@ class PostImage extends Component{
       const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
       // let qwert = this.dataURItoBlob(canvasScaled);
       // console.log(qwert);
-      // this.setState({image: canvasScaled});
+      this.setState({image: canvasScaled});
       // axios.post(`/test-upload`, {data: canvasScaled})
       // .then(response => {
       //   // handle your response;
@@ -65,6 +65,7 @@ class PostImage extends Component{
   render(){
     return(
       <center>
+        {JSON.stringify(this.state)}
         <div>
           <div>
             {this.state.file ?

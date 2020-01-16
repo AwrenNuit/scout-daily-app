@@ -9,6 +9,10 @@ class Following extends Component{
     this.props.dispatch({type: `GET_FOLLOWING`});
   }
 
+  handleClick = (id) => {
+    this.props.history.push(`/profile/${id}`);
+  }
+
   render(){
     return(
       <>
@@ -16,7 +20,7 @@ class Following extends Component{
       <>
         {this.props.reduxState.map(image =>
           <div>
-            <img className="avatar" src={"https://scout-daily.s3.us-east-2.amazonaws.com/"+image.image_url} alt={image.username} />
+            <img className="avatar" onClick={()=>this.handleClick(image.id)} src={"https://scout-daily.s3.us-east-2.amazonaws.com/"+image.image_url} alt={image.username} />
             <div>{image.username}</div>
           </div>
         )}
