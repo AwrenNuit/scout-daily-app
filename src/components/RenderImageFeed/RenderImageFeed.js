@@ -9,6 +9,10 @@ class RenderImageFeed extends Component{
     this.props.dispatch({type: `GET_IMAGE_FEED`});
   }
 
+  handleLike = (id) => {
+    this.props.dispatch({type: `ADD_LIKE`, payload: id});
+  }
+
   render(){
     return(
       <>
@@ -17,6 +21,8 @@ class RenderImageFeed extends Component{
               <Link to={"/view-photo/"+image.id}>
                 <div className="all-img" style={{backgroundImage:`url(https://scout-daily.s3.us-east-2.amazonaws.com/${image.image_url})`}}></div>
               </Link>
+              <div>{image.caption}</div>
+              <span onClick={()=>this.handleLike(image.user_id)}>Like</span>
             </span>
           ) : <p>Follow someone</p>
         }
