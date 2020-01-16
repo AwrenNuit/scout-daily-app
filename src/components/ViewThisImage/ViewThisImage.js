@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './ViewThisImage.css';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Fab from '@material-ui/core/Fab';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import NavBar from '../NavBar/NavBar';
 
 class ViewThisImage extends Component{
