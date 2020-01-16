@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { withRouter } from "react-router";
 import {connect} from 'react-redux';
 import './UserDetails.css';
 import Button from '@material-ui/core/Button';
@@ -25,6 +26,10 @@ class UserDetails extends Component{
 
   handleChange = (e, propName) => {
     this.setState({[propName]:e.target.value});
+  }
+
+  handleFollowing = () => {
+    this.props.history.push('/following');
   }
 
   saveBioChange = () => {
@@ -56,7 +61,7 @@ class UserDetails extends Component{
               <span className="bio" onClick={()=>this.editDetails('bio', details.bio, 'editBio')}>{details.bio}</span>
             }
 
-            <Button variant="contained" color="primary" style={{gridArea:"following",height:"25px"}}>
+            <Button variant="contained" color="primary" onClick={this.handleFollowing} style={{gridArea:"following",height:"25px"}}>
               Following
             </Button>
 
@@ -71,4 +76,4 @@ const putReduxStateOnProps = (reduxState)=>({
   reduxState: reduxState.userDetails
 });
 
-export default connect(putReduxStateOnProps)(UserDetails);
+export default withRouter(connect(putReduxStateOnProps)(UserDetails));

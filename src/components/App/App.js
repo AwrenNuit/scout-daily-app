@@ -13,6 +13,7 @@ import './App.css';
 import PostImage from '../PostImage/PostImage';
 import Profile from '../Profile/Profile';
 import EditThisImage from '../EditThisImage/EditThisImage';
+import Following from '../Following/Following';
 
 class App extends Component {
   componentDidMount () {
@@ -58,6 +59,13 @@ class App extends Component {
               path="/profile"
               component={Profile}
             />
+
+            <ProtectedRoute
+              exact
+              path="/following"
+              component={Following}
+            />
+
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
