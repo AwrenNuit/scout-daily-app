@@ -5,7 +5,7 @@ import user from './userReducer';
 import dailyPrompt from './dailyPromptReducer';
 import allImage from './allImageReducer';
 import thisImage from './thisImageReducer';
-import following from './followingReducer';
+import followingAvatar from './followingAvatarReducer';
 import imageFeed from './imageFeedReducer';
 import userDetails from './userDetailsReducer';
 import viewThisImage from './viewThisImage';
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
   dailyPrompt, // stores daily photography prompt
   allImage, // stores all user images
   thisImage, // stores image being edited
-  following, // stores followed page's avatars
+  followingAvatar, // stores followed page's avatars
   imageFeed, // stores followed page's images
   userDetails, // stores current user's details
   viewThisImage, // stores image being viewed

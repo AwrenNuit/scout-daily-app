@@ -9,6 +9,10 @@ class OtherUserDetails extends Component{
     this.props.dispatch({type: `GET_OTHER_USER_DETAILS`});
   }
 
+  handleFollow = (id) => {
+    this.props.dispatch({type: `ADD_FOLLOW`, payload: id});
+  }
+
   render(){
     return(
       <div className="main-details-container">
@@ -19,7 +23,7 @@ class OtherUserDetails extends Component{
               <span className="username">{details.username}</span>
               <span className="bio">{details.bio}</span>
 
-            <Button variant="contained" color="primary" style={{gridArea:"follow",height:"25px"}}>
+            <Button variant="contained" color="primary" onClick={()=>this.handleFollow(details.id)} style={{gridArea:"follow",height:"25px"}}>
               Follow
             </Button>
 

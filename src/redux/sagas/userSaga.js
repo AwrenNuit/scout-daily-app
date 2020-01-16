@@ -24,6 +24,17 @@ function* fetchUser() {
   }
 }
 
+// POST user follow
+function* addFollow(action){
+  try{
+      yield axios.post(`/api/user/following`, {data: action.payload});
+      yield put({type: `GET_IMAGE_FEED`});
+  }
+  catch(error){
+      console.log('error in POST user follow', error);
+  }
+}
+
 // GET user details
 function* getUserDetails(action){
   try{
@@ -59,6 +70,7 @@ function* putUsername(action){
 
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('ADD_FOLLOW', addFollow);
   yield takeLatest('GET_USER_DETAILS', getUserDetails);
   yield takeLatest('UPDATE_BIO', putUserBio);
   yield takeLatest('UPDATE_USERNAME', putUsername);

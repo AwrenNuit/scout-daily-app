@@ -27,6 +27,21 @@ router.get('/details', (req, res) => {
   });
 });
 
+// POST user follow
+router.post('/follow', (req, res) => {
+  let id = [req.user.id, req.body.data];
+  let SQLquery = `SELECT * FROM following
+                  WHERE user_id = $1 AND connection_id = $2;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.send(response.rows);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /following POST ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
 // PUT (update) current user's bio
 router.put('/details/bio', (req, res) => {
   let id = [req.body.data, req.user.id];

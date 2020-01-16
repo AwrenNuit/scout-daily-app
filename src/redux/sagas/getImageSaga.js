@@ -28,7 +28,7 @@ function* getAllImage(action){
 function* getFollowedAvatar(action){
   try{
       const getResponse = yield axios.get(`/api/image/following/avatar`, action.payload);
-      yield put({type: `SET_FOLLOWING`, payload: getResponse.data});
+      yield put({type: `SET_FOLLOWING_AVATAR`, payload: getResponse.data});
   }
   catch(error){
       console.log('error in GET followed user avatars', error);
