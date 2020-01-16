@@ -48,7 +48,8 @@ function* getFollowedAvatar(action){
 // GET images of followed users for main feed
 function* getImageFeed(action){
   try{
-      const getResponse = yield axios.get(`/api/image/following/feed`, action.payload);
+      const getResponse = yield axios.get(`/api/image/following/feed`);
+      console.log('response:', getResponse);
       yield put({type: `SET_IMAGE_FEED`, payload: getResponse.data});
   }
   catch(error){

@@ -19,7 +19,7 @@ class RenderImageFeed extends Component{
         {this.props.reduxState ? this.props.reduxState.map(image=>
             <span key={image.id}>
               <Link to={"/view-photo/"+image.id}>
-                <div className="all-img" style={{backgroundImage:`url(${image.image_url})`}}></div>
+                <img src={image.image_url} alt={image.caption} />
               </Link>
               <div>{image.caption}</div>
               <div onClick={()=>this.handleLike(image.id)}>Like</div>
@@ -32,7 +32,7 @@ class RenderImageFeed extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.imageFeedReducer
+  reduxState: reduxState.imageFeed
 });
 
 export default connect(putReduxStateOnProps)(RenderImageFeed);

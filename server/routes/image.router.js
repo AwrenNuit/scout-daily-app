@@ -22,8 +22,8 @@ router.delete('/:id', (req, res) => {
 router.get('/all', (req, res) => {
   console.log('IN THERE--------------------------', req.user.id);
   let id = [req.user.id];
-  let SQLquery = `SELECT image.id, image.image_url, image.likes, image.caption, image.user_id FROM image
-                  WHERE image.user_id = $1;`;
+  let SQLquery = `SELECT * FROM image
+                  WHERE user_id = $1;`;
   pool.query(SQLquery, id)
   .then(response=>{
       res.send(response.rows);
@@ -54,10 +54,13 @@ router.get('/following/avatar', (req, res) => {
 // GET all followed user's images
 router.get('/following/feed', (req, res) => {
   let id = [req.user.id];
-  let SQLquery = `SELECT * FROM image
-                  WHERE user_id = $1;`;
+  let SQLquery = `SELECT * FROM "following" f
+  FULL OUTER JOIN "user" u ON u.id = f.user_id
+  FULL OUTER JOIN "image" i ON i.user_id = f.connection_id
+  WHERE f.user_id = $1;`;
   pool.query(SQLquery, id)
   .then(response=>{
+    console.log('response---------------------------', response.rows);
       res.send(response.rows);
   })
   .catch(error=>{
