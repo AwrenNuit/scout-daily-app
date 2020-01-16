@@ -1,4 +1,14 @@
 .feed-img {
-  height: 20;
-  width: 20;
+  height: 300px;
+  width: 300px;
+  margin: 10px;
+}
+
+.feed-card {
+  background-color: rgb(243, 224, 255);
+  margin-bottom: 50px;
+}
+
+.feed-caption {
+  padding: 10px;
 }
