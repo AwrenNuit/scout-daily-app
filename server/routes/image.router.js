@@ -20,8 +20,11 @@ router.delete('/:id', (req, res) => {
 
 // GET all images
 router.get('/all', (req, res) => {
-  let SQLquery = `SELECT * FROM image;`;
-  pool.query(SQLquery)
+  console.log('IN THERE--------------------------', req.user.id);
+  let id = [req.user.id];
+  let SQLquery = `SELECT image.id, image.image_url, image.likes, image.caption, image.user_id FROM image
+                  WHERE image.user_id = $1;`;
+  pool.query(SQLquery, id)
   .then(response=>{
       res.send(response.rows);
   })
