@@ -21,7 +21,7 @@ class RenderUserImage extends Component{
             </span>
           )
           :
-          <p>Add some pics! :)</p>
+          <p>No posts yet</p>
         }
       </div>
     );
