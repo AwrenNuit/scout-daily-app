@@ -12,6 +12,9 @@ const userRouter = require('./routes/user.router');
 const promptRouter = require('./routes/prompt.router');
 const imageRouter = require('./routes/image.router');
 
+
+
+
 // AWS stuff
 const AWS = require('aws-sdk');
 const fs = require('fs');
@@ -62,6 +65,9 @@ app.post('/test-upload', (request, response) => {
       }
     });
 });
+
+
+
 
 // Body parser middleware
 app.use(bodyParser.json());
