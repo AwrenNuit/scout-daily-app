@@ -16,11 +16,10 @@ class ViewThisImage extends Component{
   render(){
     return(
       <>
-      {JSON.stringify(this.props.reduxState)}
         <center>
           <div>
             <div>
-              <img className="img" src={this.props.reduxState.image_url} alt={this.props.reduxState.caption} />
+              <img className="view-img" src={this.props.reduxState.image_url} alt={this.props.reduxState.caption} />
             </div>
             <div>{this.props.reduxState.caption}</div>
             <div onClick={()=>this.handleLike(this.props.reduxState.id)}>Like</div>
