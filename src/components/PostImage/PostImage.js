@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import './PostImage.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import ImageUpload from '../ImageUpload/ImageUpload';
 import NavBar from '../NavBar/NavBar';
 import AvatarEditor from 'react-avatar-editor';
 // import axios from 'axios';
@@ -36,7 +35,7 @@ class PostImage extends Component{
     if (this.editor) {
       const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
       this.props.dispatch({type: `SEND`, payload: canvasScaled});
-      this.history.push('/profile');
+      this.props.history.push('/profile');
       // let qwert = this.dataURItoBlob(canvasScaled);
       // console.log(qwert);
       // this.setState({image: canvasScaled});
@@ -67,7 +66,6 @@ class PostImage extends Component{
   render(){
     return(
       <center>
-        {JSON.stringify(this.state)}
         <div>
           <div>
             {this.state.file ?
@@ -89,7 +87,7 @@ class PostImage extends Component{
               <div className="whitespace"></div>
             }
             <input type="file" onChange={this.handleFileChange}/>
-            <button onClick={this.onClickSave}>SAVE</button>
+            {/* <button onClick={this.onClickSave}>SAVE</button> */}
             {/* <img src={this.state.image} alt="test" /> */}
           </div>
         </div>
@@ -110,7 +108,7 @@ class PostImage extends Component{
             color="primary"
             type="submit"
             value="Save"
-            onClick={this.db}
+            onClick={this.onClickSave}
             style={{width:"90%",marginBottom:"10px"}}
           >
             Post it!
