@@ -70,6 +70,21 @@ router.get('/:id', (req, res) => {
   });
 });
 
+// GET this image to view
+router.get('/view/:id', (req, res) => {
+  let id = [req.params.id, req.user.id];
+  let SQLquery = `SELECT * FROM image
+                  WHERE id = $1 AND user_id = $2;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.send(response.rows[0]);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /view/:id GET ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
 router.post('/', (req, res) => {
   let id = [req.body.data];
   let SQLquery = `INSERT INTO image (image_url)

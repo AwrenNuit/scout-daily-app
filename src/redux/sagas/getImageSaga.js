@@ -57,6 +57,17 @@ function* getThisImage(action){
   }
 }
 
+// GET this image to view
+function* getThisImageView(action){
+  try{
+      const getResponse = yield axios.get(`/api/image/view/${action.payload}`);
+      yield put({type: `SET_THIS_IMAGE_VIEW`, payload: getResponse.data});
+  }
+  catch(error){
+      console.log('error in GET this image to view', error);
+  }
+}
+
 // POST image
 function* postImage(action){
   try{
@@ -96,6 +107,7 @@ function* imageSaga() {
   yield takeLatest('GET_FOLLOWING', getFollowedAvatar);
   yield takeLatest('GET_IMAGE_FEED', getImageFeed);
   yield takeLatest('GET_THIS_IMAGE', getThisImage);
+  yield takeLatest('VIEW_THIS_IMAGE', getThisImageView);
   yield takeLatest('POST_IMAGE', postImage); 
   yield takeLatest('SEND', postTEST); 
   yield takeLatest('UPDATE_CAPTION', updateImageCaption); 
