@@ -2,6 +2,8 @@ const express = require(`express`);
 const router = express.Router();
 const pool = require(`../modules/pool`);
 
+
+// DELETE this image
 router.delete('/:id', (req, res) => {
   let id = [req.params.id];
   let SQLquery = `DELETE FROM image
@@ -16,6 +18,7 @@ router.delete('/:id', (req, res) => {
   });
 });
 
+// GET all images
 router.get('/all', (req, res) => {
   let SQLquery = `SELECT * FROM image;`;
   pool.query(SQLquery)
@@ -28,6 +31,7 @@ router.get('/all', (req, res) => {
   });
 });
 
+// GET all followed user's avatars
 router.get('/following/avatar', (req, res) => {
   let id = [req.user.id];
   let SQLquery = `SELECT * FROM following
@@ -42,6 +46,7 @@ router.get('/following/avatar', (req, res) => {
   });
 });
 
+// GET all followed user's images
 router.get('/following/feed', (req, res) => {
   let id = [req.user.id];
   let SQLquery = `SELECT * FROM image
@@ -56,6 +61,7 @@ router.get('/following/feed', (req, res) => {
   });
 });
 
+// GET this image to edit
 router.get('/:id', (req, res) => {
   let id = [req.params.id];
   let SQLquery = `SELECT * FROM image
@@ -85,6 +91,7 @@ router.get('/view/:id', (req, res) => {
   });
 });
 
+// POST new image
 router.post('/', (req, res) => {
   let id = [req.body.data];
   let SQLquery = `INSERT INTO image (image_url)
@@ -99,6 +106,7 @@ router.post('/', (req, res) => {
   });
 });
 
+// TEST POST ROUTE
 router.post('/test', (req, res) => {
   let id = [req.body.data];
   let SQLquery = `INSERT INTO image (image_url)
@@ -113,6 +121,7 @@ router.post('/test', (req, res) => {
   });
 });
 
+// PUT route to update image caption
 router.put('/caption', (req, res) => {
   let id = [req.body.caption, req.body.id];
   let SQLquery = `UPDATE image
