@@ -11,6 +11,19 @@ function SearchBar(){
     dispatch({type: 'SEARCH_GET', payload: e.target.value});
   }
 
+  // Set state to input value
+  // handleChange = (event) => {
+  //   this.setState({
+  //     search: event.target.value
+  //   });
+  // }
+
+  // Dispatch state to saga for GET
+  // handleClick = (search) => {
+  //   this.props.dispatch({type: `SEARCH_FILM`, payload: this.state.search});
+  //   this.props.history.push('/search='+search);
+  // }
+
   return(
     <>
       <TextField 
