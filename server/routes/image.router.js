@@ -113,9 +113,9 @@ router.get('/view/:id', (req, res) => {
 
 // POST new image
 router.post('/', (req, res) => {
-  let id = [req.body.image, req.body.caption];
-  let SQLquery = `INSERT INTO image (image_url, caption)
-                  VALUES($1, $2);`;
+  let id = [req.body.image, req.body.caption, req.user.id];
+  let SQLquery = `INSERT INTO image (image_url, caption, user_id)
+                  VALUES($1, $2, $3);`;
   pool.query(SQLquery, id)
   .then(response=>{
       res.sendStatus(201);
