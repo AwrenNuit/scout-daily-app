@@ -13,11 +13,12 @@ class RenderImageFeed extends Component{
   render(){
     return(
       <>
+      {JSON.stringify(this.props.reduxState)}
         {this.props.reduxState ? 
           this.props.reduxState.map(image=>
             <center className="feed-card" key={image.id} >
               <span>
-                <Link to={"/view-photo/"+image.id}>
+                <Link to={"/view-image/"+image.id}>
                   <img className="feed-img" src={image.image_url} alt={image.caption} />
                 </Link>
                 <div className="feed-caption">{image.caption}</div>
