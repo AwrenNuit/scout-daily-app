@@ -53,7 +53,7 @@ class SearchBar extends Component{
             )}
           </div> 
           : 
-          <p>No results</p>
+          <p className="no-results">No results</p>
         }
       </>
     )
