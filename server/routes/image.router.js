@@ -72,7 +72,7 @@ router.get('/following/feed', (req, res) => {
   let SQLquery = `SELECT * FROM "following" f
                   FULL OUTER JOIN "user" u ON u.id = f.user_id
                   FULL OUTER JOIN "image" i ON i.user_id = f.connection_id
-                  WHERE f.user_id = $1;`;
+                  WHERE f.user_id = $1 AND i.id IS NOT NULL;`;
   pool.query(SQLquery, id)
   .then(response=>{
       res.send(response.rows);
