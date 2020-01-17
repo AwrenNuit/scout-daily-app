@@ -22,7 +22,8 @@ router.delete('/:id', (req, res) => {
 router.get('/all', (req, res) => {
   let id = [req.user.id];
   let SQLquery = `SELECT * FROM image
-                  WHERE user_id = $1;`;
+                  WHERE user_id = $1
+                  ORDER BY id;`;
   pool.query(SQLquery, id)
   .then(response=>{
       res.send(response.rows);
@@ -53,7 +54,8 @@ router.get('/following/avatar', (req, res) => {
   let id = [req.user.id];
   let SQLquery = `SELECT * FROM "following" f
                   FULL OUTER JOIN "user" u ON u.id = f.connection_id
-                  WHERE f.user_id = $1;`;
+                  WHERE f.user_id = $1
+                  ORDER BY lower(username);`;
   pool.query(SQLquery, id)
   .then(response=>{
       res.send(response.rows);
