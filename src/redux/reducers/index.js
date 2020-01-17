@@ -8,6 +8,7 @@ import imageFeed from './imageFeedReducer';
 import loginMode from './loginModeReducer';
 import otherUserDetails from './otherUserDetailsReducer';
 import otherUserImage from './allOtherUserImageReducer';
+import searchResult from './searchResultReducer';
 import thisImage from './thisImageReducer';
 import user from './userReducer';
 import userDetails from './userDetailsReducer';
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   otherUserDetails, // stores other user's details
   otherUserImage, // stores other user's images
+  searchResult, // stores search results
   user, // will have an id and username if someone is logged in
   userDetails, // stores current user's details
   viewThisImage, // stores image being viewed

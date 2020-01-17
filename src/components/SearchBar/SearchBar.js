@@ -8,7 +8,7 @@ function SearchBar(){
   let searchFor = useSelector((state)=>state.searchFor);
 
   handleChange = (e) => {
-    dispatch({type: 'SEARCH', payload: e.target.value});
+    dispatch({type: 'SEARCH_GET', payload: e.target.value});
   }
 
   return(

@@ -68,6 +68,17 @@ function* getUserDetails(action){
   }
 }
 
+// GET users from search
+function* getUserSearch(action){
+  try{
+      const getResponse = yield axios.get(`/api/user/search/${action.payload}`);
+      yield put({type: `SET_RESULTS`, payload: getResponse.data});
+  }
+  catch(error){
+      console.log('error in GET users from search', error);
+  }
+}
+
 // PUT (update) user bio
 function* putUserBio(action){
   try{
@@ -96,6 +107,7 @@ function* userSaga() {
   yield takeLatest('GET_FOLLOWING_DETAILS', getFollowingDetails);
   yield takeLatest('GET_OTHER_USER_DETAILS', getOtherUserDetails);
   yield takeLatest('GET_USER_DETAILS', getUserDetails);
+  yield takeLatest('SEARCH_GET', getUserSearch);
   yield takeLatest('UPDATE_BIO', putUserBio);
   yield takeLatest('UPDATE_USERNAME', putUsername);
 }

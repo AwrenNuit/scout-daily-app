@@ -57,6 +57,21 @@ router.get('/following/details', (req, res) => {
   });
 });
 
+// GET following table data
+router.get('/search/:id', (req, res) => {
+  let id = ['%' + req.params.id + '%'];
+  let SQLquery = `SELECT * FROM "user"
+                  WHERE lower(username) SIMILAR TO $1;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.send(response.rows);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /search/:id GET ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
 // POST user follow
 router.post('/following', (req, res) => {
   let id = [req.user.id, req.body.data];
