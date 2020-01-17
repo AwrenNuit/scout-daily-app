@@ -1,41 +1,67 @@
-import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import './SearchBar.css';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
-function SearchBar(){
+class SearchBar extends Component{
 
-  let dispatch = useDispatch();
-  let searchFor = useSelector((state)=>state.searchFor);
-
-  handleChange = (e) => {
-    dispatch({type: 'SEARCH_GET', payload: e.target.value});
+  state = {
+    search: ''
   }
 
-  // Set state to input value
-  // handleChange = (event) => {
-  //   this.setState({
-  //     search: event.target.value
-  //   });
-  // }
+  handleChange = (e) => {
+    this.setState({search: e.target.value});
+  }
 
-  // Dispatch state to saga for GET
-  // handleClick = (search) => {
-  //   this.props.dispatch({type: `SEARCH_FILM`, payload: this.state.search});
-  //   this.props.history.push('/search='+search);
-  // }
+  handleClick = () => {
+    this.props.dispatch({type: 'SEARCH_GET', payload: this.state.search});
+  }
 
-  return(
-    <>
-      <TextField 
-        id="outlined-basic" 
-        label="search users" 
-        variant="outlined"
-        style={{marginRight:"20px"}}
-        onChange={()=>this.handleChange()}
-        value={searchFor}
-      />
-    </>
-  )
+  render(){
+    return(
+      <>
+        <center className="search-div">
+          <TextField 
+            id="outlined-basic" 
+            label="search users" 
+            variant="outlined"
+            style={{marginRight:"20px"}}
+            onChange={this.handleChange}
+            value={this.state.search}
+          />
+          <Button 
+            variant="contained" 
+            color="primary" 
+            onClick={this.handleClick} 
+            style={{position:"relative",top:"10px",backgroundColor:"#bc75ff"}}
+          >
+            Search
+          </Button>
+        </center>
+
+        {this.props.reduxState.length ? 
+          <div className="search-main-flex">
+            {this.props.reduxState.map(details=>
+                <div className="search-col" key={details.id}>
+                  <Link to={"/profile/"+details.id}>
+                    <img className="search-avatar" src={details.avatar} alt={details.username} />
+                  </Link>
+                  <div>{details.username}</div>
+                </div>
+            )}
+          </div> 
+          : 
+          <p>No results</p>
+        }
+      </>
+    )
+  }
 }
 
-export default SearchBar;
+const putReduxStateOnProps = (reduxState)=>({
+  reduxState: reduxState.searchResult
+});
+
+export default connect(putReduxStateOnProps)(SearchBar);
