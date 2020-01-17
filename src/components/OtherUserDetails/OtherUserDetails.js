@@ -15,8 +15,8 @@ class OtherUserDetails extends Component{
   }
 
   componentDidUpdate(prevProps){
-    if(this.props.reduxState !== prevProps.reduxState){
-      this.seeIfFollowing();
+    if(this.props.following !== prevProps.following){
+      this.seeIfFollowing(); // WHY DOES THIS NOT UPDATE ON FOLLOW CLICK?
     }
   }
 
@@ -26,7 +26,10 @@ class OtherUserDetails extends Component{
     for(let num of this.props.following){
       details.push(num.connection_id);
     }
+    console.log('details:', details);
+    console.log('id:', this.props.reduxState.id); // SOMETIMES UNDEFINED?
     if(details.includes(this.props.reduxState.id)){
+      console.log('in there~~~');
       this.setState({following:true});
     }
   }
@@ -38,6 +41,7 @@ class OtherUserDetails extends Component{
     }
     if(!details.includes(id)){
       this.props.dispatch({type: `ADD_FOLLOW`, payload: id});
+      this.props.dispatch({type: `GET_FOLLOWING_DETAILS`, payload: this.props.id});
     }
   }
 
