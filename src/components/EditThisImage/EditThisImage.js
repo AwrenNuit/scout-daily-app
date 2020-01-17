@@ -41,10 +41,7 @@ class EditThisImage extends Component{
 
   handleSave = () => {
     this.props.dispatch({type: `UPDATE_CAPTION`, payload: {caption: this.state.caption, id: this.state.id}});
-    this.setState({
-      caption: '',
-      id: ''
-    });
+    this.props.history.push('/profile');
   }
 
   render(){
