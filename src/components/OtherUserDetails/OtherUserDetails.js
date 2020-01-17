@@ -11,27 +11,19 @@ class OtherUserDetails extends Component{
 
   UNSAFE_componentWillMount(){
     this.props.dispatch({type: `GET_OTHER_USER_DETAILS`, payload: this.props.id});
-    this.props.dispatch({type: `GET_FOLLOWING_DETAILS`, payload: this.props.id});
-  }
-
-  componentDidUpdate(prevProps){
-    if(this.props.following !== prevProps.following){
-      this.seeIfFollowing(); // WHY DOES THIS NOT UPDATE ON FOLLOW CLICK?
-    }
+    this.props.dispatch({type: `GET_FOLLOWING_DETAILS`});
   }
 
   seeIfFollowing = () => {
-    console.log('in see if following');
     let details = [];
+    let id = this.props.reduxState.id;
     for(let num of this.props.following){
       details.push(num.connection_id);
     }
-    console.log('details:', details);
-    console.log('id:', this.props.reduxState.id); // SOMETIMES UNDEFINED?
-    if(details.includes(this.props.reduxState.id)){
-      console.log('in there~~~');
-      this.setState({following:true});
+    if(details.includes(id)){
+      return true;
     }
+    return false;
   }
 
   handleFollow = (id) => {
@@ -41,7 +33,11 @@ class OtherUserDetails extends Component{
     }
     if(!details.includes(id)){
       this.props.dispatch({type: `ADD_FOLLOW`, payload: id});
-      this.props.dispatch({type: `GET_FOLLOWING_DETAILS`, payload: this.props.id});
+      this.props.dispatch({type: `GET_FOLLOWING_DETAILS`});
+    }
+    if(details.includes(id)){
+      this.props.dispatch({type: `REMOVE_FOLLOW`, payload: id});
+      this.props.dispatch({type: `GET_FOLLOWING_DETAILS`});
     }
   }
 
@@ -58,7 +54,7 @@ class OtherUserDetails extends Component{
               <span className="bio">{this.props.reduxState.bio}</span>
 
             <Button variant="contained" color="primary" onClick={()=>this.handleFollow(this.props.reduxState.id)} style={{gridArea:"follow",height:"25px",backgroundColor:"#bc75ff"}}>
-              {this.state.following ? 'Unfollow' : 'Follow'}
+              {this.seeIfFollowing() ? 'Unfollow' : 'Follow'}
             </Button>
 
           </div>
