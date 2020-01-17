@@ -16,6 +16,7 @@ import EditThisImage from '../EditThisImage/EditThisImage';
 import Following from '../Following/Following';
 import OtherProfile from '../OtherProfile/OtherProfile';
 import ViewThisImage from '../ViewThisImage/ViewThisImage';
+import SearchBar from '../SearchBar/SearchBar';
 
 class App extends Component {
   componentDidMount () {
@@ -39,11 +40,11 @@ class App extends Component {
               component={Home}
             />
 
-            {/* <ProtectedRoute
+            <ProtectedRoute
               exact
               path="/search"
-              component={Search}
-            /> */}
+              component={SearchBar}
+            />
 
             <ProtectedRoute
               exact
