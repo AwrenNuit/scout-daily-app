@@ -12,7 +12,6 @@ class RenderUserImage extends Component{
   render(){
     return(
       <div>
-        {JSON.stringify(this.props.reduxState)}
         {this.props.reduxState ? 
           this.props.reduxState.map(image=>
             <span key={image.id}>
