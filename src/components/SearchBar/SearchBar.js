@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import './SearchBar.css';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import NavBar from '../NavBar/NavBar';
 
 class SearchBar extends Component{
 
@@ -55,6 +56,7 @@ class SearchBar extends Component{
           : 
           <p className="no-results">No results</p>
         }
+        <NavBar />
       </>
     )
   }
