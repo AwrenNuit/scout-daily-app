@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import LoginFooter from '../LoginFooter/LoginFooter';
+
+const styles = ({
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderWidth: '3px',
+      borderColor: `#bc75ff !important`,
+    }
+  },
+  cssFocused: {},
+  notchedOutline: {},
+});
 
 class RegisterPage extends Component {
 
@@ -34,6 +47,8 @@ class RegisterPage extends Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     return (
       <div>
         {this.props.errors.registrationMessage && (
@@ -52,12 +67,19 @@ class RegisterPage extends Component {
 
               <TextField
                 id="outlined-basic"
-                label="username"
+                placeholder="username"
                 variant="outlined"
                 name="username"
                 size="small"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
+                InputProps={{
+                  classes: {
+                    root: classes.cssOutlinedInput,
+                    focused: classes.cssFocused,
+                    notchedOutline: classes.notchedOutline,
+                  }
+                }}
                 style={{width:"90%",marginBottom:"20px",backgroundColor:"white"}}
               />
 
@@ -66,13 +88,20 @@ class RegisterPage extends Component {
 
               <TextField
                 id="outlined-basic"
-                label="password"
+                placeholder="password"
                 variant="outlined"
                 name="password"
                 type="password"
                 size="small"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
+                InputProps={{
+                  classes: {
+                    root: classes.cssOutlinedInput,
+                    focused: classes.cssFocused,
+                    notchedOutline: classes.notchedOutline,
+                  }
+                }}
                 style={{width:"90%",marginBottom:"20px",backgroundColor:"white"}}
               />
 
@@ -113,5 +142,9 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps)(RegisterPage);
+RegisterPage.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(connect(mapStateToProps)(RegisterPage));
 
