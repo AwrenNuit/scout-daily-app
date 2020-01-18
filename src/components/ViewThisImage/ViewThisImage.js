@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './ViewThisImage.css';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import NavBar from '../NavBar/NavBar';
 
 class ViewThisImage extends Component{
@@ -11,20 +12,23 @@ class ViewThisImage extends Component{
 
   handleLike = (id) => {
     this.props.dispatch({type: `ADD_LIKE`, payload: id});
+    this.props.dispatch({type: `VIEW_THIS_IMAGE`, payload: this.props.match.params.id});
   }
 
   render(){
     return(
       <>
         <center>
+          {JSON.stringify(this.props.reduxState.likes)}
           <div>
             <div>
               <img className="view-img" src={this.props.reduxState.image_url} alt={this.props.reduxState.caption} />
             </div>
             <div>{this.props.reduxState.caption}</div>
-            <div onClick={()=>this.handleLike(this.props.reduxState.id)}>Like</div>
+            <FavoriteBorderIcon onClick={()=>this.handleLike(this.props.reduxState.id)} />
+            {this.props.reduxState.likes} likes
           </div>
-          <div>COMMENTS GO HERE</div>
+            <div>COMMENTS GO HERE</div>
         </center>
         <NavBar />
       </>

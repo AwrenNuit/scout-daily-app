@@ -146,9 +146,9 @@ router.put('/caption', (req, res) => {
 
 // PUT route to update like count
 router.put('/like', (req, res) => {
-  let id = [eq.body.id];
+  let id = [req.body.data];
   let SQLquery = `UPDATE image
-                  SET likes = likes+1
+                  SET likes = likes + 1
                   WHERE id = $1;`;
   pool.query(SQLquery, id)
   .then(response=>{
