@@ -22,8 +22,10 @@ class RenderImageFeed extends Component{
           this.props.reduxState.map(image=>
             <div className="feed-card" key={image.id} >
               <div>
-                <img className="feed-avatar" src={image.avatar} alt={image.username} />
-                <span className="feed-username">{image.username}</span>
+                <Link to={"/profile/"+image.user_id}>
+                  <img className="feed-avatar" src={image.avatar} alt={image.username} />
+                  <span className="feed-username">{image.username}</span>
+                </Link>
               </div>
               <span>
                 <center>
