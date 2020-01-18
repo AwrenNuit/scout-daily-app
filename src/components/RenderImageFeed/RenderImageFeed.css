@@ -12,3 +12,9 @@
 .feed-caption {
   padding: 10px;
 }
+
+.feed-likes {
+  position: relative;
+  bottom: 5px;
+  left: 8px;
+}

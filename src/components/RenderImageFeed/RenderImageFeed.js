@@ -28,7 +28,7 @@ class RenderImageFeed extends Component{
                 </Link>
                 <div>
                   <FavoriteBorderIcon onClick={()=>this.handleLike(image.id)} />
-                  <span>{image.likes} likes</span>
+                  <span className="feed-likes">{image.likes} likes</span>
                 </div>
                 <div className="feed-caption">{image.caption}</div>
               </span>
