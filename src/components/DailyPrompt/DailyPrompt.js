@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import './DailyPrompt.css';
 
 class DailyPrompt extends Component{
 
@@ -11,11 +12,8 @@ class DailyPrompt extends Component{
   render(){
     return(
       <>
-        <h1>Today's Prompt: 
-          {this.props.reduxState.map(prompt=>
-            <span key={prompt.id}> {prompt.prompt}</span>
-          )}
-        </h1>
+      <div className="blur-div"></div>
+        <h3 className="daily-prompt-heading">Today's Prompt: <b className="daily-prompt">{this.props.reduxState.prompt}</b></h3>
       </>
     );
   }

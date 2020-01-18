@@ -1,0 +1,20 @@
+.daily-prompt-heading {
+  font-family: 'ROBOTO' 'sans-serif';
+  text-align: center;
+  margin: 0;
+  padding: 30px;
+}
+
+.daily-prompt {
+  color: #59005C;
+}
+
+.blur-div {
+  background-color: #a2daff;
+  margin: 0;
+  height: 80px;
+  width: 100%;
+  position: absolute;
+  filter: blur(10px);
+  z-index: -1;
+}
