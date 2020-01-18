@@ -35,6 +35,18 @@ function* addFollow(action){
   }
 }
 
+// DELETE user follow
+function* removeFollow(action){
+  try{
+    console.log('IN DELETE SAGA');
+      yield axios.delete(`/api/user/following/${action.payload}`);
+      yield put({type: `GET_IMAGE_FEED`});
+  }
+  catch(error){
+      console.log('error in DELETE user follow', error);
+  }
+}
+
 // GET following details
 function* getFollowingDetails(action){
   try{
@@ -104,6 +116,7 @@ function* putUsername(action){
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest('ADD_FOLLOW', addFollow);
+  yield takeLatest('REMOVE_FOLLOW', removeFollow);
   yield takeLatest('GET_FOLLOWING_DETAILS', getFollowingDetails);
   yield takeLatest('GET_OTHER_USER_DETAILS', getOtherUserDetails);
   yield takeLatest('GET_USER_DETAILS', getUserDetails);

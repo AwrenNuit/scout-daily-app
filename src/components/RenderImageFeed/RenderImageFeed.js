@@ -13,7 +13,6 @@ class RenderImageFeed extends Component{
   render(){
     return(
       <>
-      {JSON.stringify(this.props.reduxState)}
         {this.props.reduxState ? 
           this.props.reduxState.map(image=>
             <center className="feed-card" key={image.id} >

@@ -35,7 +35,7 @@ class OtherUserDetails extends Component{
       this.props.dispatch({type: `ADD_FOLLOW`, payload: id});
       this.props.dispatch({type: `GET_FOLLOWING_DETAILS`});
     }
-    if(details.includes(id)){
+    else if(details.includes(id)){
       this.props.dispatch({type: `REMOVE_FOLLOW`, payload: id});
       this.props.dispatch({type: `GET_FOLLOWING_DETAILS`});
     }
@@ -44,8 +44,6 @@ class OtherUserDetails extends Component{
   render(){
     return(
       <div className="main-details-container">
-        {JSON.stringify(this.state.following)}
-        {JSON.stringify(this.props.reduxState)}
         {JSON.stringify(this.props.following)}
           <div key={this.props.reduxState.id} className="other-user-details-container">
             <img className="avatar" src={this.props.reduxState.avatar} alt={this.props.reduxState.username} />

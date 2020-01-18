@@ -12,6 +12,21 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
+// DELETE user follow
+router.delete('/following/:id', (req, res) => {
+  let id = [req.user.id, req.params.id];
+  let SQLquery = `DELETE FROM following
+                  WHERE user_id = $1 AND connection_id = $2;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.send(response.rows);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /following/:id DELETE ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
 // GET current user's details
 router.get('/details', (req, res) => {
   let id = [req.user.id];
@@ -75,7 +90,6 @@ router.get('/search/:id', (req, res) => {
 // POST user follow
 router.post('/following', (req, res) => {
   let id = [req.user.id, req.body.data];
-  console.log('-------------------------------', id);
   let SQLquery = `INSERT INTO following (user_id, connection_id)
                   VALUES($1, $2);`;
   pool.query(SQLquery, id)
