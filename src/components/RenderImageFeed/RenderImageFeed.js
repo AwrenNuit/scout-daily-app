@@ -34,7 +34,10 @@ class RenderImageFeed extends Component{
                   </Link>
                 </center>
                 <div>
-                  <FavoriteBorderIcon onClick={()=>this.handleLike(image.id)} style={{marginLeft:"40px"}} />
+                  <FavoriteBorderIcon 
+                    onClick={()=>this.handleLike(image.id)} 
+                    style={{marginLeft:"40px",cursor:"pointer"}} 
+                  />
                   <span className="feed-likes">{image.likes} likes</span>
                 </div>
                 <center>

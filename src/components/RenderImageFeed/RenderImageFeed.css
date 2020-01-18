@@ -1,7 +1,7 @@
-.feed-img {
-  height: 300px;
-  width: 300px;
-  margin: 10px;
+a {
+  text-decoration: none;
+  display: inline-block;
+  color: black;
 }
 
 .feed-avatar {
@@ -20,6 +20,12 @@
 .feed-caption {
   padding: 10px;
   margin: 0 30px;
+}
+
+.feed-img {
+  height: 300px;
+  width: 300px;
+  margin: 10px;
 }
 
 .feed-likes {
