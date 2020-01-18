@@ -13,7 +13,6 @@ class RenderImageFeed extends Component{
 
   handleLike = (id) => {
     this.props.dispatch({type: `ADD_LIKE`, payload: id});
-    // this.props.dispatch({type: `GET_IMAGE_FEED`});
   }
 
   render(){
