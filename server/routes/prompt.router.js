@@ -1,13 +1,20 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const CronJob = require('cron').CronJob;
 
-// GET daily photography prompt
+let num = 0;
+const job = new CronJob('00 30 22 * * *', function() {
+  num = num+1;
+});
+job.start();
+
 router.get('/', (req, res) => {
-  let id = [new Date()];
+  console.log('num----------------------', num);
+  let id = [num];
   const SQLquery = `SELECT * FROM prompt 
-                    LIMIT 1;`;
-  pool.query(SQLquery)
+                    WHERE id = $1;`;
+  pool.query(SQLquery, id)
   .then(result=>{
     res.send(result.rows);
   })
