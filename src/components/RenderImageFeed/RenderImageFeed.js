@@ -13,7 +13,7 @@ class RenderImageFeed extends Component{
 
   handleLike = (id) => {
     this.props.dispatch({type: `ADD_LIKE`, payload: id});
-    this.props.dispatch({type: `GET_IMAGE_FEED`});
+    // this.props.dispatch({type: `GET_IMAGE_FEED`});
   }
 
   render(){
@@ -21,18 +21,26 @@ class RenderImageFeed extends Component{
       <>
         {this.props.reduxState ? 
           this.props.reduxState.map(image=>
-            <center className="feed-card" key={image.id} >
+            <div className="feed-card" key={image.id} >
+              <div>
+                <img className="feed-avatar" src={image.avatar} alt={image.username} />
+                <span className="feed-username">{image.username}</span>
+              </div>
               <span>
-                <Link to={"/view-image/"+image.id}>
-                  <img className="feed-img" src={image.image_url} alt={image.caption} />
-                </Link>
+                <center>
+                  <Link to={"/view-image/"+image.id}>
+                    <img className="feed-img" src={image.image_url} alt={image.caption} />
+                  </Link>
+                </center>
                 <div>
-                  <FavoriteBorderIcon onClick={()=>this.handleLike(image.id)} />
+                  <FavoriteBorderIcon onClick={()=>this.handleLike(image.id)} style={{marginLeft:"40px"}} />
                   <span className="feed-likes">{image.likes} likes</span>
                 </div>
-                <div className="feed-caption">{image.caption}</div>
+                <center>
+                  <div className="feed-caption">{image.caption}</div>
+                </center>
               </span>
-            </center>
+            </div>
           ) 
           : 
           <p>Follow someone</p>
