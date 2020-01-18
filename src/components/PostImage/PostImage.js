@@ -1,10 +1,23 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import './PostImage.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import NavBar from '../NavBar/NavBar';
 import AvatarEditor from 'react-avatar-editor';
+
+const styles = ({
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderWidth: '3px',
+      borderColor: `#bc75ff !important`,
+    }
+  },
+  cssFocused: {},
+  notchedOutline: {},
+});
 
 class PostImage extends Component{
 
@@ -40,6 +53,8 @@ class PostImage extends Component{
   setEditorRef = (editor) => this.editor = editor
 
   render(){
+    const { classes } = this.props;
+
     return(
       <center>
         <div>
@@ -62,17 +77,29 @@ class PostImage extends Component{
               :
               <div className="whitespace"></div>
             }
-            <input type="file" onChange={this.handleFileChange}/>
+            <div>
+              <label for="file-upload" class="custom-file-upload">
+                <p className="browse-btn-txt">BROWSE</p>
+              </label>
+              <input id="file-upload" type="file" onChange={this.handleFileChange} />
+            </div>
           </div>
         </div>
         <div>
           <TextField 
             id="outlined-basic" 
-            label="enter caption" 
+            placeholder="enter caption" 
             variant="outlined"
             onChange={this.handleCaptionChange} 
             value={this.state.caption}
             multiline 
+            InputProps={{
+              classes: {
+                root: classes.cssOutlinedInput,
+                focused: classes.cssFocused,
+                notchedOutline: classes.notchedOutline,
+              }
+            }}
             style={{width:"90%",marginBottom:"20px"}} 
           />
         </div>
@@ -83,7 +110,7 @@ class PostImage extends Component{
             type="submit"
             value="Save"
             onClick={this.onClickSave}
-            style={{width:"90%",marginBottom:"10px"}}
+            style={{width:"90%",marginBottom:"10px",backgroundColor:"#bc75ff"}}
           >
             Post it!
           </Button>
@@ -94,4 +121,8 @@ class PostImage extends Component{
   }
 }
 
-export default connect()(PostImage);
+PostImage.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(connect()(PostImage));

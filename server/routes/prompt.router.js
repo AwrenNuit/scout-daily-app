@@ -4,7 +4,7 @@ const router = express.Router();
 const CronJob = require('cron').CronJob;
 
 let num = 0;
-const job = new CronJob('00 30 22 * * *', function() {
+const job = new CronJob('00 00 00 * * *', function() {
   num = num+1;
 });
 job.start();
