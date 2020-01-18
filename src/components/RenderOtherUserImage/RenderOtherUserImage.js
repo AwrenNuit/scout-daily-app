@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import './RenderUserImage.css';
+import './RenderOtherUserImage.css';
 import {Link} from 'react-router-dom';
 
 class RenderUserImage extends Component{
