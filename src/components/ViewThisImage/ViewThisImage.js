@@ -12,14 +12,12 @@ class ViewThisImage extends Component{
 
   handleLike = (id) => {
     this.props.dispatch({type: `ADD_LIKE`, payload: id});
-    this.props.dispatch({type: `VIEW_THIS_IMAGE`, payload: this.props.match.params.id});
   }
 
   render(){
     return(
       <>
         <center>
-          {JSON.stringify(this.props.reduxState.likes)}
           <div>
             <div>
               <img className="view-img" src={this.props.reduxState.image_url} alt={this.props.reduxState.caption} />

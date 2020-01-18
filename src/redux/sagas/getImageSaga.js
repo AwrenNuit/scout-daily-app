@@ -6,6 +6,7 @@ function* addLike(action){
   try{
       yield axios.put(`/api/image/like`, {data: action.payload});
       yield put({type: `GET_IMAGE_FEED`});
+      yield put({type: `VIEW_THIS_IMAGE`, payload: action.payload});
   }
   catch(error){
       console.log('error in PUT like', error);
