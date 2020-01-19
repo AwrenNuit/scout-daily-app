@@ -24,7 +24,12 @@ class PostImage extends Component{
   state = {
     caption: '',
     file: null,
-    scale: 0,
+    scale: 1,
+  }
+
+  handleCanvas = () => {
+    const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
+    this.props.dispatch({type: `POST_IMAGE`, payload: {image: canvasScaled, caption: this.state.caption}});
   }
 
   handleCaptionChange = (e) => {
@@ -44,10 +49,13 @@ class PostImage extends Component{
 
   onClickSave = () => {
     if (this.editor) {
-      const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
-      this.props.dispatch({type: `POST_IMAGE`, payload: {image: canvasScaled, caption: this.state.caption}});
-      this.props.history.push('/profile');
+      this.handleCanvas();
+      this.pushHistory();
     }
+  }
+
+  pushHistory = () => {
+    this.props.history.push('/profile');
   }
 
   setEditorRef = (editor) => this.editor = editor
@@ -58,31 +66,29 @@ class PostImage extends Component{
     return(
       <center>
         <div>
+          {this.state.file ?
+            <>
+              <AvatarEditor
+                ref={this.setEditorRef}
+                image={this.state.file}
+                width={250}
+                height={250}
+                border={50}
+                color={[0, 0, 0, 0.8]} // RGBA
+                scale={this.state.scale}
+                rotate={0}
+              />
+              <span>Zoom:</span> 
+              <input type="range" step="0.1" min="1" max="2" name="scale" value={this.state.scale} onChange={this.handleZoom} />
+            </>
+            :
+            <div className="whitespace"></div>
+          }
           <div>
-            {this.state.file ?
-              <>
-                <AvatarEditor
-                  ref={this.setEditorRef}
-                  image={this.state.file}
-                  width={250}
-                  height={250}
-                  border={50}
-                  color={[0, 0, 0, 0.8]} // RGBA
-                  scale={this.state.scale || 1}
-                  rotate={0}
-                />
-                <span>Zoom:</span> 
-                <input type="range" step="0.1" min="1" max="2" name="scale" value={this.state.scale} onChange={this.handleZoom} />
-              </>
-              :
-              <div className="whitespace"></div>
-            }
-            <div>
-              <label for="file-upload" class="custom-file-upload">
-                <p className="browse-btn-txt">BROWSE</p>
-              </label>
-              <input id="file-upload" type="file" onChange={this.handleFileChange} />
-            </div>
+            <label htmlFor="file-upload" className="custom-file-upload">
+              <p className="browse-btn-txt">BROWSE</p>
+            </label>
+            <input id="file-upload" type="file" onChange={this.handleFileChange} />
           </div>
         </div>
         <div>
