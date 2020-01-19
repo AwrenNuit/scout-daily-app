@@ -45,9 +45,10 @@ class EditAvatar extends Component{
               <AvatarEditor
                 ref={this.setEditorRef}
                 image={this.state.file}
-                width={100}
-                height={100}
+                width={250}
+                height={250}
                 border={50}
+                borderRadius={125}
                 color={[0, 0, 0, 0.8]} // RGBA
                 scale={this.state.scale}
                 rotate={0}
@@ -59,7 +60,7 @@ class EditAvatar extends Component{
             <div className="whitespace"></div>
           }
           <div>
-            <label for="file-upload" className="custom-file-upload">
+            <label htmlFor="file-upload" className="custom-file-upload">
               <p className="browse-btn-txt">BROWSE</p>
             </label>
             <input id="file-upload" type="file" onChange={this.handleFileChange} />
