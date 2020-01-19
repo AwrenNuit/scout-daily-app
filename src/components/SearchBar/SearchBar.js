@@ -12,12 +12,25 @@ class SearchBar extends Component{
     search: ''
   }
 
+  // Dispatch local state to saga
+  dispatchSearch = () => {
+    this.props.dispatch({type: 'SEARCH_GET', payload: this.state.search});
+  }
+
+  // Set state to input value
   handleChange = (e) => {
     this.setState({search: e.target.value});
   }
 
+  // Dispatch user search, reset search bar
   handleClick = () => {
-    this.props.dispatch({type: 'SEARCH_GET', payload: this.state.search});
+    this.dispatchSearch();
+    this.resetState();
+  }
+
+  // Reset local state
+  resetState = () => {
+    this.setState({search: ''});
   }
 
   render(){
