@@ -25,6 +25,10 @@ class SearchBar extends Component{
     search: ''
   }
 
+  componentWillUnmount(){
+    this.props.dispatch({type: `CLEAR_SEARCH`});
+  }
+
   // Dispatch local state to saga
   dispatchSearch = () => {
     this.props.dispatch({type: 'SEARCH_GET', payload: this.state.search});
