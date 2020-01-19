@@ -2,9 +2,22 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import './SearchBar.css';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import NavBar from '../NavBar/NavBar';
+
+const styles = ({
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderWidth: '3px',
+      borderColor: `#bc75ff !important`,
+    }
+  },
+  cssFocused: {},
+  notchedOutline: {},
+});
 
 class SearchBar extends Component{
 
@@ -34,6 +47,8 @@ class SearchBar extends Component{
   }
 
   render(){
+    const { classes } = this.props;
+
     return(
       <>
         <center className="search-div">
@@ -44,6 +59,13 @@ class SearchBar extends Component{
             style={{marginRight:"20px"}}
             onChange={this.handleChange}
             value={this.state.search}
+            InputProps={{
+              classes: {
+                root: classes.cssOutlinedInput,
+                focused: classes.cssFocused,
+                notchedOutline: classes.notchedOutline,
+              }
+            }}
           />
           <Button 
             variant="contained" 
@@ -79,4 +101,8 @@ const putReduxStateOnProps = (reduxState)=>({
   reduxState: reduxState.searchResult
 });
 
-export default connect(putReduxStateOnProps)(SearchBar);
+SearchBar.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(connect(putReduxStateOnProps)(SearchBar));
