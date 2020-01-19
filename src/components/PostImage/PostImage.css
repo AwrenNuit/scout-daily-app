@@ -3,7 +3,7 @@ input[type="file"] {
 }
 
 .browse-btn-txt {
-  margin-top: 3px;
+  margin-top: 5px;
 }
 
 .custom-file-upload {
@@ -16,7 +16,7 @@ input[type="file"] {
   background-color: #a2daff;
   color: white;
   font-size: 14px;
-  height: 25px;
+  height: 23px;
   box-shadow: 1px 1px 5px lightgrey;
   transition: 0.3s;
 }
