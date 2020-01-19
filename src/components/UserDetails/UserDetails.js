@@ -51,25 +51,51 @@ class UserDetails extends Component{
     return(
       <div className="main-details-container">
           <div key={details.id} className="user-details-container">
-
-            <img className="avatar" onClick={this.editAvatar} src={details.avatar} alt={details.username} />
-
+            <img 
+              className="avatar" 
+              onClick={this.editAvatar} 
+              src={details.avatar} 
+              alt={details.username} 
+            />
             {this.state.editUsername && !this.state.editBio ? 
-              <input onChange={(event)=>this.handleChange(event, 'username')} onBlur={this.saveUsernameChange} value={this.state.username} autoFocus /> 
+              <input 
+                onChange={(event)=>this.handleChange(event, 'username')} 
+                onBlur={this.saveUsernameChange} 
+                value={this.state.username} 
+                autoFocus 
+              /> 
               :
-              <span className="username" onClick={()=>this.editDetails('username', details.username, 'editUsername')}>{details.username}</span>
+              <span 
+                className="username" 
+                onClick={()=>this.editDetails('username', details.username, 'editUsername')}
+              >
+                {details.username}
+              </span>
             }
 
             {this.state.editBio && !this.state.editUsername ? 
-              <input onChange={(event)=>this.handleChange(event, 'bio')} onBlur={this.saveBioChange} value={this.state.bio} autoFocus /> 
+              <input 
+                onChange={(event)=>this.handleChange(event, 'bio')} 
+                onBlur={this.saveBioChange} 
+                value={this.state.bio} 
+                autoFocus 
+              /> 
               :
-              <span className="bio" onClick={()=>this.editDetails('bio', details.bio, 'editBio')}>{details.bio}</span>
+              <span 
+                className="bio" 
+                onClick={()=>this.editDetails('bio', details.bio, 'editBio')}
+              >
+                {details.bio}
+              </span>
             }
-
-            <Button variant="contained" color="primary" onClick={this.handleFollowing} style={{gridArea:"following",height:"25px",backgroundColor:"#bc75ff"}}>
+            <Button 
+              variant="contained" 
+              color="primary" 
+              onClick={this.handleFollowing} 
+              style={{gridArea:"following",height:"25px",backgroundColor:"#bc75ff"}}
+            >
               Following
             </Button>
-
           </div>
       </div>
     );
