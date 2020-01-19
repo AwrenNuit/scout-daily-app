@@ -47,21 +47,21 @@ class UserDetails extends Component{
   }
 
   render(){
+    const details = this.props.reduxState;
     return(
       <div className="main-details-container">
-        {this.props.reduxState.map(details =>
           <div key={details.id} className="user-details-container">
 
             <img className="avatar" onClick={this.editAvatar} src={details.avatar} alt={details.username} />
 
             {this.state.editUsername && !this.state.editBio ? 
-              <input onChange={(event)=>this.handleChange(event, 'username')} onBlur={this.saveUsernameChange} value={this.state.username} /> 
+              <input onChange={(event)=>this.handleChange(event, 'username')} onBlur={this.saveUsernameChange} value={this.state.username} autoFocus /> 
               :
               <span className="username" onClick={()=>this.editDetails('username', details.username, 'editUsername')}>{details.username}</span>
             }
 
             {this.state.editBio && !this.state.editUsername ? 
-              <input onChange={(event)=>this.handleChange(event, 'bio')} onBlur={this.saveBioChange} value={this.state.bio} /> 
+              <input onChange={(event)=>this.handleChange(event, 'bio')} onBlur={this.saveBioChange} value={this.state.bio} autoFocus /> 
               :
               <span className="bio" onClick={()=>this.editDetails('bio', details.bio, 'editBio')}>{details.bio}</span>
             }
@@ -71,7 +71,6 @@ class UserDetails extends Component{
             </Button>
 
           </div>
-        )}
       </div>
     );
   }
