@@ -39,7 +39,7 @@ class SearchBar extends Component{
         <center className="search-div">
           <TextField 
             id="outlined-basic" 
-            label="search users" 
+            placeholder="search users" 
             variant="outlined"
             style={{marginRight:"20px"}}
             onChange={this.handleChange}
