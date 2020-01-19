@@ -42,6 +42,7 @@ class ViewThisImage extends Component{
           </span>
         </div>
         <div>COMMENTS GO HERE</div>
+        <div className="bottom-whitespace"></div>
         <NavBar />
       </>
     );

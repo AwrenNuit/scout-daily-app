@@ -42,7 +42,6 @@ class OtherUserDetails extends Component{
   render(){
     return(
       <div className="main-details-container">
-        {JSON.stringify(this.props.following)}
           <div key={this.props.reduxState.id} className="other-user-details-container">
             <img className="avatar" src={this.props.reduxState.avatar} alt={this.props.reduxState.username} />
 

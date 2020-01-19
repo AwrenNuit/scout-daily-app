@@ -95,6 +95,7 @@ class SearchBar extends Component{
           : 
           <p className="no-results">No results</p>
         }
+        <div className="bottom-whitespace"></div>
         <NavBar />
       </>
     )

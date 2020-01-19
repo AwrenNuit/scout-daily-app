@@ -97,7 +97,7 @@ class EditAvatar extends Component{
             type="submit"
             value="Save"
             onClick={this.onClickSave}
-            style={{width:"90%",marginBottom:"10px",backgroundColor:"#bc75ff"}}
+            style={{width:"90%",marginBottom:"50px",backgroundColor:"#bc75ff"}}
           >
             Apply
           </Button>

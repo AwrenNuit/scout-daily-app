@@ -49,6 +49,7 @@ class RenderImageFeed extends Component{
           : 
           <p>Follow someone</p>
         }
+        <div className="bottom-whitespace"></div>
       </>
     );
   }

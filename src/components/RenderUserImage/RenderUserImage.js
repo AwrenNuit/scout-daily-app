@@ -22,6 +22,7 @@ class RenderUserImage extends Component{
           :
           <p>Add some pics! :)</p>
         }
+        <div className="bottom-whitespace"></div>
       </div>
     );
   }

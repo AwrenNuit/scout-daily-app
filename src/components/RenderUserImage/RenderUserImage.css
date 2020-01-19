@@ -1,4 +1,9 @@
+.bottom-whitespace {
+  height: 50px;
+}
+
 .user-img {
-  height: 100px;
-  width: 100px;
+  height: 120px;
+  width: 120px;
+  margin: 0 2px;
 }

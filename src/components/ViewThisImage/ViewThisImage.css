@@ -4,6 +4,10 @@ a {
   color: black;
 }
 
+.bottom-whitespace {
+  height: 50px;
+}
+
 .view-avatar {
   height:50px;
   width:50px;

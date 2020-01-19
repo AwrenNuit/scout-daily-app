@@ -29,6 +29,7 @@ class Following extends Component{
           :
           <p>Not following anyone</p>
         }
+        <div className="bottom-whitespace"></div>
         <NavBar />
       </>
     );
