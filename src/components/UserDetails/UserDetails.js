@@ -20,7 +20,7 @@ class UserDetails extends Component{
 
   editAvatar = () => {
     this.props.history.push('/edit-avatar');
-  })
+  }
 
   editDetails = (propName, propValue, propEdit) => {
     this.setState({
