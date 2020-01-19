@@ -31,8 +31,8 @@ class PostImage extends Component{
     this.setState({caption: e.target.value});
   }
 
-  handleFileChange = (event) => {
-    this.setState({file: URL.createObjectURL(event.target.files[0])});
+  handleFileChange = (e) => {
+    this.setState({file: URL.createObjectURL(e.target.files[0])});
   }
 
   handleZoom = (e) => {
