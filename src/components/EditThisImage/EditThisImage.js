@@ -1,11 +1,24 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './EditThisImage.css';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import NavBar from '../NavBar/NavBar';
+
+const styles = ({
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderWidth: '3px',
+      borderColor: `#bc75ff !important`,
+    }
+  },
+  cssFocused: {},
+  notchedOutline: {},
+});
 
 class EditThisImage extends Component{
 
@@ -45,6 +58,8 @@ class EditThisImage extends Component{
   }
 
   render(){
+    const { classes } = this.props;
+
     return(
       <>
         <center>
@@ -69,6 +84,13 @@ class EditThisImage extends Component{
               value={this.state.caption || ''}
               onChange={this.handleChange}
               multiline 
+              InputProps={{
+                classes: {
+                  root: classes.cssOutlinedInput,
+                  focused: classes.cssFocused,
+                  notchedOutline: classes.notchedOutline,
+                }
+              }}
               style={{width:"90%",marginBottom:"20px"}} 
             />
           </div>
@@ -95,4 +117,8 @@ const putReduxStateOnProps = (reduxState)=>({
   reduxState: reduxState.thisImage
 });
 
-export default connect(putReduxStateOnProps)(EditThisImage);
+EditThisImage.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(connect(putReduxStateOnProps)(EditThisImage));
