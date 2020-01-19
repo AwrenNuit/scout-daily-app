@@ -91,6 +91,17 @@ function* getUserSearch(action){
   }
 }
 
+// PUT (update) user avatar
+function* putUserAvatar(action){
+  try{
+      yield axios.put(`/api/user/avatar`, {data: action.payload});
+      yield put({type: `GET_USER_DETAILS`});
+  }
+  catch(error){
+      console.log('error in PUT user avatar', error);
+  }
+}
+
 // PUT (update) user bio
 function* putUserBio(action){
   try{
@@ -121,6 +132,7 @@ function* userSaga() {
   yield takeLatest('GET_OTHER_USER_DETAILS', getOtherUserDetails);
   yield takeLatest('GET_USER_DETAILS', getUserDetails);
   yield takeLatest('SEARCH_GET', getUserSearch);
+  yield takeLatest('UPDATE_AVATAR', putUserAvatar);
   yield takeLatest('UPDATE_BIO', putUserBio);
   yield takeLatest('UPDATE_USERNAME', putUsername);
 }

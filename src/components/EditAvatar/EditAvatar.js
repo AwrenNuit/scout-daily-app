@@ -33,7 +33,7 @@ class EditAvatar extends Component{
   onClickSave = () => {
     if (this.editor) {
       const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
-      this.props.dispatch({type: `POST_AVATAR`, payload: canvasScaled});
+      this.props.dispatch({type: `UPDATE_AVATAR`, payload: canvasScaled});
       this.props.history.push('/profile');
     }
   }
