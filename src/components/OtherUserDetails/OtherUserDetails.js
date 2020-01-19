@@ -9,7 +9,7 @@ class OtherUserDetails extends Component{
     following: false
   }
 
-  UNSAFE_componentWillMount(){
+  componentDidMount(){
     this.props.dispatch({type: `GET_OTHER_USER_DETAILS`, payload: this.props.id});
     this.props.dispatch({type: `GET_FOLLOWING_DETAILS`});
   }
@@ -33,11 +33,9 @@ class OtherUserDetails extends Component{
     }
     if(!details.includes(id)){
       this.props.dispatch({type: `ADD_FOLLOW`, payload: id});
-      this.props.dispatch({type: `GET_FOLLOWING_DETAILS`});
     }
     else if(details.includes(id)){
       this.props.dispatch({type: `REMOVE_FOLLOW`, payload: id});
-      this.props.dispatch({type: `GET_FOLLOWING_DETAILS`});
     }
   }
 

@@ -28,7 +28,7 @@ function* fetchUser() {
 function* addFollow(action){
   try{
       yield axios.post(`/api/user/following`, {data: action.payload});
-      yield put({type: `GET_IMAGE_FEED`});
+      yield put({type: `GET_FOLLOWING_DETAILS`});
   }
   catch(error){
       console.log('error in POST user follow', error);
@@ -40,7 +40,7 @@ function* removeFollow(action){
   try{
     console.log('IN DELETE SAGA');
       yield axios.delete(`/api/user/following/${action.payload}`);
-      yield put({type: `GET_IMAGE_FEED`});
+      yield put({type: `GET_FOLLOWING_DETAILS`});
   }
   catch(error){
       console.log('error in DELETE user follow', error);
