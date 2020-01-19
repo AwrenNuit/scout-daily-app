@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 class EditAvatar extends Component{
 
   state = {
-    file: null,
+    file: '',
     scale: 1,
   }
 
@@ -16,14 +16,16 @@ class EditAvatar extends Component{
     this.props.dispatch({type: `GET_USER_DETAILS`});
   }
   
-  componentDidMount(){
-    this.setState({file: this.props.reduxState.avatar});
+
+  componentDidUpdate(prevProps){
+    if(this.props.reduxState !== prevProps.reduxState){
+      this.setState({file: this.props.reduxState.avatar});
+    }
   }
 
   handleCanvas = () => {
     const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
-    this.setState({file:canvasScaled});
-    // this.props.dispatch({type: `UPDATE_AVATAR`, payload: canvasScaled});
+    this.props.dispatch({type: `UPDATE_AVATAR`, payload: canvasScaled});
   }
 
   handleFileChange = (e) => {
@@ -39,8 +41,8 @@ class EditAvatar extends Component{
 
   onClickSave = () => {
     if (this.editor) {
-      // this.handleCanvas();
-      // this.pushHistory();
+      this.handleCanvas();
+      this.pushHistory();
     }
   }
 
@@ -53,7 +55,6 @@ class EditAvatar extends Component{
   render(){
     return(
       <center>
-        {JSON.stringify(this.state)}
         <div>
           {this.state.file ?
             <>
@@ -63,7 +64,7 @@ class EditAvatar extends Component{
                 width={250}
                 height={250}
                 border={50}
-                // borderRadius={125}
+                borderRadius={125}
                 color={[0, 0, 0, 0.8]} // RGBA
                 scale={this.state.scale}
                 rotate={0}
