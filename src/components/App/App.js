@@ -17,6 +17,7 @@ import Following from '../Following/Following';
 import OtherProfile from '../OtherProfile/OtherProfile';
 import ViewThisImage from '../ViewThisImage/ViewThisImage';
 import SearchBar from '../SearchBar/SearchBar';
+import EditAvatar from '../EditAvatar/EditAvatar';
 
 class App extends Component {
   componentDidMount () {
@@ -36,20 +37,14 @@ class App extends Component {
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
             <ProtectedRoute
               exact
-              path="/home"
-              component={Home}
-            />
-
-            <ProtectedRoute
-              exact
-              path="/search"
-              component={SearchBar}
-            />
-
-            <ProtectedRoute
-              exact
               path="/add-photo"
               component={PostImage}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/edit-avatar"
+              component={EditAvatar}
             />
 
             <ProtectedRoute
@@ -59,19 +54,31 @@ class App extends Component {
 
             <ProtectedRoute
               exact
-              path="/profile"
-              component={Profile}
+              path="/following"
+              component={Following}
             />
 
             <ProtectedRoute
               exact
-              path="/following"
-              component={Following}
+              path="/home"
+              component={Home}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/profile"
+              component={Profile}
             />
 
             <Route
               path="/profile/:id"
               component={OtherProfile}
+            />
+
+            <Route
+              exact
+              path="/search"
+              component={SearchBar}
             />
 
             <Route
