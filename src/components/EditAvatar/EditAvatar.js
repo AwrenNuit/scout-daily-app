@@ -1,12 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import AvatarEditor from 'react-avatar-editor';
+import NavBar from '../NavBar/NavBar';
+import Button from '@material-ui/core/Button';
 
 class EditAvatar extends Component{
 
   state = {
     file: null,
-    scale: 0,
+    scale: 1,
+  }
+
+  componentDidMount(){
+    this.props.dispatch({type: `GET_USER_DETAILS`});
   }
 
   handleFileChange = (e) => {
@@ -34,31 +40,29 @@ class EditAvatar extends Component{
     return(
       <center>
         <div>
+          {this.state.file ?
+            <>
+              <AvatarEditor
+                ref={this.setEditorRef}
+                image={this.state.file}
+                width={100}
+                height={100}
+                border={50}
+                color={[0, 0, 0, 0.8]} // RGBA
+                scale={this.state.scale}
+                rotate={0}
+              />
+              <span>Zoom:</span> 
+              <input type="range" step="0.1" min="1" max="2" name="scale" value={this.state.scale} onChange={this.handleZoom} />
+            </>
+            :
+            <div className="whitespace"></div>
+          }
           <div>
-            {this.state.file ?
-              <>
-                <AvatarEditor
-                  ref={this.setEditorRef}
-                  image={this.state.file}
-                  width={100}
-                  height={100}
-                  border={50}
-                  color={[0, 0, 0, 0.8]} // RGBA
-                  scale={this.state.scale}
-                  rotate={0}
-                />
-                <span>Zoom:</span> 
-                <input type="range" step="0.1" min="1" max="2" name="scale" value={this.state.scale} onChange={this.handleZoom} />
-              </>
-              :
-              <div className="whitespace"></div>
-            }
-            <div>
-              <label for="file-upload" class="custom-file-upload">
-                <p className="browse-btn-txt">BROWSE</p>
-              </label>
-              <input id="file-upload" type="file" onChange={this.handleFileChange} />
-            </div>
+            <label for="file-upload" className="custom-file-upload">
+              <p className="browse-btn-txt">BROWSE</p>
+            </label>
+            <input id="file-upload" type="file" onChange={this.handleFileChange} />
           </div>
         </div>
         <div>
@@ -80,7 +84,7 @@ class EditAvatar extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.OBJECT
+  reduxState: reduxState.userDetails
 });
 
 export default connect(putReduxStateOnProps)(EditAvatar);
