@@ -79,7 +79,15 @@ class PostImage extends Component{
                 rotate={0}
               />
               <span>Zoom:</span> 
-              <input type="range" step="0.1" min="1" max="2" name="scale" value={this.state.scale} onChange={this.handleZoom} />
+              <input 
+                type="range" 
+                step="0.1" 
+                min="1" 
+                max="2" 
+                name="scale" 
+                value={this.state.scale} 
+                onChange={this.handleZoom} 
+              />
             </>
             :
             <div className="whitespace"></div>

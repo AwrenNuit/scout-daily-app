@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import './EditAvatar.css';
 import AvatarEditor from 'react-avatar-editor';
 import NavBar from '../NavBar/NavBar';
 import Button from '@material-ui/core/Button';
@@ -21,7 +22,8 @@ class EditAvatar extends Component{
 
   handleCanvas = () => {
     const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
-    this.props.dispatch({type: `UPDATE_AVATAR`, payload: canvasScaled});
+    this.setState({file:canvasScaled});
+    // this.props.dispatch({type: `UPDATE_AVATAR`, payload: canvasScaled});
   }
 
   handleFileChange = (e) => {
@@ -37,10 +39,13 @@ class EditAvatar extends Component{
 
   onClickSave = () => {
     if (this.editor) {
-      const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
-      this.setState({file:canvasScaled});
-      // this.props.history.push('/profile');
+      // this.handleCanvas();
+      // this.pushHistory();
     }
+  }
+
+  pushHistory = () => {
+    this.props.history.push('/profile');
   }
 
   setEditorRef = (editor) => this.editor = editor;
@@ -78,10 +83,10 @@ class EditAvatar extends Component{
             <div className="whitespace"></div>
           }
           <div>
-            <label htmlFor="file-upload" className="custom-file-upload">
-              <p className="browse-btn-txt">BROWSE</p>
+            <label htmlFor="avatar-upload" className="custom-avatar-upload">
+              <p className="avatar-browse-btn-txt">BROWSE</p>
             </label>
-            <input id="file-upload" type="file" onChange={this.handleFileChange} />
+            <input id="avatar-upload" type="file" onChange={this.handleFileChange} />
           </div>
         </div>
         <div>

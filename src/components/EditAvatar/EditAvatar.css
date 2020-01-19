@@ -1,0 +1,30 @@
+input[type="file"] {
+  display: none;
+}
+
+.avatar-browse-btn-txt {
+  margin-top: 5px;
+}
+
+.custom-avatar-upload {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin: 20px;
+  background-color: #a2daff;
+  color: white;
+  font-size: 14px;
+  height: 23px;
+  box-shadow: 1px 1px 5px lightgrey;
+  transition: 0.3s;
+}
+
+.custom-avatar-upload:hover {
+  box-shadow: 1px 3px 5px #c2c2c2;
+}
+
+.whitespace {
+  padding: 190px;
+}
