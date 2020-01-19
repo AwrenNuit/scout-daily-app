@@ -33,7 +33,7 @@ class EditAvatar extends Component{
   onClickSave = () => {
     if (this.editor) {
       const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
-      this.props.dispatch({type: `POST_IMAGE`, payload: canvasScaled});
+      this.props.dispatch({type: `POST_AVATAR`, payload: canvasScaled});
       this.props.history.push('/profile');
     }
   }
@@ -58,7 +58,15 @@ class EditAvatar extends Component{
                 rotate={0}
               />
               <span>Zoom:</span> 
-              <input type="range" step="0.1" min="1" max="2" name="scale" value={this.state.scale} onChange={this.handleZoom} />
+              <input 
+                type="range" 
+                step="0.1" 
+                min="1" 
+                max="2" 
+                name="scale" 
+                value={this.state.scale} 
+                onChange={this.handleZoom} 
+              />
             </>
             :
             <div className="whitespace"></div>
@@ -79,7 +87,7 @@ class EditAvatar extends Component{
             onClick={this.onClickSave}
             style={{width:"90%",marginBottom:"10px",backgroundColor:"#bc75ff"}}
           >
-            Post it!
+            Apply
           </Button>
         </div>
         <NavBar history={this.props.history.location.pathname} />
