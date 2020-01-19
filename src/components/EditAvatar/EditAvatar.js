@@ -11,8 +11,12 @@ class EditAvatar extends Component{
     scale: 1,
   }
 
-  componentDidMount(){
+  UNSAFE_componentWillMount(){
     this.props.dispatch({type: `GET_USER_DETAILS`});
+  }
+  
+  componentDidMount(){
+    this.setState({file: this.props.reduxState.avatar});
   }
 
   handleFileChange = (e) => {
