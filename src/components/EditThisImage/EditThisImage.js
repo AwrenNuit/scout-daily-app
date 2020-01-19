@@ -10,6 +10,11 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import NavBar from '../NavBar/NavBar';
 
 const styles = ({
+  cssLabel: {
+    '&$cssFocused': {
+      color: '#bc75ff',
+    }
+  },
   cssOutlinedInput: {
     '&$cssFocused $notchedOutline': {
       borderWidth: '3px',
@@ -84,6 +89,12 @@ class EditThisImage extends Component{
               value={this.state.caption || ''}
               onChange={this.handleChange}
               multiline 
+              InputLabelProps={{
+                classes: {
+                  root: classes.cssLabel,
+                  focused: classes.cssFocused,
+                }
+              }}
               InputProps={{
                 classes: {
                   root: classes.cssOutlinedInput,
