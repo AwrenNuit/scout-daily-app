@@ -58,7 +58,7 @@ class PostImage extends Component{
     this.props.history.push('/profile');
   }
 
-  setEditorRef = (editor) => this.editor = editor
+  setEditorRef = (editor) => this.editor = editor;
 
   render(){
     const { classes } = this.props;

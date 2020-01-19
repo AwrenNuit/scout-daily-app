@@ -27,100 +27,99 @@ function* fetchUser() {
 // POST user follow
 function* addFollow(action){
   try{
-      yield axios.post(`/api/user/following`, {data: action.payload});
-      yield put({type: `GET_FOLLOWING_DETAILS`});
+    yield axios.post(`/api/user/following`, {data: action.payload});
+    yield put({type: `GET_FOLLOWING_DETAILS`});
   }
   catch(error){
-      console.log('error in POST user follow', error);
+    console.log('error in POST user follow', error);
   }
 }
 
 // DELETE user follow
 function* removeFollow(action){
   try{
-    console.log('IN DELETE SAGA');
-      yield axios.delete(`/api/user/following/${action.payload}`);
-      yield put({type: `GET_FOLLOWING_DETAILS`});
+    yield axios.delete(`/api/user/following/${action.payload}`);
+    yield put({type: `GET_FOLLOWING_DETAILS`});
   }
   catch(error){
-      console.log('error in DELETE user follow', error);
+    console.log('error in DELETE user follow', error);
   }
 }
 
 // GET following details
 function* getFollowingDetails(action){
   try{
-      const getResponse = yield axios.get(`/api/user/following/details`);
-      yield put({type: `SET_FOLLOWING_DETAILS`, payload: getResponse.data});
+    const getResponse = yield axios.get(`/api/user/following/details`);
+    yield put({type: `SET_FOLLOWING_DETAILS`, payload: getResponse.data});
   }
   catch(error){
-      console.log('error in GET other user details', error);
+    console.log('error in GET other user details', error);
   }
 }
 
 // GET other user details
 function* getOtherUserDetails(action){
   try{
-      const getResponse = yield axios.get(`/api/user/details/${action.payload}`);
-      yield put({type: `SET_OTHER_USER_DETAILS`, payload: getResponse.data});
+    const getResponse = yield axios.get(`/api/user/details/${action.payload}`);
+    yield put({type: `SET_OTHER_USER_DETAILS`, payload: getResponse.data});
   }
   catch(error){
-      console.log('error in GET other user details', error);
+    console.log('error in GET other user details', error);
   }
 }
 
 // GET user details
 function* getUserDetails(action){
   try{
-      const getResponse = yield axios.get(`/api/user/details`);
-      yield put({type: `SET_USER_DETAILS`, payload: getResponse.data});
+    const getResponse = yield axios.get(`/api/user/details`);
+    yield put({type: `SET_USER_DETAILS`, payload: getResponse.data});
   }
   catch(error){
-      console.log('error in GET user details', error);
+    console.log('error in GET user details', error);
   }
 }
 
 // GET users from search
 function* getUserSearch(action){
   try{
-      const getResponse = yield axios.get(`/api/user/search/${action.payload}`);
-      yield put({type: `SET_RESULTS`, payload: getResponse.data});
+    const getResponse = yield axios.get(`/api/user/search/${action.payload}`);
+    yield put({type: `SET_RESULTS`, payload: getResponse.data});
   }
   catch(error){
-      console.log('error in GET users from search', error);
+    console.log('error in GET users from search', error);
   }
 }
 
 // PUT (update) user avatar
 function* putUserAvatar(action){
   try{
-      yield axios.put(`/api/user/avatar`, {data: action.payload});
-      yield put({type: `GET_USER_DETAILS`});
+    yield axios.put(`/api/user/avatar`, {data: action.payload});
+    yield put({type: `GET_USER_DETAILS`});
   }
   catch(error){
-      console.log('error in PUT user avatar', error);
+    console.log('error in PUT user avatar', error);
   }
 }
 
 // PUT (update) user bio
 function* putUserBio(action){
   try{
-      yield axios.put(`/api/user/details/bio`, {data: action.payload});
-      yield put({type: `GET_USER_DETAILS`});
+    yield axios.put(`/api/user/details/bio`, {data: action.payload});
+    yield put({type: `GET_USER_DETAILS`});
   }
   catch(error){
-      console.log('error in PUT user bio', error);
+    console.log('error in PUT user bio', error);
   }
 }
 
 // PUT (update) user bio
 function* putUsername(action){
   try{
-      yield axios.put(`/api/user/details/username`, {data: action.payload});
-      yield put({type: `GET_USER_DETAILS`});
+    yield axios.put(`/api/user/details/username`, {data: action.payload});
+    yield put({type: `GET_USER_DETAILS`});
   }
   catch(error){
-      console.log('error in PUT username', error);
+    console.log('error in PUT username', error);
   }
 }
 

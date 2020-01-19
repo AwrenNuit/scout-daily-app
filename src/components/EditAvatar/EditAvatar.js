@@ -19,6 +19,11 @@ class EditAvatar extends Component{
     this.setState({file: this.props.reduxState.avatar});
   }
 
+  handleCanvas = () => {
+    const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
+    this.props.dispatch({type: `UPDATE_AVATAR`, payload: canvasScaled});
+  }
+
   handleFileChange = (e) => {
     this.setState({file: URL.createObjectURL(e.target.files[0])});
   }
@@ -33,16 +38,17 @@ class EditAvatar extends Component{
   onClickSave = () => {
     if (this.editor) {
       const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
-      this.props.dispatch({type: `UPDATE_AVATAR`, payload: canvasScaled});
-      this.props.history.push('/profile');
+      this.setState({file:canvasScaled});
+      // this.props.history.push('/profile');
     }
   }
 
-  setEditorRef = (editor) => this.editor = editor
+  setEditorRef = (editor) => this.editor = editor;
 
   render(){
     return(
       <center>
+        {JSON.stringify(this.state)}
         <div>
           {this.state.file ?
             <>
@@ -52,7 +58,7 @@ class EditAvatar extends Component{
                 width={250}
                 height={250}
                 border={50}
-                borderRadius={125}
+                // borderRadius={125}
                 color={[0, 0, 0, 0.8]} // RGBA
                 scale={this.state.scale}
                 rotate={0}
