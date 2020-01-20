@@ -41,6 +41,7 @@ class ViewThisImage extends Component{
             <div className="view-caption">{this.props.reduxState.caption}</div>
           </span>
         </div>
+        <hr className="view-hr" />
         <Comment params_id={this.props.match.params.id} />
         <div className="bottom-whitespace"></div>
         <NavBar />

@@ -25,6 +25,11 @@ a {
   margin: 0 30px;
 }
 
+.view-hr {
+  border: 1px solid lightgrey;
+  width: 80%;
+}
+
 .view-img {
   height: 300px;
   width: 300px;
