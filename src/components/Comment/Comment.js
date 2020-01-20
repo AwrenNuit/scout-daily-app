@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import './Comment.css';
-import { TextField } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 
 const styles = ({
   cssLabel: {
@@ -59,7 +59,6 @@ class Comment extends Component{
             id="outlined-basic" 
             label="add comment" 
             variant="outlined"
-            onBlur={this.postComment}
             onChange={this.handleCommentChange} 
             value={this.state.comment}
             multiline 
@@ -76,8 +75,16 @@ class Comment extends Component{
                 notchedOutline: classes.notchedOutline,
               }
             }}
-            style={{width:"90%",marginBottom:"20px"}}
+            style={{width:"70%",marginBottom:"20px"}}
           />
+          <Button
+            variant="contained" 
+            color="primary"
+            onClick={this.postComment}
+            style={{position:"relative",height:"55px",width:"20%",backgroundColor:"#bc75ff"}}
+          >
+            POST
+          </Button>
         </center>
       </>
     );
