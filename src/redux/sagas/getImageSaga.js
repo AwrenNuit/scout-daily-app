@@ -57,6 +57,17 @@ function* getFollowedAvatar(action){
   }
 }
 
+// GET images comments
+function* getImageComment(action){
+  try{
+      const getResponse = yield axios.get(`/api/image/view/comment/${action.payload}`);
+      yield put({type: `SET_IMAGE_COMMENT`, payload: getResponse.data});
+  }
+  catch(error){
+      console.log('error in GET image comments', error);
+  }
+}
+
 // GET images of followed users for main feed
 function* getImageFeed(action){
   try{
@@ -84,6 +95,7 @@ function* getThisImageView(action){
   try{
       const getResponse = yield axios.get(`/api/image/view/${action.payload}`);
       yield put({type: `SET_THIS_IMAGE_VIEW`, payload: getResponse.data});
+      yield put({type: `GET_IMAGE_COMMENT`, payload: action.payload});
   }
   catch(error){
       console.log('error in GET this image to view', error);
@@ -118,6 +130,7 @@ function* imageSaga() {
   yield takeLatest('GET_ALL_OTHER_USER_IMAGE', getAllOtherUserImage);
   yield takeLatest('GET_ALL_USER_IMAGE', getAllUserImage);
   yield takeLatest('GET_FOLLOWING', getFollowedAvatar);
+  yield takeLatest('GET_IMAGE_COMMENT', getImageComment);
   yield takeLatest('GET_IMAGE_FEED', getImageFeed);
   yield takeLatest('GET_THIS_IMAGE', getThisImage);
   yield takeLatest('VIEW_THIS_IMAGE', getThisImageView);

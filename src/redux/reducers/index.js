@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import allImage from './allImageReducer';
+import comment from './commentReducer';
 import dailyPrompt from './dailyPromptReducer';
 import errors from './errorsReducer';
 import followingAvatar from './followingAvatarReducer';
@@ -22,6 +23,7 @@ import viewThisImage from './viewThisImage';
 // This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
   allImage, // stores all user images
+  comment, // stores image comments
   dailyPrompt, // stores daily photography prompt
   errors, // contains registrationMessage and loginMessage
   followingAvatar, // stores followed page's avatars

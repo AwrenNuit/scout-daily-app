@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import './ViewThisImage.css';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import NavBar from '../NavBar/NavBar';
+import Comment from '../Comment/Comment';
 
 class ViewThisImage extends Component{
 
@@ -42,7 +43,7 @@ class ViewThisImage extends Component{
             </center>
           </span>
         </div>
-        <div>COMMENTS GO HERE</div>
+        <Comment params_id={this.props.match.params.id} />
         <div className="bottom-whitespace"></div>
         <NavBar />
       </>
@@ -51,7 +52,7 @@ class ViewThisImage extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.viewThisImage
+  reduxState: reduxState.viewThisImage,
 });
 
 export default connect(putReduxStateOnProps)(ViewThisImage);
