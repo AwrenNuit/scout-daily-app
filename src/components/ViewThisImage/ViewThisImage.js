@@ -13,8 +13,10 @@ class ViewThisImage extends Component{
   }
 
   // Dispatch like to saga
-  handleLike = (id) => {
-    this.props.dispatch({type: `ADD_LIKE`, payload: id});
+  handleLike = (image, user) => {
+    // this.props.dispatch({type: `ADD_LIKE`, payload: image});
+    this.props.dispatch({type: `ADD_LIKE`, payload: {image_id: image, user_id: user}});
+
   }
 
   render(){
@@ -22,6 +24,7 @@ class ViewThisImage extends Component{
 
     return(
       <>
+        {JSON.stringify(details.id)}
         <div className="view-card">
           <div>
             <Link to={"/profile/"+details.user_id}>
@@ -35,7 +38,7 @@ class ViewThisImage extends Component{
             </center>
             <div>
               <FavoriteBorderIcon 
-                onClick={()=>this.handleLike(details.id)} 
+                onClick={()=>this.handleLike(details.id, details.user_id)} 
                 style={{marginLeft:"40px",cursor:"pointer"}}
               />
               <span className="view-likes">{details.likes} likes</span>
