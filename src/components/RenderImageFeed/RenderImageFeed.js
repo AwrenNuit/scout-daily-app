@@ -43,6 +43,7 @@ class RenderImageFeed extends Component{
         {this.props.reduxState ? 
           this.props.reduxState.map(image=>
             <div className="feed-card" key={image.id} >
+              {JSON.stringify(this.props.reduxState.liked)}
               {JSON.stringify(image.liked)}
               <div>
                 <Link to={"/profile/"+image.user_id}>
@@ -60,7 +61,7 @@ class RenderImageFeed extends Component{
                 {this.state.like ?
                   <FavoriteIcon 
                     onClick={()=>this.handleLike(image.id)} 
-                    style={{marginLeft:"40px",cursor:"pointer",color:"#bc75ff"}}
+                    style={{marginLeft:"40px",cursor:"pointer",color:"#59005C"}}
                   />
                   :
                   <FavoriteBorderIcon 
