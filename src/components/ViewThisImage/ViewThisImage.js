@@ -38,9 +38,7 @@ class ViewThisImage extends Component{
               />
               <span className="view-likes">{this.props.reduxState.likes} likes</span>
             </div>
-            <center>
-              <div className="view-caption">{this.props.reduxState.caption}</div>
-            </center>
+            <div className="view-caption">{this.props.reduxState.caption}</div>
           </span>
         </div>
         <Comment params_id={this.props.match.params.id} />
