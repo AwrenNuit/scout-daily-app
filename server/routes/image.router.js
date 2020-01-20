@@ -118,7 +118,7 @@ router.get('/view/:id', (req, res) => {
 // GET this image to view
 router.get('/view/comment/:id', (req, res) => {
   let id = [req.params.id];
-  let SQLquery = `SELECT u.username, u.avatar, c."comment", c.user_id, c.image_id FROM image i
+  let SQLquery = `SELECT u.username, u.avatar, c."comment", c.id, c.user_id, c.image_id FROM image i
                   FULL JOIN "comment" c ON i.id = c.image_id
                   FULL JOIN "user" u ON u.id = c.user_id
                   WHERE i.id = $1;`;

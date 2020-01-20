@@ -11,9 +11,8 @@ class Comment extends Component{
   render(){
     return(
       <>
-      {/* {JSON.stringify(this.props.reduxState)} */}
         {this.props.reduxState.map(comment =>
-          <div>
+          <div key={comment.id}>
             <img className="comment-avatar" src={comment.avatar} alt={comment.username} />
             <span>{comment.username}</span>
             <div>{comment.comment}</div>
