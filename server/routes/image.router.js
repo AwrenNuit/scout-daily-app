@@ -102,8 +102,9 @@ router.get('/:id', (req, res) => {
 // GET this image to view
 router.get('/view/:id', (req, res) => {
   let id = [req.params.id];
-  let SQLquery = `SELECT u.username, u.avatar, i.id, i.image_url, i.likes, i.caption, i.user_id FROM image i
+  let SQLquery = `SELECT l.liked,u.username, u.avatar, i.id, i.image_url, i.likes, i.caption, i.user_id FROM image i
                   FULL JOIN "user" u ON u.id = i.user_id
+                  FULL JOIN "like" l ON l.image_id = i.id
                   WHERE i.id = $1;`;
   pool.query(SQLquery, id)
   .then(response=>{

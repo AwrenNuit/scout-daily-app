@@ -2,14 +2,25 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Link } from "react-router-dom";
 import './ViewThisImage.css';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import NavBar from '../NavBar/NavBar';
 import Comment from '../Comment/Comment';
 
 class ViewThisImage extends Component{
 
+  state = {
+    like: false
+  }
+
   componentDidMount(){
     this.props.dispatch({type: `VIEW_THIS_IMAGE`, payload: this.props.match.params.id});
+  }
+
+  componentDidUpdate(prevProps){
+    if(this.props.reduxState !== prevProps.reduxState){
+      this.setState({like: this.props.reduxState.liked});
+    }
   }
 
   // Dispatch like to saga
@@ -22,7 +33,7 @@ class ViewThisImage extends Component{
 
     return(
       <>
-        {JSON.stringify(details.id)}
+      {JSON.stringify(this.state)}
         <div className="view-card">
           <div>
             <Link to={"/profile/"+details.user_id}>
@@ -35,10 +46,17 @@ class ViewThisImage extends Component{
               <img className="view-img" src={details.image_url} alt={details.caption} />
             </center>
             <div>
-              <FavoriteBorderIcon 
-                onClick={()=>this.handleLike(details.id)} 
-                style={{marginLeft:"40px",cursor:"pointer"}}
-              />
+              {this.state.like ?
+                <FavoriteIcon 
+                  onClick={()=>this.handleLike(details.id)} 
+                  style={{marginLeft:"40px",cursor:"pointer",color:"#bc75ff"}}
+                />
+                :
+                <FavoriteBorderIcon 
+                  onClick={()=>this.handleLike(details.id)} 
+                  style={{marginLeft:"40px",cursor:"pointer"}}
+                />
+              }
               <span className="view-likes">{details.likes} likes</span>
             </div>
             <div className="view-caption">{details.caption}</div>
