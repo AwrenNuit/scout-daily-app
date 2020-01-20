@@ -34,7 +34,7 @@ class ViewThisImage extends Component{
       this.props.dispatch({type: `ADD_LIKE`, payload: image});
     }
     else{
-      this.props.dispatch({type: `DELETE_LIKE`, payload: image});
+      this.props.dispatch({type: `SUB_LIKE`, payload: image});
     }
   }
 

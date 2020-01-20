@@ -2,7 +2,6 @@ const express = require(`express`);
 const router = express.Router();
 const pool = require(`../modules/pool`);
 
-
 // DELETE this image
 router.delete('/delete/:id', (req, res) => {
   let id = [req.params.id];
@@ -211,7 +210,7 @@ router.put('/caption', (req, res) => {
 });
 
 // PUT route to update like count
-router.put('/like', (req, res) => {
+router.put('/like/add', (req, res) => {
   let id = [req.body.data];
   let SQLquery = `UPDATE image
                   SET likes = likes + 1
@@ -221,7 +220,23 @@ router.put('/like', (req, res) => {
       res.sendStatus(201);
   })
   .catch(error=>{
-    console.log('ERROR IN /like PUT ---------------------------------------->', error);
+    console.log('ERROR IN /like/add PUT ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
+// PUT route to update like count
+router.put('/like/sub', (req, res) => {
+  let id = [req.body.data];
+  let SQLquery = `UPDATE image
+                  SET likes = likes - 1
+                  WHERE id = $1;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.sendStatus(201);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /like/sub PUT ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });

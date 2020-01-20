@@ -1,13 +1,22 @@
 import axios from 'axios';
 import {takeLatest, put} from 'redux-saga/effects';
 
-// PUT (update) like
+// PUT (update) like + 1
 function* addLike(action){
   try{
-    console.log('add like saga:', action.payload);
-    yield axios.put(`/api/image/like`, {data: action.payload});
+    yield axios.put(`/api/image/like/add`, {data: action.payload});
     yield put({type: `DISABLE_LIKE`, payload: action.payload});
-    yield put({type: `GET_IMAGE_FEED`});
+  }
+  catch(error){
+    console.log('error in PUT like', error);
+  }
+}
+
+// PUT (update) like - 1
+function* subLike(action){
+  try{
+    yield axios.put(`/api/image/like/sub`, {data: action.payload});
+    yield put({type: `DELETE_LIKE`, payload: action.payload});
   }
   catch(error){
     console.log('error in PUT like', error);
@@ -163,6 +172,7 @@ function* updateImageCaption(action){
 
 function* imageSaga() {
   yield takeLatest(`ADD_LIKE`, addLike);
+  yield takeLatest(`SUB_LIKE`, subLike);
   yield takeLatest('DELETE_IMAGE', deleteImage);
   yield takeLatest(`DELETE_LIKE`, deleteLike);
   yield takeLatest(`DISABLE_LIKE`, disableLike);
