@@ -102,6 +102,17 @@ function* getThisImageView(action){
   }
 }
 
+// POST comment
+function* postComment(action){
+  try{
+      yield axios.post(`/api/image/comment`, action.payload);
+      yield put({type: `GET_IMAGE_COMMENT`});
+  }
+  catch(error){
+      console.log('error in POST comment', error);
+  }
+}
+
 // POST image
 function* postImage(action){
   try{
@@ -134,6 +145,7 @@ function* imageSaga() {
   yield takeLatest('GET_IMAGE_FEED', getImageFeed);
   yield takeLatest('GET_THIS_IMAGE', getThisImage);
   yield takeLatest('VIEW_THIS_IMAGE', getThisImageView);
+  yield takeLatest('POST_COMMENT', postComment);
   yield takeLatest('POST_IMAGE', postImage); 
   yield takeLatest('UPDATE_CAPTION', updateImageCaption); 
 }
