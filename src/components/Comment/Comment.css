@@ -11,8 +11,14 @@
   margin: 0 30px;
 }
 
+.comment-hr {
+  border: 1px solid lightgrey;
+  width: 80%;
+}
+
 .comment-username {
   position: relative;
   bottom: 20px;
   left: 15px;
 }
+
