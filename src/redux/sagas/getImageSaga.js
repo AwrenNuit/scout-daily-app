@@ -4,6 +4,7 @@ import {takeLatest, put} from 'redux-saga/effects';
 // PUT (update) like
 function* addLike(action){
   try{
+    console.log('add like saga:', action.payload);
     yield axios.put(`/api/image/like`, {data: action.payload});
     yield put({type: `DISABLE_LIKE`, payload: action.payload});
     yield put({type: `GET_IMAGE_FEED`});
@@ -18,6 +19,7 @@ function* deleteLike(action){
   try{
     yield axios.delete(`/api/image/like/${action.payload}`);
     yield put({type: `VIEW_THIS_IMAGE`, payload: action.payload});
+    yield put({type: `GET_IMAGE_FEED`});
   }
   catch(error){
     console.log('error in DELETE like', error);
@@ -27,8 +29,10 @@ function* deleteLike(action){
 // POST like, disable like button
 function* disableLike(action){
   try{
+    console.log('disable like:', action.payload);
     yield axios.post(`/api/image/like`, {data: action.payload});
     yield put({type: `VIEW_THIS_IMAGE`, payload: action.payload});
+    yield put({type: `GET_IMAGE_FEED`});
   }
   catch(error){
     console.log('error in POST like', error);
