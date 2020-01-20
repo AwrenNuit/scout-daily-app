@@ -27,19 +27,23 @@ class PostImage extends Component{
     scale: 1,
   }
 
+  // Get image from canvas
   handleCanvas = () => {
     const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
     this.props.dispatch({type: `POST_IMAGE`, payload: {image: canvasScaled, caption: this.state.caption}});
   }
 
+  // Update caption text in local state
   handleCaptionChange = (e) => {
     this.setState({caption: e.target.value});
   }
 
+  // Update selected file in local state
   handleFileChange = (e) => {
     this.setState({file: URL.createObjectURL(e.target.files[0])});
   }
 
+  // Set scale of image zoom
   handleZoom = (e) => {
     let scale = parseFloat(e.target.value);
     this.setState({
@@ -47,6 +51,7 @@ class PostImage extends Component{
     });
   }
 
+  // Save the image from canvas into database
   onClickSave = () => {
     if (this.editor) {
       this.handleCanvas();
@@ -54,10 +59,12 @@ class PostImage extends Component{
     }
   }
 
+  // Return to user's profile
   pushHistory = () => {
     this.props.history.push('/profile');
   }
 
+  // Set editor for canvas grab
   setEditorRef = (editor) => this.editor = editor;
 
   render(){

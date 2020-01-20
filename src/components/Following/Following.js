@@ -9,6 +9,7 @@ class Following extends Component{
     this.props.dispatch({type: `GET_FOLLOWING`});
   }
 
+  // View selected user's profile
   handleClick = (id) => {
     this.props.history.push(`/profile/${id}`);
   }

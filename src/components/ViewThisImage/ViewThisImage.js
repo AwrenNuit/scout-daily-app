@@ -11,6 +11,7 @@ class ViewThisImage extends Component{
     this.props.dispatch({type: `VIEW_THIS_IMAGE`, payload: this.props.match.params.id});
   }
 
+  // Dispatch like to saga
   handleLike = (id) => {
     this.props.dispatch({type: `ADD_LIKE`, payload: id});
   }

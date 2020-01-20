@@ -11,6 +11,7 @@ class RenderImageFeed extends Component{
     this.props.dispatch({type: `GET_IMAGE_FEED`});
   }
 
+  // Dispatch like to saga
   handleLike = (id) => {
     this.props.dispatch({type: `ADD_LIKE`, payload: id});
   }

@@ -5,7 +5,6 @@ import './DailyPrompt.css';
 class DailyPrompt extends Component{
 
   componentDidMount(){
-    console.log('in didMount');
     this.props.dispatch({type: `GET_PROMPT`});
   }
 

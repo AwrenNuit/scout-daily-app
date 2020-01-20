@@ -14,6 +14,7 @@ class OtherUserDetails extends Component{
     this.props.dispatch({type: `GET_FOLLOWING_DETAILS`});
   }
 
+  // Checks if current user is following this user, conditionally renders follow/unfollow button based on result
   seeIfFollowing = () => {
     let details = [];
     let id = this.props.reduxState.id;
@@ -26,6 +27,7 @@ class OtherUserDetails extends Component{
     return false;
   }
 
+  // Either follows or unfollows
   handleFollow = (id) => {
     let details = [];
     for(let num of this.props.following){

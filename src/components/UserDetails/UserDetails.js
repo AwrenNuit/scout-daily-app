@@ -17,10 +17,22 @@ class UserDetails extends Component{
     this.props.dispatch({type: `GET_USER_DETAILS`});
   }
 
+  // Dispatch bio updates to saga
+  dispatchBio = () => {
+    this.props.dispatch({type: `UPDATE_BIO`, payload: this.state.bio});
+  }
+
+  // Dispatch username updates to saga
+  dispatchUsername = () => {
+    this.props.dispatch({type: `UPDATE_USERNAME`, payload: this.state.username});
+  }
+
+  // Update user's avatar
   editAvatar = () => {
     this.props.history.push('/edit-avatar');
   }
 
+  // Set the edit on click
   editDetails = (propName, propValue, propEdit) => {
     this.setState({
       [propName]: propValue,
@@ -28,21 +40,35 @@ class UserDetails extends Component{
     });
   }
 
+  // Update bio or username state
   handleChange = (e, propName) => {
     this.setState({[propName]:e.target.value});
   }
 
+  // View followed users
   handleFollowing = () => {
     this.props.history.push('/following');
   }
 
+  // Save bio changes to database, turn off edit mode
   saveBioChange = () => {
-    this.props.dispatch({type: `UPDATE_BIO`, payload: this.state.bio});
+  this.dispatchBio();
+  this.turnOffBioEdit();
+  }
+
+  // Save username changes to database, turn off edit mode
+  saveUsernameChange = () => {
+    this.dispatchUsername();
+    this.turnOffUsernameEdit();
+  }
+
+  // Turn off conditionally-rendered bio edit
+  turnOffBioEdit = () => {
     this.setState({editBio:false});
   }
 
-  saveUsernameChange = () => {
-    this.props.dispatch({type: `UPDATE_USERNAME`, payload: this.state.username});
+  // Turn off conditionally-rendered username edit
+  turnOffUsernameEdit = () => {
     this.setState({editUsername:false});
   }
 

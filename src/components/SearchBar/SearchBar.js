@@ -25,11 +25,12 @@ class SearchBar extends Component{
     search: ''
   }
 
+  // Clear reducer
   componentWillUnmount(){
     this.props.dispatch({type: `CLEAR_SEARCH`});
   }
 
-  // Dispatch local state to saga
+  // Dispatch user's search to saga
   dispatchSearch = () => {
     this.props.dispatch({type: 'SEARCH_GET', payload: this.state.search});
   }
@@ -45,7 +46,7 @@ class SearchBar extends Component{
     this.resetState();
   }
 
-  // Reset local state
+  // Reset search
   resetState = () => {
     this.setState({search: ''});
   }

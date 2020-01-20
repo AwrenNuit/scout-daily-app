@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 class RenderUserImage extends Component{
 
-  UNSAFE_componentWillMount(){
+  componentDidMount(){
     this.props.dispatch({type: `GET_ALL_OTHER_USER_IMAGE`, payload: this.props.id});
   }
 

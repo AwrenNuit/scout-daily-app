@@ -12,26 +12,28 @@ class EditAvatar extends Component{
     scale: 1,
   }
 
-  UNSAFE_componentWillMount(){
+  componentDidMount(){
     this.props.dispatch({type: `GET_USER_DETAILS`});
   }
   
-
   componentDidUpdate(prevProps){
     if(this.props.reduxState !== prevProps.reduxState){
       this.setState({file: this.props.reduxState.avatar});
     }
   }
 
+  // Get image from canvas
   handleCanvas = () => {
     const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
     this.props.dispatch({type: `UPDATE_AVATAR`, payload: canvasScaled});
   }
 
+  // Update selected file in local state
   handleFileChange = (e) => {
     this.setState({file: URL.createObjectURL(e.target.files[0])});
   }
 
+  // Set scale of image zoom
   handleZoom = (e) => {
     let scale = parseFloat(e.target.value);
     this.setState({
@@ -39,6 +41,7 @@ class EditAvatar extends Component{
     });
   }
 
+  // Save the image from canvas into database
   onClickSave = () => {
     if (this.editor) {
       this.handleCanvas();
@@ -46,10 +49,12 @@ class EditAvatar extends Component{
     }
   }
 
+  // Return to user's profile
   pushHistory = () => {
     this.props.history.push('/profile');
   }
 
+  // Set editor for canvas grab
   setEditorRef = (editor) => this.editor = editor;
 
   render(){

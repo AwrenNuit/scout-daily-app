@@ -45,10 +45,17 @@ class EditThisImage extends Component{
     }
   }
 
+  // Dispatch caption updates to saga
+  dispatchCaption = () => {
+    this.props.dispatch({type: `UPDATE_CAPTION`, payload: {caption: this.state.caption, id: this.state.id}});
+  }
+
+  // Set caption updates to local state
   handleChange = (e) => {
     this.setState({caption: e.target.value});
   }
 
+  // Permanently deletes this image
   handleDelete = () => {
     let popup = window.confirm(`Delete this image?`);
     if(popup){
@@ -57,8 +64,14 @@ class EditThisImage extends Component{
     }
   }
 
+  // Saves changes to database, returns user to their profile
   handleSave = () => {
-    this.props.dispatch({type: `UPDATE_CAPTION`, payload: {caption: this.state.caption, id: this.state.id}});
+    this.dispatchCaption();
+    this.pushHistory();
+  }
+
+  // View user's profile
+  pushHistory = () => {
     this.props.history.push('/profile');
   }
 
