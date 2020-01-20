@@ -5,3 +5,14 @@
   margin-top: 20px;
   margin-left: 40px;
 }
+
+.comment-comment {
+  padding: 10px;
+  margin: 0 30px;
+}
+
+.comment-username {
+  position: relative;
+  bottom: 20px;
+  left: 15px;
+}
