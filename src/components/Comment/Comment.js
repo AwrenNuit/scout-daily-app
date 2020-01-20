@@ -31,11 +31,21 @@ class Comment extends Component{
     this.props.dispatch({type: `VIEW_THIS_IMAGE`, payload: this.props.params_id});
   }
 
+  handleCommentChange = (e) => {
+    this.setState({comment: e.target.value});
+  }
+
+  postComment = () => {
+    this.props.dispatch({type: `POST_COMMENT`, payload: {id: this.props.params_id, comment: this.state.comment}});
+    this.setState({comment: ''});
+  }
+
   render(){
     const { classes } = this.props;
 
     return(
       <>
+      {JSON.stringify(this.state)}
         {this.props.reduxState.map(comment =>
           <div key={comment.id}>
             <img className="comment-avatar" src={comment.avatar} alt={comment.username} />
@@ -49,7 +59,8 @@ class Comment extends Component{
             id="outlined-basic" 
             label="add comment" 
             variant="outlined"
-            onChange={this.handleComment} 
+            onBlur={this.postComment}
+            onChange={this.handleCommentChange} 
             value={this.state.comment}
             multiline 
             InputLabelProps={{
