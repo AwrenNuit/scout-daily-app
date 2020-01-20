@@ -10,7 +10,6 @@ const job = new CronJob('00 00 00 * * *', function() {
 job.start();
 
 router.get('/', (req, res) => {
-  console.log('num----------------------', num);
   let id = [num];
   const SQLquery = `SELECT * FROM prompt 
                     WHERE id = $1;`;
