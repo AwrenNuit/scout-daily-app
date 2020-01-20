@@ -106,7 +106,7 @@ function* getThisImageView(action){
 function* postComment(action){
   try{
       yield axios.post(`/api/image/comment`, action.payload);
-      yield put({type: `GET_IMAGE_COMMENT`});
+      yield put({type: `GET_IMAGE_COMMENT`, payload: action.payload.id});
   }
   catch(error){
       console.log('error in POST comment', error);
