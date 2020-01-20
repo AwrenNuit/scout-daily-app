@@ -41,9 +41,7 @@ class RenderImageFeed extends Component{
                   />
                   <span className="feed-likes">{image.likes} likes</span>
                 </div>
-                <center>
-                  <div className="feed-caption">{image.caption}</div>
-                </center>
+                <div className="feed-caption">{image.caption}</div>
               </span>
             </div>
           ) 
