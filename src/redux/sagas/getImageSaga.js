@@ -7,10 +7,20 @@ function* addLike(action){
     yield axios.put(`/api/image/like`, {data: action.payload});
     yield put({type: `DISABLE_LIKE`, payload: action.payload});
     yield put({type: `GET_IMAGE_FEED`});
-    yield put({type: `VIEW_THIS_IMAGE`, payload: action.payload});
   }
   catch(error){
     console.log('error in PUT like', error);
+  }
+}
+
+// DELETE like, enable like button
+function* deleteLike(action){
+  try{
+    yield axios.delete(`/api/image/like/${action.payload}`);
+    yield put({type: `VIEW_THIS_IMAGE`, payload: action.payload});
+  }
+  catch(error){
+    console.log('error in DELETE like', error);
   }
 }
 
@@ -18,6 +28,7 @@ function* addLike(action){
 function* disableLike(action){
   try{
     yield axios.post(`/api/image/like`, {data: action.payload});
+    yield put({type: `VIEW_THIS_IMAGE`, payload: action.payload});
   }
   catch(error){
     console.log('error in POST like', error);
@@ -27,7 +38,7 @@ function* disableLike(action){
 // DELETE image
 function* deleteImage(action){
   try{
-    yield axios.delete(`/api/image/${action.payload}`);
+    yield axios.delete(`/api/image/delete/${action.payload}`);
     yield put({type: `GET_ALL_USER_IMAGE`});
   }
   catch(error){
@@ -149,6 +160,7 @@ function* updateImageCaption(action){
 function* imageSaga() {
   yield takeLatest(`ADD_LIKE`, addLike);
   yield takeLatest('DELETE_IMAGE', deleteImage);
+  yield takeLatest(`DELETE_LIKE`, deleteLike);
   yield takeLatest(`DISABLE_LIKE`, disableLike);
   yield takeLatest('GET_ALL_OTHER_USER_IMAGE', getAllOtherUserImage);
   yield takeLatest('GET_ALL_USER_IMAGE', getAllUserImage);

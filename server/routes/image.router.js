@@ -4,7 +4,7 @@ const pool = require(`../modules/pool`);
 
 
 // DELETE this image
-router.delete('/:id', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   let id = [req.params.id];
   let SQLquery = `DELETE FROM image
                   WHERE id = $1;`;
@@ -14,6 +14,21 @@ router.delete('/:id', (req, res) => {
   })
   .catch(error=>{
     console.log('ERROR IN /:id DELETE ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
+// DELETE like, enable button
+router.delete('/like/:id', (req, res) => {
+  let id = [req.params.id, req.user.id];
+  let SQLquery = `DELETE FROM "like"
+                  WHERE image_id = $1 AND user_id = $2;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.sendStatus(201);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /like DELETE ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });
@@ -102,7 +117,7 @@ router.get('/:id', (req, res) => {
 // GET this image to view
 router.get('/view/:id', (req, res) => {
   let id = [req.params.id];
-  let SQLquery = `SELECT l.liked,u.username, u.avatar, i.id, i.image_url, i.likes, i.caption, i.user_id FROM image i
+  let SQLquery = `SELECT l.liked, u.username, u.avatar, i.id, i.image_url, i.likes, i.caption, i.user_id FROM image i
                   FULL JOIN "user" u ON u.id = i.user_id
                   FULL JOIN "like" l ON l.image_id = i.id
                   WHERE i.id = $1;`;

@@ -19,13 +19,23 @@ class ViewThisImage extends Component{
 
   componentDidUpdate(prevProps){
     if(this.props.reduxState !== prevProps.reduxState){
-      this.setState({like: this.props.reduxState.liked});
+      if(this.props.reduxState.liked === null || this.props.reduxState.liked === false){
+        this.setState({like: false});
+      }
+      else{
+        this.setState({like: true});
+      }
     }
   }
 
   // Dispatch like to saga
   handleLike = (image) => {
-    this.props.dispatch({type: `ADD_LIKE`, payload: image});
+    if(this.state.like === false){
+      this.props.dispatch({type: `ADD_LIKE`, payload: image});
+    }
+    else{
+      this.props.dispatch({type: `DELETE_LIKE`, payload: image});
+    }
   }
 
   render(){
@@ -33,7 +43,6 @@ class ViewThisImage extends Component{
 
     return(
       <>
-      {JSON.stringify(this.state)}
         <div className="view-card">
           <div>
             <Link to={"/profile/"+details.user_id}>
