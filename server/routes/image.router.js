@@ -132,6 +132,21 @@ router.get('/view/comment/:id', (req, res) => {
   });
 });
 
+// POST new image
+router.post('/', (req, res) => {
+  let id = [req.body.image, req.body.caption, req.user.id];
+  let SQLquery = `INSERT INTO image (image_url, caption, user_id)
+                  VALUES($1, $2, $3);`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.sendStatus(201);
+  })
+  .catch(error=>{
+    console.log('ERROR IN / POST ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
 // POST new comment
 router.post('/comment', (req, res) => {
   let id = [req.body.comment, req.body.id, req.user.id];
@@ -147,17 +162,17 @@ router.post('/comment', (req, res) => {
   });
 });
 
-// POST new image
-router.post('/', (req, res) => {
-  let id = [req.body.image, req.body.caption, req.user.id];
-  let SQLquery = `INSERT INTO image (image_url, caption, user_id)
-                  VALUES($1, $2, $3);`;
+// POST like, disable button
+router.post('/like', (req, res) => {
+  let id = [req.body.data, req.user.id];
+  let SQLquery = `INSERT INTO "like" (image_id, user_id)
+                  VALUES($1, $2);`;
   pool.query(SQLquery, id)
   .then(response=>{
       res.sendStatus(201);
   })
   .catch(error=>{
-    console.log('ERROR IN / POST ---------------------------------------->', error);
+    console.log('ERROR IN /like POST ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });

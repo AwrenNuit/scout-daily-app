@@ -13,10 +13,8 @@ class ViewThisImage extends Component{
   }
 
   // Dispatch like to saga
-  handleLike = (image, user) => {
-    // this.props.dispatch({type: `ADD_LIKE`, payload: image});
-    this.props.dispatch({type: `ADD_LIKE`, payload: {image_id: image, user_id: user}});
-
+  handleLike = (image) => {
+    this.props.dispatch({type: `ADD_LIKE`, payload: image});
   }
 
   render(){
@@ -38,7 +36,7 @@ class ViewThisImage extends Component{
             </center>
             <div>
               <FavoriteBorderIcon 
-                onClick={()=>this.handleLike(details.id, details.user_id)} 
+                onClick={()=>this.handleLike(details.id)} 
                 style={{marginLeft:"40px",cursor:"pointer"}}
               />
               <span className="view-likes">{details.likes} likes</span>

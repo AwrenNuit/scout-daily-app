@@ -4,10 +4,10 @@ import {takeLatest, put} from 'redux-saga/effects';
 // PUT (update) like
 function* addLike(action){
   try{
-    yield axios.put(`/api/image/like`, {data: action.payload.image_id});
+    yield axios.put(`/api/image/like`, {data: action.payload});
     yield put({type: `DISABLE_LIKE`, payload: action.payload});
     yield put({type: `GET_IMAGE_FEED`});
-    yield put({type: `VIEW_THIS_IMAGE`, payload: action.payload.image_id});
+    yield put({type: `VIEW_THIS_IMAGE`, payload: action.payload});
   }
   catch(error){
     console.log('error in PUT like', error);
@@ -17,7 +17,7 @@ function* addLike(action){
 // POST like, disable like button
 function* disableLike(action){
   try{
-    yield axios.post(`/api/image/like`, action.payload);
+    yield axios.post(`/api/image/like`, {data: action.payload});
   }
   catch(error){
     console.log('error in POST like', error);
