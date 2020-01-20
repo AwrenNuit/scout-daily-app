@@ -132,6 +132,21 @@ router.get('/view/comment/:id', (req, res) => {
   });
 });
 
+// POST new comment
+router.post('/comment', (req, res) => {
+  let id = [req.body.comment, req.body.id, req.user.id];
+  let SQLquery = `INSERT INTO comment (comment, image_id, user_id)
+                  VALUES($1, $2, $3);`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.sendStatus(201);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /comment POST ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
 // POST new image
 router.post('/', (req, res) => {
   let id = [req.body.image, req.body.caption, req.user.id];
