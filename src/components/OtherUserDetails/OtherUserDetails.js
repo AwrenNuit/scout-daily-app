@@ -17,7 +17,7 @@ class OtherUserDetails extends Component{
   // Checks if current user is following this user, conditionally renders follow/unfollow button based on result
   seeIfFollowing = () => {
     let details = [];
-    let id = this.props.reduxState.id;
+    let id = details.id;
     for(let num of this.props.following){
       details.push(num.connection_id);
     }
@@ -42,15 +42,17 @@ class OtherUserDetails extends Component{
   }
 
   render(){
+    const details = this.props.reduxState;
+    
     return(
       <div className="main-details-container">
-          <div key={this.props.reduxState.id} className="other-user-details-container">
-            <img className="avatar" src={this.props.reduxState.avatar} alt={this.props.reduxState.username} />
+          <div key={details.id} className="other-user-details-container">
+            <img className="avatar" src={details.avatar} alt={details.username} />
 
-              <span className="username">{this.props.reduxState.username}</span>
-              <span className="bio">{this.props.reduxState.bio}</span>
+              <span className="username">{details.username}</span>
+              <span className="bio">{details.bio}</span>
 
-            <Button variant="contained" color="primary" onClick={()=>this.handleFollow(this.props.reduxState.id)} style={{gridArea:"follow",height:"25px",backgroundColor:"#bc75ff"}}>
+            <Button variant="contained" color="primary" onClick={()=>this.handleFollow(details.id)} style={{gridArea:"follow",height:"25px",backgroundColor:"#bc75ff"}}>
               {this.seeIfFollowing() ? 'Unfollow' : 'Follow'}
             </Button>
 

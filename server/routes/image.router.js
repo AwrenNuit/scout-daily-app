@@ -166,8 +166,8 @@ router.post('/comment', (req, res) => {
 // POST like, disable button
 router.post('/like', (req, res) => {
   let id = [req.body.data, req.user.id];
-  let SQLquery = `INSERT INTO "like" (image_id, user_id)
-                  VALUES($1, $2);`;
+  let SQLquery = `INSERT INTO "like" (liked, image_id, user_id)
+                  VALUES(true, $1, $2);`;
   pool.query(SQLquery, id)
   .then(response=>{
       res.sendStatus(201);
