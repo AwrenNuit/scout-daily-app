@@ -18,27 +18,29 @@ class ViewThisImage extends Component{
   }
 
   render(){
+    const details = this.props.reduxState;
+
     return(
       <>
         <div className="view-card">
           <div>
-            <Link to={"/profile/"+this.props.reduxState.user_id}>
-              <img className="view-avatar" src={this.props.reduxState.avatar} alt={this.props.reduxState.username} />
-              <span className="view-username">{this.props.reduxState.username}</span>
+            <Link to={"/profile/"+details.user_id}>
+              <img className="view-avatar" src={details.avatar} alt={details.username} />
+              <span className="view-username">{details.username}</span>
             </Link>
           </div>
           <span>
             <center>
-              <img className="view-img" src={this.props.reduxState.image_url} alt={this.props.reduxState.caption} />
+              <img className="view-img" src={details.image_url} alt={details.caption} />
             </center>
             <div>
               <FavoriteBorderIcon 
-                onClick={()=>this.handleLike(this.props.reduxState.id)} 
+                onClick={()=>this.handleLike(details.id)} 
                 style={{marginLeft:"40px",cursor:"pointer"}}
               />
-              <span className="view-likes">{this.props.reduxState.likes} likes</span>
+              <span className="view-likes">{details.likes} likes</span>
             </div>
-            <div className="view-caption">{this.props.reduxState.caption}</div>
+            <div className="view-caption">{details.caption}</div>
           </span>
         </div>
         <hr className="view-hr" />
