@@ -18,10 +18,11 @@ a {
 
 .feed-card {
   margin: 0 auto;
-  background-color: #dfbdff;
+  /* background-color: #dfbdff; */
   width: 90%;
   margin-bottom: 50px;
   border-radius: 25px;
+  box-shadow: 0 2px 8px grey;
 }
 
 .feed-caption {

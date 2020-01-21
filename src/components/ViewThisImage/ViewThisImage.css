@@ -18,11 +18,12 @@ a {
 
 .view-card {
   margin: 0 auto;
-  background-color: #dfbdff;
+  /* background-color: #dfbdff; */
   width: 90%;
   margin-bottom: 50px;
   margin-top: 30px;
   border-radius: 25px;
+  box-shadow: 3px 3px 5px grey;
 }
 
 .view-caption {
