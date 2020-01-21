@@ -115,7 +115,7 @@ class EditThisImage extends Component{
                   notchedOutline: classes.notchedOutline,
                 }
               }}
-              style={{width:"90%",marginBottom:"20px"}} 
+              style={{width:"80%",marginBottom:"20px"}} 
             />
           </div>
           <div>
@@ -125,7 +125,7 @@ class EditThisImage extends Component{
               type="submit"
               value="Save"
               onClick={this.handleSave}
-              style={{width:"90%",marginBottom:"50px",backgroundColor:"#bc75ff"}}
+              style={{width:"80%",marginBottom:"50px",backgroundColor:"#bc75ff"}}
             >
               Save
             </Button>
