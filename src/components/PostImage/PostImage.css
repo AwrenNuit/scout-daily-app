@@ -2,6 +2,10 @@ input[type="file"] {
   display: none;
 }
 
+.avatar-editor-div {
+  margin-top: 30px;
+}
+
 .browse-btn-txt {
   margin-top: 5px;
 }
@@ -25,6 +29,6 @@ input[type="file"] {
   box-shadow: 1px 3px 5px #c2c2c2;
 }
 
-.whitespace {
-  padding: 190px;
+.img-whitespace {
+  height: 411px;
 }
