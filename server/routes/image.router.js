@@ -137,7 +137,7 @@ router.get('/view/comment/:id', (req, res) => {
   let SQLquery = `SELECT u.username, u.avatar, c."comment", c.id, c.user_id, c.image_id FROM image i
                   FULL JOIN "comment" c ON i.id = c.image_id
                   FULL JOIN "user" u ON u.id = c.user_id
-                  WHERE i.id = $1;`;
+                  WHERE i.id = $1 AND c."comment" IS NOT NULL;`;
   pool.query(SQLquery, id)
   .then(response=>{
       res.send(response.rows);
