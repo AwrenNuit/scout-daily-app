@@ -14,7 +14,7 @@ router.get('/following', (req, res) => {
       res.send(response.rows);
   })
   .catch(error=>{
-    console.log('ERROR IN /following/avatar GET ---------------------------------------->', error);
+    console.log('ERROR IN /following GET ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });
@@ -30,7 +30,7 @@ router.put('/', (req, res) => {
       res.send(response.rows);
   })
   .catch(error=>{
-    console.log('ERROR IN /avatar PUT ---------------------------------------->', error);
+    console.log('ERROR IN / PUT ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });
