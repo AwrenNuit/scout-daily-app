@@ -17,21 +17,6 @@ router.delete('/delete/:id', (req, res) => {
   });
 });
 
-// DELETE like, enable button
-router.delete('/like/:id', (req, res) => {
-  let id = [req.params.id, req.user.id];
-  let SQLquery = `DELETE FROM "like"
-                  WHERE image_id = $1 AND user_id = $2;`;
-  pool.query(SQLquery, id)
-  .then(response=>{
-      res.sendStatus(201);
-  })
-  .catch(error=>{
-    console.log('ERROR IN /like DELETE ---------------------------------------->', error);
-    res.sendStatus(500);
-  });
-});
-
 // GET all user images
 router.get('/all', (req, res) => {
   let id = [req.user.id];
@@ -161,21 +146,6 @@ router.post('/comment', (req, res) => {
   });
 });
 
-// POST like, disable button
-router.post('/like', (req, res) => {
-  let id = [req.body.data, req.user.id];
-  let SQLquery = `INSERT INTO "like" (liked, image_id, user_id)
-                  VALUES(true, $1, $2);`;
-  pool.query(SQLquery, id)
-  .then(response=>{
-      res.sendStatus(201);
-  })
-  .catch(error=>{
-    console.log('ERROR IN /like POST ---------------------------------------->', error);
-    res.sendStatus(500);
-  });
-});
-
 // PUT route to update image caption
 router.put('/caption', (req, res) => {
   let id = [req.body.caption, req.body.id];
@@ -188,38 +158,6 @@ router.put('/caption', (req, res) => {
   })
   .catch(error=>{
     console.log('ERROR IN /caption PUT ---------------------------------------->', error);
-    res.sendStatus(500);
-  });
-});
-
-// PUT route to update like count
-router.put('/like/add', (req, res) => {
-  let id = [req.body.data];
-  let SQLquery = `UPDATE image
-                  SET likes = likes + 1
-                  WHERE id = $1;`;
-  pool.query(SQLquery, id)
-  .then(response=>{
-      res.sendStatus(201);
-  })
-  .catch(error=>{
-    console.log('ERROR IN /like/add PUT ---------------------------------------->', error);
-    res.sendStatus(500);
-  });
-});
-
-// PUT route to update like count
-router.put('/like/sub', (req, res) => {
-  let id = [req.body.data];
-  let SQLquery = `UPDATE image
-                  SET likes = likes - 1
-                  WHERE id = $1;`;
-  pool.query(SQLquery, id)
-  .then(response=>{
-      res.sendStatus(201);
-  })
-  .catch(error=>{
-    console.log('ERROR IN /like/sub PUT ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });
