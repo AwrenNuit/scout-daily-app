@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 // DELETE user follow
-router.delete('/following/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   let id = [req.user.id, req.params.id];
   let SQLquery = `DELETE FROM following
                   WHERE user_id = $1 AND connection_id = $2;`;
@@ -12,7 +12,7 @@ router.delete('/following/:id', (req, res) => {
       res.send(response.rows);
   })
   .catch(error=>{
-    console.log('ERROR IN /following/:id DELETE ---------------------------------------->', error);
+    console.log('ERROR IN /:id DELETE ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });
@@ -33,7 +33,7 @@ router.get('/details/:id', (req, res) => {
 });
 
 // GET following table data
-router.get('/following/details', (req, res) => {
+router.get('/details', (req, res) => {
   let id = [req.user.id];
   let SQLquery = `SELECT * FROM following
                   WHERE user_id = $1;`;
@@ -42,13 +42,13 @@ router.get('/following/details', (req, res) => {
       res.send(response.rows);
   })
   .catch(error=>{
-    console.log('ERROR IN /following/details GET ---------------------------------------->', error);
+    console.log('ERROR IN /details GET ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });
 
 // POST user follow
-router.post('/following', (req, res) => {
+router.post('/', (req, res) => {
   let id = [req.user.id, req.body.data];
   let SQLquery = `INSERT INTO following (user_id, connection_id)
                   VALUES($1, $2);`;
@@ -57,7 +57,7 @@ router.post('/following', (req, res) => {
       res.send(response.rows);
   })
   .catch(error=>{
-    console.log('ERROR IN /following POST ---------------------------------------->', error);
+    console.log('ERROR IN / POST ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });
