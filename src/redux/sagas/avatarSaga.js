@@ -4,7 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 // GET avatars of followed users
 function* getFollowedAvatar(action){
   try{
-    const getResponse = yield axios.get(`/api/image/following/avatar`, action.payload);
+    const getResponse = yield axios.get(`/api/avatar/following`, action.payload);
     yield put({type: `SET_FOLLOWING_AVATAR`, payload: getResponse.data});
   }
   catch(error){
@@ -15,7 +15,7 @@ function* getFollowedAvatar(action){
 // PUT (update) user avatar
 function* putUserAvatar(action){
   try{
-    yield axios.put(`/api/user/avatar`, {data: action.payload});
+    yield axios.put(`/api/avatar`, {data: action.payload});
     yield put({type: `GET_USER_DETAILS`});
   }
   catch(error){
