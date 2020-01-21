@@ -1,6 +1,17 @@
 import axios from 'axios';
 import {takeLatest, put} from 'redux-saga/effects';
 
+// DELETE comment
+function* deleteComment(action){
+  try{
+    yield axios.delete(`/api/comment/delete/:id`, {data: action.payload});
+    yield put({type: `GET_IMAGE_COMMENT`, payload: action.payload});
+  }
+  catch(error){
+    console.log('error in DELETE comment', error);
+  }
+}
+
 // GET images comments
 function* getImageComment(action){
   try{
@@ -35,6 +46,7 @@ function* updateImageCaption(action){
 }
 
 function* commentSaga() {
+  yield takeLatest('DELETE_COMMENT', deleteComment);
   yield takeLatest('GET_IMAGE_COMMENT', getImageComment);
   yield takeLatest('POST_COMMENT', postComment);
   yield takeLatest('UPDATE_CAPTION', updateImageCaption); 
