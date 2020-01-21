@@ -1,53 +1,6 @@
 import axios from 'axios';
 import {takeLatest, put} from 'redux-saga/effects';
 
-// PUT (update) like + 1
-function* addLike(action){
-  try{
-    yield axios.put(`/api/image/like/add`, {data: action.payload});
-    yield put({type: `DISABLE_LIKE`, payload: action.payload});
-  }
-  catch(error){
-    console.log('error in PUT like', error);
-  }
-}
-
-// PUT (update) like - 1
-function* subLike(action){
-  try{
-    yield axios.put(`/api/image/like/sub`, {data: action.payload});
-    yield put({type: `DELETE_LIKE`, payload: action.payload});
-  }
-  catch(error){
-    console.log('error in PUT like', error);
-  }
-}
-
-// DELETE like, enable like button
-function* deleteLike(action){
-  try{
-    yield axios.delete(`/api/image/like/${action.payload}`);
-    yield put({type: `VIEW_THIS_IMAGE`, payload: action.payload});
-    yield put({type: `GET_IMAGE_FEED`});
-  }
-  catch(error){
-    console.log('error in DELETE like', error);
-  }
-}
-
-// POST like, disable like button
-function* disableLike(action){
-  try{
-    console.log('disable like:', action.payload);
-    yield axios.post(`/api/image/like`, {data: action.payload});
-    yield put({type: `VIEW_THIS_IMAGE`, payload: action.payload});
-    yield put({type: `GET_IMAGE_FEED`});
-  }
-  catch(error){
-    console.log('error in POST like', error);
-  }
-}
-
 // DELETE image
 function* deleteImage(action){
   try{
@@ -78,28 +31,6 @@ function* getAllUserImage(action){
   }
   catch(error){
     console.log('error in GET all user images', error);
-  }
-}
-
-// GET avatars of followed users
-function* getFollowedAvatar(action){
-  try{
-    const getResponse = yield axios.get(`/api/image/following/avatar`, action.payload);
-    yield put({type: `SET_FOLLOWING_AVATAR`, payload: getResponse.data});
-  }
-  catch(error){
-    console.log('error in GET followed user avatars', error);
-  }
-}
-
-// GET images comments
-function* getImageComment(action){
-  try{
-    const getResponse = yield axios.get(`/api/image/view/comment/${action.payload}`);
-    yield put({type: `SET_IMAGE_COMMENT`, payload: getResponse.data});
-  }
-  catch(error){
-    console.log('error in GET image comments', error);
   }
 }
 
@@ -137,17 +68,6 @@ function* getThisImageView(action){
   }
 }
 
-// POST comment
-function* postComment(action){
-  try{
-    yield axios.post(`/api/image/comment`, action.payload);
-    yield put({type: `GET_IMAGE_COMMENT`, payload: action.payload.id});
-  }
-  catch(error){
-    console.log('error in POST comment', error);
-  }
-}
-
 // POST image
 function* postImage(action){
   try{
@@ -159,33 +79,14 @@ function* postImage(action){
   }
 }
 
-// PUT (update) image caption
-function* updateImageCaption(action){
-  try{
-    yield axios.put(`/api/image/caption`, action.payload);
-    yield put({type: `GET_IMAGE`});
-  }
-  catch(error){
-    console.log('error in PUT image caption', error);
-  }
-}
-
 function* imageSaga() {
-  yield takeLatest(`ADD_LIKE`, addLike);
-  yield takeLatest(`SUB_LIKE`, subLike);
   yield takeLatest('DELETE_IMAGE', deleteImage);
-  yield takeLatest(`DELETE_LIKE`, deleteLike);
-  yield takeLatest(`DISABLE_LIKE`, disableLike);
   yield takeLatest('GET_ALL_OTHER_USER_IMAGE', getAllOtherUserImage);
   yield takeLatest('GET_ALL_USER_IMAGE', getAllUserImage);
-  yield takeLatest('GET_FOLLOWING', getFollowedAvatar);
-  yield takeLatest('GET_IMAGE_COMMENT', getImageComment);
   yield takeLatest('GET_IMAGE_FEED', getImageFeed);
   yield takeLatest('GET_THIS_IMAGE', getThisImage);
   yield takeLatest('VIEW_THIS_IMAGE', getThisImageView);
-  yield takeLatest('POST_COMMENT', postComment);
   yield takeLatest('POST_IMAGE', postImage); 
-  yield takeLatest('UPDATE_CAPTION', updateImageCaption); 
 }
 
 export default imageSaga;

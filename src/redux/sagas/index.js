@@ -6,6 +6,9 @@ import getPromptSaga from './getPromptSaga';
 import imageSaga from './getImageSaga';
 import followSaga from './followSaga';
 import searchSaga from './searchSaga';
+import likeSaga from './likeSaga';
+import avatarSaga from './avatarSaga';
+import commentSaga from './commentSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -16,5 +19,8 @@ export default function* rootSaga() {
     imageSaga(),
     followSaga(),
     searchSaga(),
+    likeSaga(),
+    avatarSaga(),
+    commentSaga(),
   ]);
 }
