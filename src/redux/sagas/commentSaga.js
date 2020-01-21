@@ -4,7 +4,7 @@ import {takeLatest, put} from 'redux-saga/effects';
 // GET images comments
 function* getImageComment(action){
   try{
-    const getResponse = yield axios.get(`/api/image/view/comment/${action.payload}`);
+    const getResponse = yield axios.get(`/api/comment/${action.payload}`);
     yield put({type: `SET_IMAGE_COMMENT`, payload: getResponse.data});
   }
   catch(error){
@@ -15,7 +15,7 @@ function* getImageComment(action){
 // POST comment
 function* postComment(action){
   try{
-    yield axios.post(`/api/image/comment`, action.payload);
+    yield axios.post(`/api/comment`, action.payload);
     yield put({type: `GET_IMAGE_COMMENT`, payload: action.payload.id});
   }
   catch(error){
@@ -26,7 +26,7 @@ function* postComment(action){
 // PUT (update) image caption
 function* updateImageCaption(action){
   try{
-    yield axios.put(`/api/image/caption`, action.payload);
+    yield axios.put(`/api/comment/caption`, action.payload);
     yield put({type: `GET_IMAGE`});
   }
   catch(error){
