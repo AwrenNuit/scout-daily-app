@@ -27,6 +27,21 @@ router.get('/details', (req, res) => {
   });
 });
 
+// GET user search results
+router.get('/search/:id', (req, res) => {
+  let id = ['%' + req.params.id + '%'];
+  let SQLquery = `SELECT * FROM "user"
+                  WHERE lower(username) SIMILAR TO $1;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.send(response.rows);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /search/:id GET ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
 // PUT (update) current user's bio
 router.put('/details/bio', (req, res) => {
   let id = [req.body.data, req.user.id];
