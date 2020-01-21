@@ -14,6 +14,7 @@ const imageRouter = require('./routes/image.router');
 const avatarRouter = require('./routes/avatar.route');
 const likeRouter = require('./routes/like.router');
 const commentRouter = require('./routes/comment.router');
+const followingRouter = require('./routes/following.router');
 
 // Body parser middleware
 app.use(bodyParser.json({limit: '50mb'}));
@@ -33,6 +34,7 @@ app.use('/api/image', imageRouter);
 app.use('/api/avatar', avatarRouter);
 app.use('/api/like', likeRouter);
 app.use('/api/comment', commentRouter);
+app.use('/api/following', followingRouter);
 
 // Serve static files
 app.use(express.static('build'));
