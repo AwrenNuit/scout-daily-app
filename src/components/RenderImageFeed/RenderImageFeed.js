@@ -7,7 +7,7 @@ class RenderImageFeed extends Component{
 
   render(){
     return(
-      <div className="feed-card">
+      <div className="feed-card first-card">
         <div>
           <Link to={"/profile/"+this.props.image.user_id}>
             <img className="feed-avatar" src={this.props.image.avatar} alt={this.props.image.username} />

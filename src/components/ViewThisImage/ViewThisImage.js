@@ -58,7 +58,7 @@ class ViewThisImage extends Component{
               {this.state.like ?
                 <FavoriteIcon 
                   onClick={()=>this.handleLike(details.id)} 
-                  style={{marginLeft:"40px",cursor:"pointer",color:"#59005C"}}
+                  style={{marginLeft:"40px",cursor:"pointer",color:"#b50000"}}
                 />
                 :
                 <FavoriteBorderIcon 
