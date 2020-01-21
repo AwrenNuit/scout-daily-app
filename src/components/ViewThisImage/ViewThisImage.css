@@ -8,6 +8,11 @@ a {
   height: 50px;
 }
 
+.comment-div {
+  margin: 0 auto;
+  width: 350px;
+}
+
 .view-avatar {
   height:50px;
   width:50px;
@@ -19,7 +24,7 @@ a {
 .view-card {
   margin: 0 auto;
   /* background-color: #dfbdff; */
-  width: 90%;
+  width: 350px;
   margin-bottom: 50px;
   margin-top: 30px;
   border-radius: 25px;
@@ -33,7 +38,7 @@ a {
 
 .view-hr {
   border: 1px solid lightgrey;
-  width: 80%;
+  width: 310px;
 }
 
 .view-img {
