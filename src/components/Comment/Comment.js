@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import './Comment.css';
 import { TextField, Button } from '@material-ui/core';
+import Fab from '@material-ui/core/Fab';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 const styles = ({
   cssLabel: {
@@ -61,6 +63,18 @@ class Comment extends Component{
           <div key={comment.id}>
             <img className="comment-avatar" src={comment.avatar} alt={comment.username} />
             <span className="comment-username">{comment.username}</span>
+            {this.props.user.username === comment.username ?
+              <Fab 
+                color="secondary" 
+                aria-label="edit" 
+                onClick={this.handleDelete}
+                style={{position:"relative",top:"-50px",left:"155px",height:"20px",width:"40px"}}
+              >
+                <DeleteForeverIcon />
+              </Fab>
+              :
+              ''
+            }
             <div className="comment-comment">{comment.comment}</div>
             <hr className="comment-hr" />
           </div>
@@ -103,7 +117,8 @@ class Comment extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.comment
+  reduxState: reduxState.comment,
+  user: reduxState.user
 });
 
 Comment.propTypes = {
