@@ -44,9 +44,8 @@ class Comment extends Component{
   }
 
   // Delete this comment
-  handleDelete = (id) => {
-    console.log('id-------------------------------------------', id);
-    this.props.dispatch({type: `DELETE_COMMENT`, payload: id})
+  handleDelete = (comment_id, image_id) => {
+    this.props.dispatch({type: `DELETE_COMMENT`, payload: {comment_id: comment_id, image_id: image_id}});
   }
 
   // Dispatch comment, reset local state
@@ -73,7 +72,7 @@ class Comment extends Component{
               <Fab 
                 color="secondary" 
                 aria-label="edit" 
-                onClick={()=>this.handleDelete(comment.id)}
+                onClick={()=>this.handleDelete(comment.id, comment.image_id)}
                 style={{position:"relative",top:"-50px",left:"155px",height:"20px",width:"40px"}}
               >
                 <DeleteForeverIcon />

@@ -4,8 +4,8 @@ import {takeLatest, put} from 'redux-saga/effects';
 // DELETE comment
 function* deleteComment(action){
   try{
-    yield axios.delete(`/api/comment/delete/${action.payload}`);
-    yield put({type: `GET_IMAGE_COMMENT`, payload: action.payload});
+    yield axios.delete(`/api/comment/delete/${action.payload.comment_id}`);
+    yield put({type: `GET_IMAGE_COMMENT`, payload: action.payload.image_id});
   }
   catch(error){
     console.log('error in DELETE comment', error);
