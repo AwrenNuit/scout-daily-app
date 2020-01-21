@@ -3,8 +3,8 @@ const router = express.Router();
 const pool = require(`../modules/pool`);
 
 // DELETE existing comment
-router.delete('/delete', (req, res) => {
-  let id = [req.body.data];
+router.delete('/delete/:id', (req, res) => {
+  let id = [req.params.id];
   let SQLquery = `DELETE FROM comment
                   WHERE id = $1;`;
   pool.query(SQLquery, id)
@@ -12,7 +12,7 @@ router.delete('/delete', (req, res) => {
       res.sendStatus(201);
   })
   .catch(error=>{
-    console.log('ERROR IN /delete DELETE ---------------------------------------->', error);
+    console.log('ERROR IN /delete/:id DELETE ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });
@@ -23,7 +23,8 @@ router.get('/:id', (req, res) => {
   let SQLquery = `SELECT u.username, u.avatar, c."comment", c.id, c.user_id, c.image_id FROM image i
                   FULL JOIN "comment" c ON i.id = c.image_id
                   FULL JOIN "user" u ON u.id = c.user_id
-                  WHERE i.id = $1 AND c."comment" IS NOT NULL;`;
+                  WHERE i.id = $1 AND c."comment" IS NOT NULL
+                  ORDER BY c.id;`;
   pool.query(SQLquery, id)
   .then(response=>{
       res.send(response.rows);

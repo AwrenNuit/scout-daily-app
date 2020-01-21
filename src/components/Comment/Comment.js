@@ -45,6 +45,7 @@ class Comment extends Component{
 
   // Delete this comment
   handleDelete = (id) => {
+    console.log('id-------------------------------------------', id);
     this.props.dispatch({type: `DELETE_COMMENT`, payload: id})
   }
 
