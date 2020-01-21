@@ -99,23 +99,6 @@ router.get('/view/:id', (req, res) => {
   });
 });
 
-// GET this image to view
-router.get('/view/comment/:id', (req, res) => {
-  let id = [req.params.id];
-  let SQLquery = `SELECT u.username, u.avatar, c."comment", c.id, c.user_id, c.image_id FROM image i
-                  FULL JOIN "comment" c ON i.id = c.image_id
-                  FULL JOIN "user" u ON u.id = c.user_id
-                  WHERE i.id = $1 AND c."comment" IS NOT NULL;`;
-  pool.query(SQLquery, id)
-  .then(response=>{
-      res.send(response.rows);
-  })
-  .catch(error=>{
-    console.log('ERROR IN /view/:id GET ---------------------------------------->', error);
-    res.sendStatus(500);
-  });
-});
-
 // POST new image
 router.post('/', (req, res) => {
   let id = [req.body.image, req.body.caption, req.user.id];
@@ -127,37 +110,6 @@ router.post('/', (req, res) => {
   })
   .catch(error=>{
     console.log('ERROR IN / POST ---------------------------------------->', error);
-    res.sendStatus(500);
-  });
-});
-
-// POST new comment
-router.post('/comment', (req, res) => {
-  let id = [req.body.comment, req.body.id, req.user.id];
-  let SQLquery = `INSERT INTO comment (comment, image_id, user_id)
-                  VALUES($1, $2, $3);`;
-  pool.query(SQLquery, id)
-  .then(response=>{
-      res.sendStatus(201);
-  })
-  .catch(error=>{
-    console.log('ERROR IN /comment POST ---------------------------------------->', error);
-    res.sendStatus(500);
-  });
-});
-
-// PUT route to update image caption
-router.put('/caption', (req, res) => {
-  let id = [req.body.caption, req.body.id];
-  let SQLquery = `UPDATE image
-                  SET caption = $1
-                  WHERE id = $2;`;
-  pool.query(SQLquery, id)
-  .then(response=>{
-      res.sendStatus(201);
-  })
-  .catch(error=>{
-    console.log('ERROR IN /caption PUT ---------------------------------------->', error);
     res.sendStatus(500);
   });
 });

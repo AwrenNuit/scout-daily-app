@@ -13,6 +13,7 @@ const promptRouter = require('./routes/prompt.router');
 const imageRouter = require('./routes/image.router');
 const avatarRouter = require('./routes/avatar.route');
 const likeRouter = require('./routes/like.router');
+const commentRouter = require('./routes/comment.router');
 
 // Body parser middleware
 app.use(bodyParser.json({limit: '50mb'}));
@@ -31,6 +32,7 @@ app.use('/api/prompt', promptRouter);
 app.use('/api/image', imageRouter);
 app.use('/api/avatar', avatarRouter);
 app.use('/api/like', likeRouter);
+app.use('/api/comment', commentRouter);
 
 // Serve static files
 app.use(express.static('build'));
