@@ -4,7 +4,7 @@ import {takeLatest, put} from 'redux-saga/effects';
 // PUT (update) like + 1
 function* addLike(action){
   try{
-    yield axios.put(`/api/image/like/add`, {data: action.payload});
+    yield axios.put(`/api/like/add`, {data: action.payload});
     yield put({type: `DISABLE_LIKE`, payload: action.payload});
   }
   catch(error){
@@ -15,7 +15,7 @@ function* addLike(action){
 // DELETE like, enable like button
 function* deleteLike(action){
   try{
-    yield axios.delete(`/api/image/like/${action.payload}`);
+    yield axios.delete(`/api/like/${action.payload}`);
     yield put({type: `VIEW_THIS_IMAGE`, payload: action.payload});
     yield put({type: `GET_IMAGE_FEED`});
   }
@@ -28,7 +28,7 @@ function* deleteLike(action){
 function* disableLike(action){
   try{
     console.log('disable like:', action.payload);
-    yield axios.post(`/api/image/like`, {data: action.payload});
+    yield axios.post(`/api/like`, {data: action.payload});
     yield put({type: `VIEW_THIS_IMAGE`, payload: action.payload});
     yield put({type: `GET_IMAGE_FEED`});
   }
@@ -40,7 +40,7 @@ function* disableLike(action){
 // PUT (update) like - 1
 function* subLike(action){
   try{
-    yield axios.put(`/api/image/like/sub`, {data: action.payload});
+    yield axios.put(`/api/like/sub`, {data: action.payload});
     yield put({type: `DELETE_LIKE`, payload: action.payload});
   }
   catch(error){
