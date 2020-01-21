@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import DailyPrompt from '../DailyPrompt/DailyPrompt';
 import NavBar from '../NavBar/NavBar';
-import RenderImageFeed from '../RenderImageFeed/RenderImageFeed';
+import ImageFeed from '../ImageFeed/ImageFeed';
 
 class Home extends Component{
 
@@ -9,7 +9,7 @@ class Home extends Component{
     return(
       <>
         <DailyPrompt />
-        <RenderImageFeed />
+        <ImageFeed />
         <NavBar history={this.props.history.location.pathname} />
       </>
     );
