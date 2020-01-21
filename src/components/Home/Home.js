@@ -9,7 +9,6 @@ class Home extends Component{
   render(){
     return(
       <>
-        <LogOutButton />
         <DailyPrompt />
         <ImageFeed />
         <NavBar history={this.props.history.location.pathname} />
