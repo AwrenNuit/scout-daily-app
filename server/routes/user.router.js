@@ -102,22 +102,6 @@ router.post('/following', (req, res) => {
   });
 });
 
-// PUT (update) current user's avatar
-router.put('/avatar', (req, res) => {
-  let id = [req.body.data, req.user.id];
-  let SQLquery = `UPDATE "user"
-                  SET avatar = $1
-                  WHERE id = $2;`;
-  pool.query(SQLquery, id)
-  .then(response=>{
-      res.send(response.rows);
-  })
-  .catch(error=>{
-    console.log('ERROR IN /avatar PUT ---------------------------------------->', error);
-    res.sendStatus(500);
-  });
-});
-
 // PUT (update) current user's bio
 router.put('/details/bio', (req, res) => {
   let id = [req.body.data, req.user.id];

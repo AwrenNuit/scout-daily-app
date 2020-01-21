@@ -11,7 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const promptRouter = require('./routes/prompt.router');
 const imageRouter = require('./routes/image.router');
-
+const avatarRouter = require('./routes/avatar.route');
 // Body parser middleware
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
@@ -27,6 +27,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/prompt', promptRouter);
 app.use('/api/image', imageRouter);
+app.use('/api/avatar', avatarRouter);
 
 // Serve static files
 app.use(express.static('build'));
