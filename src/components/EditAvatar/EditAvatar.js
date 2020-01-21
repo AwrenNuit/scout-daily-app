@@ -63,30 +63,34 @@ class EditAvatar extends Component{
         <div>
           {this.state.file ?
             <>
-              <AvatarEditor
-                ref={this.setEditorRef}
-                image={this.state.file}
-                width={250}
-                height={250}
-                border={50}
-                borderRadius={125}
-                color={[0, 0, 0, 0.8]} // RGBA
-                scale={this.state.scale}
-                rotate={0}
-              />
-              <span>Zoom:</span> 
-              <input 
-                type="range" 
-                step="0.1" 
-                min="1" 
-                max="2" 
-                name="scale" 
-                value={this.state.scale} 
-                onChange={this.handleZoom} 
-              />
+            <div className="avatar-editor-div">
+                <AvatarEditor
+                  ref={this.setEditorRef}
+                  image={this.state.file}
+                  width={250}
+                  height={250}
+                  border={50}
+                  borderRadius={125}
+                  color={[0, 0, 0, 0.8]} // RGBA
+                  scale={this.state.scale}
+                  rotate={0}
+                />
+                <div>
+                  <span>Zoom:</span> 
+                  <input 
+                    type="range" 
+                    step="0.1" 
+                    min="1" 
+                    max="2" 
+                    name="scale" 
+                    value={this.state.scale} 
+                    onChange={this.handleZoom} 
+                  />
+                </div>
+              </div>
             </>
             :
-            <div className="whitespace"></div>
+            <div className="avatar-whitespace"></div>
           }
           <div>
             <label htmlFor="avatar-upload" className="custom-avatar-upload">
@@ -102,7 +106,7 @@ class EditAvatar extends Component{
             type="submit"
             value="Save"
             onClick={this.onClickSave}
-            style={{width:"90%",marginBottom:"50px",backgroundColor:"#bc75ff"}}
+            style={{width:"80%",marginBottom:"50px",backgroundColor:"#bc75ff"}}
           >
             Apply
           </Button>
