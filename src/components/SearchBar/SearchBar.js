@@ -61,7 +61,7 @@ class SearchBar extends Component{
             id="outlined-basic" 
             placeholder="search users" 
             variant="outlined"
-            style={{marginRight:"20px"}}
+            style={{marginRight:"20px",width:"60%",marginTop:"30px"}}
             onChange={this.handleChange}
             value={this.state.search}
             InputProps={{
@@ -76,7 +76,7 @@ class SearchBar extends Component{
             variant="contained" 
             color="primary" 
             onClick={this.handleClick} 
-            style={{position:"relative",top:"10px",backgroundColor:"#bc75ff"}}
+            style={{position:"relative",top:"40px",backgroundColor:"#bc75ff"}}
           >
             Search
           </Button>
