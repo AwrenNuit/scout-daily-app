@@ -31,12 +31,24 @@ class Comment extends Component{
     this.props.dispatch({type: `VIEW_THIS_IMAGE`, payload: this.props.params_id});
   }
 
+  // Dispatch comment to saga
+  dispatchComment = () => {
+    this.props.dispatch({type: `POST_COMMENT`, payload: {id: this.props.params_id, comment: this.state.comment}});
+  }
+
+  // Update local state with input value
   handleCommentChange = (e) => {
     this.setState({comment: e.target.value});
   }
 
+  // Dispatch comment, reset local state
   postComment = () => {
-    this.props.dispatch({type: `POST_COMMENT`, payload: {id: this.props.params_id, comment: this.state.comment}});
+    this.dispatchComment();
+    this.resetState();
+  }
+
+  // Clear local state
+  resetState = () => {
     this.setState({comment: ''});
   }
 

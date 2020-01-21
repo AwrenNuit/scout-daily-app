@@ -4,7 +4,6 @@ import RenderImageFeed from '../RenderImageFeed/RenderImageFeed';
 
 class ImageFeed extends Component{
 
-  // GET images to render
   componentDidMount(){
     this.props.dispatch({type: `GET_IMAGE_FEED`});
   }

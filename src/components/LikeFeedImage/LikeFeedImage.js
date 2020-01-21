@@ -9,7 +9,6 @@ class LikeFeedImage extends Component{
     like: false
   }
 
-  // GET images to render
   componentDidMount(){
     this.setLike();
   }
@@ -35,6 +34,7 @@ class LikeFeedImage extends Component{
     }
   }
 
+  // Set local state T/F
   setLike = () => {
     if(this.props.image.liked === null || this.props.image.liked === false){
       this.setState({like: false});
