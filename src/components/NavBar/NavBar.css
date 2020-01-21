@@ -11,4 +11,5 @@
   background-color: #393E46;
   color: #EEE;
   justify-items: center;
+  z-index: 1;
 }
