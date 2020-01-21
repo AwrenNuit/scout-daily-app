@@ -24,28 +24,6 @@ function* fetchUser() {
   }
 }
 
-// POST user follow
-function* addFollow(action){
-  try{
-    yield axios.post(`/api/user/following`, {data: action.payload});
-    yield put({type: `GET_FOLLOWING_DETAILS`});
-  }
-  catch(error){
-    console.log('error in POST user follow', error);
-  }
-}
-
-// DELETE user follow
-function* removeFollow(action){
-  try{
-    yield axios.delete(`/api/user/following/${action.payload}`);
-    yield put({type: `GET_FOLLOWING_DETAILS`});
-  }
-  catch(error){
-    console.log('error in DELETE user follow', error);
-  }
-}
-
 // GET following details
 function* getFollowingDetails(action){
   try{
@@ -76,17 +54,6 @@ function* getUserDetails(action){
   }
   catch(error){
     console.log('error in GET user details', error);
-  }
-}
-
-// GET users from search
-function* getUserSearch(action){
-  try{
-    const getResponse = yield axios.get(`/api/user/search/${action.payload}`);
-    yield put({type: `SET_RESULTS`, payload: getResponse.data});
-  }
-  catch(error){
-    console.log('error in GET users from search', error);
   }
 }
 
@@ -125,12 +92,9 @@ function* putUsername(action){
 
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
-  yield takeLatest('ADD_FOLLOW', addFollow);
-  yield takeLatest('REMOVE_FOLLOW', removeFollow);
   yield takeLatest('GET_FOLLOWING_DETAILS', getFollowingDetails);
   yield takeLatest('GET_OTHER_USER_DETAILS', getOtherUserDetails);
   yield takeLatest('GET_USER_DETAILS', getUserDetails);
-  yield takeLatest('SEARCH_GET', getUserSearch);
   yield takeLatest('UPDATE_AVATAR', putUserAvatar);
   yield takeLatest('UPDATE_BIO', putUserBio);
   yield takeLatest('UPDATE_USERNAME', putUsername);
