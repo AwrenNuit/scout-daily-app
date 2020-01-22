@@ -15,11 +15,13 @@ class ViewThisImage extends Component{
 
   componentDidMount(){
     this.props.dispatch({type: `VIEW_THIS_IMAGE`, payload: this.props.match.params.id});
+    this.props.dispatch({type: `GET_LIKE`, payload: this.props.match.params.id});
+    
   }
 
   componentDidUpdate(prevProps){
     if(this.props.like !== prevProps.like){
-      if(this.props.like.liked === null || this.props.like.liked === false){
+      if(this.props.like.liked !== true){
         this.setState({
           like: false,
         });

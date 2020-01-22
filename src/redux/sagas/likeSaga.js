@@ -17,6 +17,7 @@ function* deleteLike(action){
   try{
     yield axios.delete(`/api/like/${action.payload}`);
     yield put({type: `VIEW_THIS_IMAGE`, payload: action.payload});
+    yield put({type: `GET_LIKE`, payload: action.payload});
     yield put({type: `GET_IMAGE_FEED`});
   }
   catch(error){
@@ -30,6 +31,7 @@ function* disableLike(action){
     console.log('disable like:', action.payload);
     yield axios.post(`/api/like`, {data: action.payload});
     yield put({type: `VIEW_THIS_IMAGE`, payload: action.payload});
+    yield put({type: `GET_LIKE`, payload: action.payload});
     yield put({type: `GET_IMAGE_FEED`});
   }
   catch(error){

@@ -1,5 +1,5 @@
 const likeReducer = (state=[], action) => {
-  if(action.type === `SET_IMAGE_LIKES`){
+  if(action.type === `SET_LIKE`){
     return action.payload;
   }
   return state;
