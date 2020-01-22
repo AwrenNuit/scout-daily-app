@@ -10,16 +10,22 @@ class LikeFeedImage extends Component{
   }
 
   componentDidMount(){
-    this.setLike();
+    this.props.dispatch({type: `GET_LIKE`, payload: this.props.image.id});
+    console.log('IN DID MOUNT----------------------------');
   }
 
   componentDidUpdate(prevProps){
-    if(this.props.image !== prevProps.image){
-      if(this.props.image.liked === null || this.props.image.liked === false){
-        this.setState({like: false});
+    if(this.props.reduxState !== prevProps.reduxState){
+      console.log('in DID UPDATE-------------------------');
+      if(this.props.reduxState.liked !== true){
+        this.setState({
+          like: false,
+        });
       }
       else{
-        this.setState({like: true});
+        this.setState({
+          like: true,
+        });
       }
     }
   }
@@ -31,16 +37,6 @@ class LikeFeedImage extends Component{
     }
     else{
       this.props.dispatch({type: `SUB_LIKE`, payload: image});
-    }
-  }
-
-  // Set local state T/F
-  setLike = () => {
-    if(this.props.image.liked === null || this.props.image.liked === false){
-      this.setState({like: false});
-    }
-    else{
-      this.setState({like: true});
     }
   }
 
@@ -63,4 +59,8 @@ class LikeFeedImage extends Component{
   }
 }
 
-export default connect()(LikeFeedImage);
+const putReduxStateOnProps = (reduxState)=>({
+  reduxState: reduxState.like
+});
+
+export default connect(putReduxStateOnProps)(LikeFeedImage);
