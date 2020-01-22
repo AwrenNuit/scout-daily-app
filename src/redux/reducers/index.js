@@ -14,6 +14,7 @@ import thisImage from './thisImageReducer';
 import user from './userReducer';
 import userDetails from './userDetailsReducer';
 import viewThisImage from './viewThisImage';
+import like from './likeReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   userDetails, // stores current user's details
   viewThisImage, // stores image being viewed
   thisImage, // stores image being edited
+  like, // stores individual likes
 });
 
 export default rootReducer;
