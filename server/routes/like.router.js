@@ -17,6 +17,23 @@ router.delete('/:id', (req, res) => {
   });
 });
 
+// GET likes
+router.get('/:id', (req, res) => {
+  let id = [req.user.id, req.params.id];
+  let SQLquery = `SELECT l.liked, l.user_id, l.image_id, i.image_url FROM "like" l
+                  FULL JOIN image i ON i.id = l.image_id
+                  FULL JOIN "user" u ON u.id = l.user_id
+                  WHERE l.user_id = $1 AND l.image_id = $2;`;
+  pool.query(SQLquery, id)
+  .then(response=>{
+      res.send(response.rows[0]);
+  })
+  .catch(error=>{
+    console.log('ERROR IN /:id GET ---------------------------------------->', error);
+    res.sendStatus(500);
+  });
+});
+
 // POST like, disable button
 router.post('/', (req, res) => {
   let id = [req.body.data, req.user.id];
