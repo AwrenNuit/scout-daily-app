@@ -1,7 +1,7 @@
 # Scout Daily
 
 ## Description
-Scout Daily was created with big dreams of getting people outside exploring, honing creative skills, and having fun. The app gives all the users the same daily photography prompt (like "unique tree"). Users can upload their photos, view/like/comment other user's photos, and follow each other so their photos show up in the main feed.
+Scout Daily is a mobile-first app created with big dreams of getting people outside exploring, honing creative skills, and having fun. The app gives all the users the same daily photography prompt (like "unique tree"). Users can upload their photos, view/like/comment other user's photos, and follow each other so their photos show up in the main feed.
 
 ## Technologies Used
 - React
