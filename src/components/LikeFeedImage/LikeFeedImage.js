@@ -11,12 +11,10 @@ class LikeFeedImage extends Component{
 
   componentDidMount(){
     this.props.dispatch({type: `GET_LIKE`, payload: this.props.image.id});
-    console.log('IN DID MOUNT----------------------------');
   }
 
   componentDidUpdate(prevProps){
     if(this.props.reduxState !== prevProps.reduxState){
-      console.log('in DID UPDATE-------------------------');
       if(this.props.reduxState.liked !== true){
         this.setState({
           like: false,
@@ -36,7 +34,7 @@ class LikeFeedImage extends Component{
       this.props.dispatch({type: `ADD_FEED_LIKE`, payload: image});
     }
     else{
-      this.props.dispatch({type: `SUB_LIKE`, payload: image});
+      this.props.dispatch({type: `SUB_FEED_LIKE`, payload: image});
     }
   }
 

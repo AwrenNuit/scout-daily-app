@@ -51,10 +51,9 @@ router.get('/all/:id', (req, res) => {
 // GET all followed user's images
 router.get('/following/feed', (req, res) => {
   let id = [req.user.id];
-  let SQLquery = `SELECT l.liked, u.username, u.avatar, i.id, i.image_url, i.likes, i.caption, i.user_id FROM "following" f
+  let SQLquery = `SELECT u.username, u.avatar, i.id, i.image_url, i.likes, i.caption, i.user_id FROM "following" f
                   FULL JOIN "user" u ON u.id = f.connection_id
                   FULL JOIN "image" i ON i.user_id = f.connection_id
-                  FULL JOIN "like" l ON l.image_id = i.id
                   WHERE f.user_id = $1 AND i.id IS NOT NULL
                   ORDER BY i.id DESC;`;
   pool.query(SQLquery, id)
