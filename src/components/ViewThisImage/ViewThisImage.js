@@ -11,7 +11,6 @@ class ViewThisImage extends Component{
 
   state = {
     like: false,
-    user_id: ''
   }
 
   componentDidMount(){
@@ -19,17 +18,15 @@ class ViewThisImage extends Component{
   }
 
   componentDidUpdate(prevProps){
-    if(this.props.reduxState !== prevProps.reduxState){
-      if(this.props.reduxState.liked === null || this.props.reduxState.liked === false){
+    if(this.props.like !== prevProps.like){
+      if(this.props.like.liked === null || this.props.like.liked === false){
         this.setState({
           like: false,
-          user_id: this.props.reduxState.user_id
         });
       }
       else{
         this.setState({
           like: true,
-          user_id: this.props.reduxState.user_id
         });
       }
     }
@@ -62,7 +59,7 @@ class ViewThisImage extends Component{
               <img className="view-img" src={details.image_url} alt={details.caption} />
             </center>
             <div>
-              {this.state.like && this.state.user_id === this.props.user.id ?
+              {this.state.like ?
                 <FavoriteIcon 
                   onClick={()=>this.handleLike(details.id)} 
                   style={{marginLeft:"40px",cursor:"pointer",color:"#b50000"}}
@@ -91,7 +88,8 @@ class ViewThisImage extends Component{
 
 const putReduxStateOnProps = (reduxState)=>({
   reduxState: reduxState.viewThisImage,
-  user: reduxState.user
+  user: reduxState.user,
+  like: reduxState.like
 });
 
 export default connect(putReduxStateOnProps)(ViewThisImage);
