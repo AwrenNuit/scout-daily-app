@@ -37,6 +37,17 @@ function* disableLike(action){
   }
 }
 
+// GET likes for this image
+function* getLike(action){
+  try{
+    const getResponse = yield axios.get(`/api/like/${action.payload}`);
+    yield put({type: `SET_LIKE`, payload: getResponse.data});
+  }
+  catch(error){
+    console.log('error in GET likes', error);
+  }
+}
+
 // PUT (update) like - 1
 function* subLike(action){
   try{
@@ -50,9 +61,10 @@ function* subLike(action){
 
 function* likeSaga() {
   yield takeLatest(`ADD_LIKE`, addLike);
-  yield takeLatest(`SUB_LIKE`, subLike);
   yield takeLatest(`DELETE_LIKE`, deleteLike);
   yield takeLatest(`DISABLE_LIKE`, disableLike);
+  yield takeLatest(`GET_LIKE`, getLike);
+  yield takeLatest(`SUB_LIKE`, subLike);
 }
 
 export default likeSaga;
