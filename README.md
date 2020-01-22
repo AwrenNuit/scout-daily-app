@@ -1,7 +1,7 @@
 # Scout Daily
 
 ## Description
-Scout Daily was created with big dreams of getting people outside exploring, honing creative skills, and having fun. The app gives all the users the same daily photography prompt (like "unique tree"). Users can upload their photos, view other user's photos, and follow each other so their photos show up in the main feed.
+Scout Daily was created with big dreams of getting people outside exploring, honing creative skills, and having fun. The app gives all the users the same daily photography prompt (like "unique tree"). Users can upload their photos, view/like/comment other user's photos, and follow each other so their photos show up in the main feed.
 
 ## Technologies Used
 - React
@@ -24,7 +24,7 @@ Scout Daily was created with big dreams of getting people outside exploring, hon
 - 'npm run client' starts the client
 
 ## Future Plans
-- Somehow include language that prompts the user to create their own geo-hunt (user uploads photo, asks followers to find them and comment with photos when they do)
+- Include language that prompts the user to create their own geo-hunt (user uploads photo, asks followers to find them and comment with photos when they do)
 - Allow team creation for week-long contests: the team with the most votes gets some in-app badge/title/currency
 - Create a SHARE button
 
