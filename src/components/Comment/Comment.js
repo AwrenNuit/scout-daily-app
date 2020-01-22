@@ -84,38 +84,43 @@ class Comment extends Component{
             <hr className="comment-hr" />
           </div>
         )}
-        <center>
-          <TextField
-            id="outlined-basic" 
-            label="add comment" 
-            variant="outlined"
-            onChange={this.handleCommentChange} 
-            value={this.state.comment}
-            multiline 
-            InputLabelProps={{
-              classes: {
-                root: classes.cssLabel,
-                focused: classes.cssFocused,
-              }
-            }}
-            InputProps={{
-              classes: {
-                root: classes.cssOutlinedInput,
-                focused: classes.cssFocused,
-                notchedOutline: classes.notchedOutline,
-              }
-            }}
-            style={{width:"70%",marginBottom:"20px"}}
-          />
-          <Button
-            variant="contained" 
-            color="primary"
-            onClick={this.postComment}
-            style={{position:"relative",height:"55px",width:"20%",backgroundColor:"#bc75ff"}}
-          >
-            POST
-          </Button>
-        </center>
+        {this.props.user.id ?
+          <center>
+            <TextField
+              id="outlined-basic" 
+              label="add comment" 
+              variant="outlined"
+              onChange={this.handleCommentChange} 
+              value={this.state.comment}
+              multiline 
+              InputLabelProps={{
+                classes: {
+                  root: classes.cssLabel,
+                  focused: classes.cssFocused,
+                }
+              }}
+              InputProps={{
+                classes: {
+                  root: classes.cssOutlinedInput,
+                  focused: classes.cssFocused,
+                  notchedOutline: classes.notchedOutline,
+                }
+              }}
+              style={{width:"70%",marginBottom:"20px"}}
+            />
+            <Button
+              variant="contained" 
+              color="primary"
+              onClick={this.postComment}
+              style={{position:"relative",height:"55px",width:"20%",backgroundColor:"#bc75ff"}}
+            >
+              POST
+            </Button>
+          </center>
+          :
+          ''
+        }
+        
       </>
     );
   }
