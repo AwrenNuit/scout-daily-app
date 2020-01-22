@@ -33,7 +33,7 @@ class LikeFeedImage extends Component{
   // Dispatch like to saga
   handleLike = (image) => {
     if(this.state.like === false){
-      this.props.dispatch({type: `ADD_LIKE`, payload: image});
+      this.props.dispatch({type: `ADD_FEED_LIKE`, payload: image});
     }
     else{
       this.props.dispatch({type: `SUB_LIKE`, payload: image});
