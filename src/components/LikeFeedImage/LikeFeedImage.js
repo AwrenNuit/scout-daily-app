@@ -14,7 +14,6 @@ class LikeFeedImage extends Component{
   }
 
   componentDidUpdate(prevProps){
-    console.log('-------------------------------------------', prevProps.image);
     if(this.props.image !== prevProps.image){
       if(this.props.image.liked !== true){
         this.setState({
@@ -42,8 +41,6 @@ class LikeFeedImage extends Component{
   render(){
     return(
       <>
-      {JSON.stringify(this.state.like)}
-      {JSON.stringify(this.props.image.liked)}
         {this.state.like ?
           <FavoriteIcon 
             onClick={()=>this.handleLike(this.props.image.id)} 
