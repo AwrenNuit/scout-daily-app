@@ -10,12 +10,13 @@ class LikeFeedImage extends Component{
   }
 
   componentDidMount(){
-    this.props.dispatch({type: `GET_LIKE`, payload: this.props.image.id});
+    this.setState({like: this.props.image.liked})
   }
 
   componentDidUpdate(prevProps){
-    if(this.props.reduxState !== prevProps.reduxState){
-      if(this.props.reduxState.liked !== true){
+    console.log('-------------------------------------------', prevProps.image);
+    if(this.props.image !== prevProps.image){
+      if(this.props.image.liked !== true){
         this.setState({
           like: false,
         });
@@ -41,6 +42,8 @@ class LikeFeedImage extends Component{
   render(){
     return(
       <>
+      {JSON.stringify(this.state.like)}
+      {JSON.stringify(this.props.image.liked)}
         {this.state.like ?
           <FavoriteIcon 
             onClick={()=>this.handleLike(this.props.image.id)} 
@@ -57,8 +60,4 @@ class LikeFeedImage extends Component{
   }
 }
 
-const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.like
-});
-
-export default connect(putReduxStateOnProps)(LikeFeedImage);
+export default connect()(LikeFeedImage);
