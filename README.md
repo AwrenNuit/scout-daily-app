@@ -19,7 +19,7 @@ Scout Daily is a mobile-first app created with big dreams of getting people outs
 ## Installation
 - Download or clone this repository
 - 'npm install' from command line
-- Set up your database, I recommend Postico
+- Set up your database, I recommend using Postico
 - 'npm run server' starts the server
 - 'npm run client' starts the client
 
