@@ -27,6 +27,7 @@ Scout Daily is a mobile-first app created with big dreams of getting people outs
 - Include language that prompts the user to create their own geo-hunt (user uploads photo, asks followers to find them and comment with photos when they do)
 - Allow team creation for week-long contests: the team with the most votes gets some in-app badge/title/currency
 - Create a SHARE button
+- Allow user to comment on their own photos
 
 Thank you to the students and faculty at Prime Digital Academy for helping equip me with this awesome new skillset!
 
