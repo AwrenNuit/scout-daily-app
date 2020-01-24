@@ -89,7 +89,7 @@ class ViewThisImage extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.viewThisImage,
+  reduxState: reduxState.image.viewThisImage,
   user: reduxState.user,
   like: reduxState.like
 });

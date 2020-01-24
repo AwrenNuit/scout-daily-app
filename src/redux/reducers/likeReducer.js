@@ -1,8 +1,4 @@
-const likeReducer = (state=[], action) => {
-  if(action.type === `SET_LIKE`){
-    return action.payload;
-  }
-  return state;
-}
+// Store likes
+const likeReducer = (state=[], action) => action.type === `SET_LIKE` ? action.payload : state;
 
 export default likeReducer;

@@ -75,8 +75,8 @@ class OtherUserDetails extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.otherUserDetails,
-  following: reduxState.followingDetails,
+  reduxState: reduxState.details.otherUserDetails,
+  following: reduxState.following.followingDetails,
   user: reduxState.user
 });
 

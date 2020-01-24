@@ -138,7 +138,7 @@ class EditThisImage extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.thisImage
+  reduxState: reduxState.image.thisImage
 });
 
 EditThisImage.propTypes = {

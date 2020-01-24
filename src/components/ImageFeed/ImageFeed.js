@@ -27,7 +27,7 @@ class ImageFeed extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.imageFeed
+  reduxState: reduxState.image.imageFeed
 });
 
 export default connect(putReduxStateOnProps)(ImageFeed);

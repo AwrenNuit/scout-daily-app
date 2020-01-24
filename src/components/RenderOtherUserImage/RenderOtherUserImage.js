@@ -30,7 +30,7 @@ class RenderUserImage extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.otherUserImage
+  reduxState: reduxState.image.allOtherUserImage
 });
 
 export default connect(putReduxStateOnProps)(RenderUserImage);

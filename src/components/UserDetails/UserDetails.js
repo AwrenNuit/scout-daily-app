@@ -129,7 +129,7 @@ class UserDetails extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.userDetails
+  reduxState: reduxState.details.userDetails
 });
 
 export default withRouter(connect(putReduxStateOnProps)(UserDetails));

@@ -118,7 +118,7 @@ class EditAvatar extends Component{
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.userDetails
+  reduxState: reduxState.details.userDetails
 });
 
 export default connect(putReduxStateOnProps)(EditAvatar);
