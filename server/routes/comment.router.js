@@ -1,9 +1,10 @@
 const express = require(`express`);
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require(`../modules/pool`);
 
 // DELETE existing comment
-router.delete('/delete/:id', (req, res) => {
+router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
   let id = [req.params.id];
   let SQLquery = `DELETE FROM comment
                   WHERE id = $1;`;
@@ -36,7 +37,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST new comment
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   let id = [req.body.comment, req.body.id, req.user.id];
   let SQLquery = `INSERT INTO comment (comment, image_id, user_id)
                   VALUES($1, $2, $3);`;
@@ -51,7 +52,7 @@ router.post('/', (req, res) => {
 });
 
 // PUT route to update image caption
-router.put('/caption', (req, res) => {
+router.put('/caption', rejectUnauthenticated, (req, res) => {
   let id = [req.body.caption, req.body.id];
   let SQLquery = `UPDATE image
                   SET caption = $1

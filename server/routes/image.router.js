@@ -1,5 +1,6 @@
 const express = require(`express`);
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require(`../modules/pool`);
 
 // DELETE this image
@@ -49,7 +50,7 @@ router.get('/all/:id', (req, res) => {
 });
 
 // GET all followed user's images
-router.get('/following/feed', (req, res) => {
+router.get('/following/feed', rejectUnauthenticated, (req, res) => {
   let id = [req.user.id];
   let SQLquery = `SELECT DISTINCT l.liked, u2.username, u2.avatar, i.id, i.image_url, i.likes, i.caption, i.user_id
                   FROM "following" f
@@ -70,7 +71,7 @@ router.get('/following/feed', (req, res) => {
 });
 
 // GET this image to edit
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   let id = [req.params.id];
   let SQLquery = `SELECT * FROM image
                   WHERE id = $1;`;
@@ -101,7 +102,7 @@ router.get('/view/:id', (req, res) => {
 });
 
 // POST new image
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   let id = [req.body.image, req.body.caption, req.user.id];
   let SQLquery = `INSERT INTO image (image_url, caption, user_id)
                   VALUES($1, $2, $3);`;

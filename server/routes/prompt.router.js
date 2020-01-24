@@ -1,15 +1,16 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 const CronJob = require('cron').CronJob;
 
 let num = 1;
-const job = new CronJob('00 00 00 * * *', function() {
+const job = new CronJob('01 00 00 * * *', function() {
   num = num+1;
 });
 job.start();
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   let id = [num];
   const SQLquery = `SELECT * FROM prompt 
                     WHERE id = $1;`;

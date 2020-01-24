@@ -1,5 +1,6 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const router = express.Router();
 
 // GET all followed user's avatars
@@ -20,7 +21,7 @@ router.get('/following', (req, res) => {
 });
 
 // PUT (update) current user's avatar
-router.put('/', (req, res) => {
+router.put('/', rejectUnauthenticated, (req, res) => {
   let id = [req.body.data, req.user.id];
   let SQLquery = `UPDATE "user"
                   SET avatar = $1

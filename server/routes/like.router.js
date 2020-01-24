@@ -1,5 +1,6 @@
 const express = require(`express`);
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require(`../modules/pool`);
 
 // DELETE like, enable button for individually-selected image
@@ -50,7 +51,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST like, disable button for individually-selected image
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   let id = [req.body.data, req.user.id];
   let SQLquery = `INSERT INTO "like" (liked, image_id, user_id)
                   VALUES(true, $1, $2);`;
@@ -65,7 +66,7 @@ router.post('/', (req, res) => {
 });
 
 // POST like, disable button for main feed image
-router.post('/feed', (req, res) => {
+router.post('/feed', rejectUnauthenticated, (req, res) => {
   let id = [req.body.data, req.user.id];
   let SQLquery = `INSERT INTO "like" (liked, image_id, user_id)
                   VALUES(true, $1, $2);`;
@@ -80,7 +81,7 @@ router.post('/feed', (req, res) => {
 });
 
 // PUT route to update like count for individually-selected image
-router.put('/add', (req, res) => {
+router.put('/add', rejectUnauthenticated, (req, res) => {
   let id = [req.body.data];
   let SQLquery = `UPDATE image
                   SET likes = likes + 1
@@ -96,7 +97,7 @@ router.put('/add', (req, res) => {
 });
 
 // PUT route to update like count for main feed image
-router.put('/feed/add', (req, res) => {
+router.put('/feed/add', rejectUnauthenticated, (req, res) => {
   let id = [req.body.data];
   let SQLquery = `UPDATE image
                   SET likes = likes + 1
@@ -112,7 +113,7 @@ router.put('/feed/add', (req, res) => {
 });
 
 // PUT route to update like count for individually-selected image
-router.put('/sub', (req, res) => {
+router.put('/sub', rejectUnauthenticated, (req, res) => {
   let id = [req.body.data];
   let SQLquery = `UPDATE image
                   SET likes = likes - 1
@@ -128,7 +129,7 @@ router.put('/sub', (req, res) => {
 });
 
 // PUT route to update like count for main feed image
-router.put('/feed/sub', (req, res) => {
+router.put('/feed/sub', rejectUnauthenticated, (req, res) => {
   let id = [req.body.data];
   let SQLquery = `UPDATE image
                   SET likes = likes - 1

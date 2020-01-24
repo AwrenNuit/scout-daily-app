@@ -3,7 +3,6 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
-
 const router = express.Router();
 
 // Handles Ajax request for user information if user is authenticated
@@ -12,7 +11,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 // GET current user's details
-router.get('/details', (req, res) => {
+router.get('/details', rejectUnauthenticated, (req, res) => {
   let id = [req.user.id];
   let SQLquery = `SELECT * FROM "user"
                   WHERE id = $1;`;
@@ -42,7 +41,7 @@ router.get('/search/:id', (req, res) => {
 });
 
 // PUT (update) current user's bio
-router.put('/details/bio', (req, res) => {
+router.put('/details/bio', rejectUnauthenticated, (req, res) => {
   let id = [req.body.data, req.user.id];
   let SQLquery = `UPDATE "user"
                   SET bio = $1
@@ -58,7 +57,7 @@ router.put('/details/bio', (req, res) => {
 });
 
 // PUT (update) current user's username
-router.put('/details/username', (req, res) => {
+router.put('/details/username', rejectUnauthenticated, (req, res) => {
   let id = [req.body.data, req.user.id];
   let SQLquery = `UPDATE "user"
                   SET username = $1

@@ -1,9 +1,10 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const router = express.Router();
 
 // DELETE user follow
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   let id = [req.user.id, req.params.id];
   let SQLquery = `DELETE FROM following
                   WHERE user_id = $1 AND connection_id = $2;`;
@@ -33,7 +34,7 @@ router.get('/details/:id', (req, res) => {
 });
 
 // GET following table data
-router.get('/details', (req, res) => {
+router.get('/details', rejectUnauthenticated, (req, res) => {
   let id = [req.user.id];
   let SQLquery = `SELECT * FROM following
                   WHERE user_id = $1;`;
@@ -48,7 +49,7 @@ router.get('/details', (req, res) => {
 });
 
 // POST user follow
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   let id = [req.user.id, req.body.data];
   let SQLquery = `INSERT INTO following (user_id, connection_id)
                   VALUES($1, $2);`;
