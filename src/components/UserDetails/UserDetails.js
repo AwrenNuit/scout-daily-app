@@ -105,6 +105,7 @@ class UserDetails extends Component{
                 onBlur={this.saveBioChange} 
                 value={this.state.bio} 
                 autoFocus 
+                style={{width:"200px"}}
               /> 
               :
               <span 
