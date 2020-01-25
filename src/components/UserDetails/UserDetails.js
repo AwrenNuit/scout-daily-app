@@ -3,6 +3,8 @@ import { withRouter } from "react-router";
 import {connect} from 'react-redux';
 import './UserDetails.css';
 import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 class UserDetails extends Component{
 
@@ -83,6 +85,9 @@ class UserDetails extends Component{
               src={details.avatar} 
               alt={details.username} 
             />
+            <div className="avatar-fab">
+              <AddIcon style={{fontSize:"10px",paddingTop:"5px"}} />
+            </div>
             {this.state.editUsername && !this.state.editBio ? 
               <input 
                 onChange={(event)=>this.handleChange(event, 'username')} 
@@ -104,6 +109,7 @@ class UserDetails extends Component{
                 onChange={(event)=>this.handleChange(event, 'bio')} 
                 onBlur={this.saveBioChange} 
                 value={this.state.bio} 
+                maxLength="100"
                 autoFocus 
                 style={{width:"200px"}}
               /> 
