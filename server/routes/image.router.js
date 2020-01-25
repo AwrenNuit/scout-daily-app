@@ -23,7 +23,7 @@ router.get('/all', (req, res) => {
   let id = [req.user.id];
   let SQLquery = `SELECT * FROM image
                   WHERE user_id = $1
-                  ORDER BY id;`;
+                  ORDER BY id DESC;`;
   pool.query(SQLquery, id)
   .then(response=>{
       res.send(response.rows);
@@ -38,7 +38,8 @@ router.get('/all', (req, res) => {
 router.get('/all/:id', (req, res) => {
   let id = [req.params.id];
   let SQLquery = `SELECT * FROM image
-                  WHERE user_id = $1;`;
+                  WHERE user_id = $1
+                  ORDER BY id DESC;`;
   pool.query(SQLquery, id)
   .then(response=>{
       res.send(response.rows);
