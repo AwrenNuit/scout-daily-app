@@ -13,13 +13,3 @@ body {
     background-color: #ff4545;
     margin: 50px;
 }
-
-form {
-    background-color: #393E46;
-    width: 260px;
-    height: 460px;
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 20px;
-    color: #EEE;
-}
