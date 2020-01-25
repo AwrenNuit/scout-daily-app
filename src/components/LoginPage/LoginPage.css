@@ -7,3 +7,11 @@
   border-radius: 20px;
   color: #EEE;
 }
+
+.login-heading {
+  padding: 20px;
+}
+
+.login-hr {
+  margin: 10px;
+}

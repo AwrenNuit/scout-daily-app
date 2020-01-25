@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import './LoginPage.css';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -62,7 +63,7 @@ class LoginPage extends Component {
         <form className="login-form" onSubmit={this.login}>
           <center>
             <img src="/images/logo.png" alt="Scout Daily Logo" height="150px"/>
-            <h1>Login</h1>
+            <h1 className="login-heading">Login</h1>
             <div>
 
               <TextField
@@ -117,7 +118,7 @@ class LoginPage extends Component {
                 Log in
               </Button>
             </div>
-            <hr />
+            <hr className="login-hr" />
             <div>
               <Button 
                 onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}

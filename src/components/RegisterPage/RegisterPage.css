@@ -7,3 +7,11 @@
   border-radius: 20px;
   color: #EEE;
 }
+
+.register-heading {
+  padding: 20px;
+}
+
+.register-hr {
+  margin: 10px;
+}
