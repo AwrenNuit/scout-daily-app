@@ -6,6 +6,10 @@
   margin-left: 30px;
 }
 
+.comment-center-input {
+  text-align: center;
+}
+
 .comment-comment {
   padding-top: 10px;
   padding-bottom: 20px;

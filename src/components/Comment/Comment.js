@@ -83,7 +83,7 @@ class Comment extends Component{
           </div>
         )}
         {this.props.user.id ?
-          <center>
+          <div className="comment-center-input">
             <TextField
               id="outlined-basic" 
               label="add comment" 
@@ -114,7 +114,7 @@ class Comment extends Component{
             >
               POST
             </Button>
-          </center>
+          </div>
           :
           ''
         }
