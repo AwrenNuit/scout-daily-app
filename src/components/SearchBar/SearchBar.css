@@ -19,6 +19,7 @@
 }
 
 .search-main-flex {
+  margin-left: 5px;
   display: flex;
   flex-wrap: wrap;
 }
