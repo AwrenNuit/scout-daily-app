@@ -94,43 +94,41 @@ class EditThisImage extends Component{
             <img className="img" src={this.props.reduxState.image_url} alt={this.props.reduxState.description} />
             </div>
           </div>
-          <div>
-            <TextField 
-              id="outlined-basic" 
-              label="update caption" 
-              variant="outlined" 
-              value={this.state.caption || ''}
-              onChange={this.handleChange}
-              multiline 
-              InputLabelProps={{
-                classes: {
-                  root: classes.cssLabel,
-                  focused: classes.cssFocused,
-                }
-              }}
-              InputProps={{
-                classes: {
-                  root: classes.cssOutlinedInput,
-                  focused: classes.cssFocused,
-                  notchedOutline: classes.notchedOutline,
-                }
-              }}
-              style={{width:"80%",marginBottom:"20px"}} 
-            />
-          </div>
-          <div>
-            <Button 
-              variant="contained" 
-              color="primary"
-              type="submit"
-              value="Save"
-              onClick={this.handleSave}
-              style={{width:"80%",marginBottom:"50px",backgroundColor:"#bc75ff"}}
-            >
-              Save
-            </Button>
-          </div>
-        </center>
+          </center>
+        <div className="edit-center-input">
+          <TextField 
+            id="outlined-basic" 
+            label="update caption" 
+            variant="outlined" 
+            value={this.state.caption || ''}
+            onChange={this.handleChange}
+            multiline 
+            InputLabelProps={{
+              classes: {
+                root: classes.cssLabel,
+                focused: classes.cssFocused,
+              }
+            }}
+            InputProps={{
+              classes: {
+                root: classes.cssOutlinedInput,
+                focused: classes.cssFocused,
+                notchedOutline: classes.notchedOutline,
+              }
+            }}
+            style={{width:"80%",marginBottom:"20px"}} 
+          />
+          <Button 
+            variant="contained" 
+            color="primary"
+            type="submit"
+            value="Save"
+            onClick={this.handleSave}
+            style={{width:"80%",marginBottom:"50px",backgroundColor:"#bc75ff"}}
+          >
+            Save
+          </Button>
+        </div>
         <NavBar />
       </>
     );
