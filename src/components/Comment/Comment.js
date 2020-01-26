@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import './Comment.css';
 import { TextField, Button } from '@material-ui/core';
-import Fab from '@material-ui/core/Fab';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import ClearIcon from '@material-ui/icons/Clear';
 
 const styles = ({
   cssLabel: {
@@ -45,7 +44,10 @@ class Comment extends Component{
 
   // Delete this comment
   handleDelete = (comment_id, image_id) => {
-    this.props.dispatch({type: `DELETE_COMMENT`, payload: {comment_id: comment_id, image_id: image_id}});
+    let popup = window.confirm(`Delete this comment?`);
+    if(popup){
+      this.props.dispatch({type: `DELETE_COMMENT`, payload: {comment_id: comment_id, image_id: image_id}});
+    }
   }
 
   // Dispatch comment, reset local state
@@ -69,14 +71,10 @@ class Comment extends Component{
             <img className="comment-avatar" src={comment.avatar} alt={comment.username} />
             <span className="comment-username">{comment.username}</span>
             {this.props.user.username === comment.username ?
-              <Fab 
-                color="secondary" 
-                aria-label="edit" 
-                onClick={()=>this.handleDelete(comment.id, comment.image_id)}
-                style={{position:"relative",top:"-50px",left:"155px",height:"20px",width:"40px"}}
-              >
-                <DeleteForeverIcon />
-              </Fab>
+                <ClearIcon 
+                  onClick={()=>this.handleDelete(comment.id, comment.image_id)}
+                  style={{position:"relative",top:"-45px",left:"175px",height:"20px",width:"40px",cursor:"pointer"}}
+                />
               :
               ''
             }
@@ -106,13 +104,13 @@ class Comment extends Component{
                   notchedOutline: classes.notchedOutline,
                 }
               }}
-              style={{width:"70%",marginBottom:"20px"}}
+              style={{width:"70%",marginBottom:"20px",marginTop:"10px"}}
             />
             <Button
               variant="contained" 
               color="primary"
               onClick={this.postComment}
-              style={{position:"relative",height:"55px",width:"20%",backgroundColor:"#bc75ff"}}
+              style={{position:"relative",height:"53px",width:"20%",backgroundColor:"#bc75ff",marginTop:"12px"}}
             >
               POST
             </Button>
