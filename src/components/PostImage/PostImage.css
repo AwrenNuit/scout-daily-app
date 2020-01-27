@@ -30,7 +30,11 @@ input[type="file"] {
 }
 
 .img-whitespace {
-  height: 406.5px;
+  /* For Firefox */
+  /* height: 406.5px;  */
+
+  /* For Chrome devtools */
+  height: 399px;
 }
 
 /* For Google Chrome responsive display, makes visible there, makes invisible in Firefox */
