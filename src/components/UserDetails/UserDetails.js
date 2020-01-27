@@ -3,7 +3,6 @@ import { withRouter } from "react-router";
 import {connect} from 'react-redux';
 import './UserDetails.css';
 import Button from '@material-ui/core/Button';
-import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
 class UserDetails extends Component{
