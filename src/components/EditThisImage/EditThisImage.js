@@ -60,7 +60,7 @@ class EditThisImage extends Component{
     let popup = window.confirm(`Delete this image?`);
     if(popup){
       this.props.dispatch({type: `DELETE_IMAGE`, payload: this.state.id});
-      this.props.history.push('/profile');
+      this.pushHistory();
     }
   }
 
