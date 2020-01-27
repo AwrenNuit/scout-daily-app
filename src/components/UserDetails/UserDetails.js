@@ -92,6 +92,7 @@ class UserDetails extends Component{
                 onChange={(event)=>this.handleChange(event, 'username')} 
                 onBlur={this.saveUsernameChange} 
                 value={this.state.username} 
+                style={{gridArea:"username"}}
                 autoFocus 
               /> 
               :
@@ -110,7 +111,7 @@ class UserDetails extends Component{
                 value={this.state.bio} 
                 maxLength="100"
                 autoFocus 
-                style={{width:"200px"}}
+                style={{width:"200px",gridArea:"bio"}}
               /> 
               :
               <span 
