@@ -30,6 +30,6 @@ Scout Daily is a mobile-first app created with big dreams of getting people outs
 - Allow user to comment on their own photos
 - Make comments editable
 
-Thank you to the students and faculty at Prime Digital Academy for helping equip me with this awesome new skillset!
+Thank you to the faculty and students at Prime Digital Academy for helping equip me with this awesome new skillset!
 
 If you have questions or concerns, email me at awren.nuit@gmail.com
