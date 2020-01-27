@@ -3,6 +3,8 @@
 ## Description
 Scout Daily is a mobile-first app created with big dreams of getting people outside exploring, honing creative skills, and having fun. The app gives all the users the same daily photography prompt (like "unique tree"). Users can upload their photos, view/like/comment other user's photos, and follow each other so their photos show up in the main feed.
 
+View the full app here: https://fathomless-inlet-03778.herokuapp.com/#/home
+
 ## Technologies Used
 - React
 - React-Redux
