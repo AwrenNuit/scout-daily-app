@@ -43,7 +43,10 @@ class UserDetails extends Component{
 
   // Update bio or username state
   handleChange = (e, propName) => {
-    this.setState({[propName]:e.target.value});
+    let letters = /^[A-Za-z]+$/;
+    if(propName === `username` && e.target.value.match(letters) || propName === `bio`){
+      this.setState({[propName]: e.target.value});
+    }
   }
 
   // View followed users
@@ -77,6 +80,7 @@ class UserDetails extends Component{
     const details = this.props.reduxState;
     return(
       <div className="main-details-container">
+        {JSON.stringify(this.state)}
           <div key={details.id} className="user-details-container">
             <img 
               className="avatar" 

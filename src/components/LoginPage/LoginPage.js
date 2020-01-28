@@ -42,9 +42,12 @@ class LoginPage extends Component {
   } // end login
 
   handleInputChangeFor = propertyName => (event) => {
-    this.setState({
-      [propertyName]: event.target.value,
-    });
+    let letters = /^[A-Za-z]+$/;
+    if(propertyName === `username` && event.target.value.match(letters) || propertyName === `password`){
+      this.setState({
+        [propertyName]: event.target.value,
+      });
+    }
   }
 
   render() {

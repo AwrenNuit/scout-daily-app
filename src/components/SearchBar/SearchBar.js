@@ -37,7 +37,10 @@ class SearchBar extends Component{
 
   // Set state to input value
   handleChange = (e) => {
-    this.setState({search: e.target.value});
+    let letters = /^[A-Za-z]+$/;
+    if(e.target.value.match(letters)){
+      this.setState({search: e.target.value});
+    }
   }
 
   // Dispatch user search, reset search bar
