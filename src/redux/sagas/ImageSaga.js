@@ -24,7 +24,7 @@ function* getAllOtherUserImage(action){
 }
 
 // GET all user images
-function* getAllUserImage(action){
+function* getAllUserImage(){
   try{
     const getResponse = yield axios.get(`/api/image/all`);
     yield put({type: `SET_ALL_IMAGE`, payload: getResponse.data});
@@ -35,7 +35,7 @@ function* getAllUserImage(action){
 }
 
 // GET images of followed users for main feed
-function* getImageFeed(action){
+function* getImageFeed(){
   try{
     const getResponse = yield axios.get(`/api/image/following/feed`);
     yield put({type: `SET_IMAGE_FEED`, payload: getResponse.data});

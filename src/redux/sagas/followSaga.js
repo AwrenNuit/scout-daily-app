@@ -13,7 +13,7 @@ function* addFollow(action){
 }
 
 // GET following details
-function* getFollowingDetails(action){
+function* getFollowingDetails(){
   try{
     const getResponse = yield axios.get(`/api/following/details`);
     yield put({type: `SET_FOLLOWING_DETAILS`, payload: getResponse.data});
