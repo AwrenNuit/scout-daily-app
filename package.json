@@ -1,5 +1,5 @@
 {
-  "name": "prime-solo-project",
+  "name": "scout-daily",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:5000",
@@ -20,7 +20,6 @@
     "react": "^16.8.6",
     "react-avatar-editor": "^12.0.0-beta.0",
     "react-dom": "^16.8.6",
-    "react-dropzone-s3-uploader": "^1.1.0",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "^3.0.1",
