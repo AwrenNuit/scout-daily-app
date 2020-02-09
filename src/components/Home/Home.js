@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import DailyPrompt from '../DailyPrompt/DailyPrompt';
 import NavBar from '../NavBar/NavBar';
 import ImageFeed from '../ImageFeed/ImageFeed';
 import LogOutButton from '../LogOutButton/LogOutButton';
 
-class Home extends Component{
+export default function Home() {
 
-  render(){
-    return(
-      <>
-        <LogOutButton />
-        <DailyPrompt />
-        <ImageFeed />
-        <NavBar history={this.props.history.location.pathname} />
-      </>
-    );
-  }
+  const history = useHistory();
+
+  return(
+    <>
+      <LogOutButton />
+      <DailyPrompt />
+      <ImageFeed />
+      <NavBar history={history.location.pathname} />
+    </>
+  );
 }
-
-export default Home;
