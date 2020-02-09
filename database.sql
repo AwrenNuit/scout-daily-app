@@ -1,4 +1,9 @@
 DROP TABLE "user";
+DROP TABLE "prompt";
+DROP TABLE "image";
+DROP TABLE "comment";
+DROP TABLE "like";
+DROP TABLE "following";
 
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
@@ -8,14 +13,10 @@ CREATE TABLE "user" (
     "avatar" VARCHAR DEFAULT 'https://eitrawmaterials.eu/wp-content/uploads/2016/09/empty-avatar.jpg'
 );
 
-DROP TABLE "prompt";
-
 CREATE TABLE "prompt" (
 	"id" SERIAL PRIMARY KEY,
 	"prompt" VARCHAR NOT NULL
 );
-
-DROP TABLE "image";
 
 CREATE TABLE "image" (
 	"id" SERIAL PRIMARY KEY,
@@ -25,16 +26,12 @@ CREATE TABLE "image" (
 	"user_id" INT REFERENCES "user"
 );
 
-DROP TABLE "comment";
-
 CREATE TABLE "comment" (
 	"id" SERIAL PRIMARY KEY,
 	"comment" VARCHAR,
 	"image_id" INT REFERENCES "image",
 	"user_id" INT REFERENCES "user"
 );
-
-DROP TABLE "like";
 
 CREATE TABLE "like" (
 	"id" SERIAL PRIMARY KEY,
@@ -43,10 +40,11 @@ CREATE TABLE "like" (
 	"user_id" INT REFERENCES "user"
 );
 
-DROP TABLE "following";
 
 CREATE TABLE "following" (
 	"id" SERIAL PRIMARY KEY,
 	"connection_id" INT REFERENCES "user",
 	"user_id" INT REFERENCES "user"
 );
+
+INSERT INTO prompt (prompt) VALUES ('Unique Tree'), ('Cloud Creature'), ('Red Structure'), ('Beauty'), ('Resilient Flower');
