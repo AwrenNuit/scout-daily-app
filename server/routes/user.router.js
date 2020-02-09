@@ -12,75 +12,43 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 // GET current user's details
 router.get('/details', rejectUnauthenticated, (req, res) => {
-  let id = [req.user.id];
-  let SQLquery = `SELECT * FROM "user"
-                  WHERE id = $1;`;
+  const id = [req.user.id];
+  const SQLquery = `SELECT * FROM "user"
+                    WHERE id = $1;`;
   pool.query(SQLquery, id)
-  .then(response=>{
-      res.send(response.rows[0]);
-  })
-  .catch(error=>{
-    console.log('ERROR IN /details GET ---------------------------------------->', error);
-    res.sendStatus(500);
-  });
+  .then(response=>res.send(response.rows[0]))
+  .catch(()=>res.sendStatus(500));
 });
 
 // GET user search results
 router.get('/search/:id', (req, res) => {
-  let id = ['%' + req.params.id + '%'];
-  let SQLquery = `SELECT * FROM "user"
-                  WHERE lower(username) SIMILAR TO $1;`;
+  const id = ['%' + req.params.id + '%'];
+  const SQLquery = `SELECT * FROM "user"
+                    WHERE lower(username) SIMILAR TO $1;`;
   pool.query(SQLquery, id)
-  .then(response=>{
-      res.send(response.rows);
-  })
-  .catch(error=>{
-    console.log('ERROR IN /search/:id GET ---------------------------------------->', error);
-    res.sendStatus(500);
-  });
+  .then(response=>res.send(response.rows))
+  .catch(()=>res.sendStatus(500));
 });
 
 // PUT (update) current user's bio
 router.put('/details/bio', rejectUnauthenticated, (req, res) => {
-  let id = [req.body.data, req.user.id];
-  let SQLquery = `UPDATE "user"
-                  SET bio = $1
-                  WHERE id = $2;`;
+  const id = [req.body.data, req.user.id];
+  const SQLquery = `UPDATE "user"
+                    SET bio = $1
+                    WHERE id = $2;`;
   pool.query(SQLquery, id)
-  .then(response=>{
-      res.send(response.rows);
-  })
-  .catch(error=>{
-    console.log('ERROR IN /details/bio PUT ---------------------------------------->', error);
-    res.sendStatus(500);
-  });
-});
-
-// PUT (update) current user's username
-router.put('/details/username', rejectUnauthenticated, (req, res) => {
-  let id = [req.body.data, req.user.id];
-  let SQLquery = `UPDATE "user"
-                  SET username = $1
-                  WHERE id = $2;`;
-  pool.query(SQLquery, id)
-  .then(response=>{
-      res.send(response.rows);
-  })
-  .catch(error=>{
-    console.log('ERROR IN /details/username PUT ---------------------------------------->', error);
-    res.sendStatus(500);
-  });
+  .then(()=>res.sendStatus(200))
+  .catch(()=>res.sendStatus(500));
 });
 
 // Handles POST request with new user data
 router.post('/register', (req, res, next) => {  
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
-
-  const queryText = 'INSERT INTO "user" (username, password) VALUES ($1, $2) RETURNING id';
-  pool.query(queryText, [username, password])
-    .then(() => res.sendStatus(201))
-    .catch(() => res.sendStatus(500));
+  const SQLquery = `INSERT INTO "user" (username, password) VALUES ($1, $2) RETURNING id;`;
+  pool.query(SQLquery, [username, password])
+  .then(()=>res.sendStatus(201))
+  .catch(()=>res.sendStatus(500));
 });
 
 // Handles login form authenticate/login POST
@@ -92,6 +60,17 @@ router.post('/login', userStrategy.authenticate('local'), (req, res) => {
 router.post('/logout', (req, res) => {
   req.logout();
   res.sendStatus(200);
+});
+
+// PUT (update) current user's username
+router.put('/details/username', rejectUnauthenticated, (req, res) => {
+  const id = [req.body.data, req.user.id];
+  const SQLquery = `UPDATE "user"
+                    SET username = $1
+                    WHERE id = $2;`;
+  pool.query(SQLquery, id)
+  .then(()=>res.sendStatus(200))
+  .catch(()=>res.sendStatus(500));
 });
 
 module.exports = router;
