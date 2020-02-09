@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import DailyPrompt from '../DailyPrompt/DailyPrompt';
 import NavBar from '../NavBar/NavBar';
 import ImageFeed from '../ImageFeed/ImageFeed';
