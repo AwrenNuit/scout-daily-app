@@ -1,19 +1,18 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {useHistory} from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 import RenderUserImage from '../RenderUserImage/RenderUserImage';
 import UserDetails from '../UserDetails/UserDetails';
 
-class Profile extends Component{
+export default function Profile() {
 
-  render(){
-    return(
-      <>
-        <UserDetails />
-        <RenderUserImage />
-        <NavBar history={this.props.history.location.pathname} />
-      </>
-    );
-  }
+  const history = useHistory();
+
+  return(
+    <>
+      <UserDetails />
+      <RenderUserImage />
+      <NavBar history={history.location.pathname} />
+    </>
+  );
 }
-
-export default Profile;
