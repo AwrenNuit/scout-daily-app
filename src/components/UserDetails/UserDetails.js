@@ -1,146 +1,118 @@
-import React, {Component} from 'react';
-import { withRouter } from "react-router";
-import {connect} from 'react-redux';
+import React, {useEffect, useState} from 'react';
+import {useHistory} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 import './UserDetails.css';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 
-class UserDetails extends Component{
+export default function UserDetails() {
 
-  state = {
-    username: '',
-    editUsername: false,
-    bio: '',
-    editBio: false,
-  }
+  const details = useSelector(state => state.details.userDetails);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [bio, setBio] = useState('');
+  const [editBio, setEditBio] = useState(false);
+  const [editUsername, setEditUsername] = useState(false);
+  const [username, setUsername] = useState('');
 
-  componentDidMount(){
-    this.props.dispatch({type: `GET_USER_DETAILS`});
-  }
+  // Run on component mount
+  useEffect(()=>{
+    dispatch({type: `GET_USER_DETAILS`});
+  }, []);
 
   // Dispatch bio updates to saga
-  dispatchBio = () => {
-    this.props.dispatch({type: `UPDATE_BIO`, payload: this.state.bio});
-  }
+   const dispatchBio = () => dispatch({type: `UPDATE_BIO`, payload: bio});
 
   // Dispatch username updates to saga
-  dispatchUsername = () => {
-    this.props.dispatch({type: `UPDATE_USERNAME`, payload: this.state.username});
-  }
+  const dispatchUsername = () => dispatch({type: `UPDATE_USERNAME`, payload: username});
 
   // Update user's avatar
-  editAvatar = () => {
-    this.props.history.push('/edit-avatar');
-  }
-
-  // Set the edit on click
-  editDetails = (propName, propValue, propEdit) => {
-    this.setState({
-      [propName]: propValue,
-      [propEdit]: true
-    });
-  }
-
-  // Update bio or username state
-  handleChange = (e, propName) => {
-    let letters = /^[A-Za-z]+$/;
-    if(propName === `username` && e.target.value.match(letters) || propName === `bio`){
-      this.setState({[propName]: e.target.value});
-    }
-  }
+  const editAvatar = () => history.push('/edit-avatar');
 
   // View followed users
-  handleFollowing = () => {
-    this.props.history.push('/following');
-  }
+  const handleFollowing = () => history.push('/following');
 
   // Save bio changes to database, turn off edit mode
-  saveBioChange = () => {
-  this.dispatchBio();
-  this.turnOffBioEdit();
+  const saveBioChange = () => {
+  dispatchBio();
+  turnOffBioEdit();
   }
 
   // Save username changes to database, turn off edit mode
-  saveUsernameChange = () => {
-    this.dispatchUsername();
-    this.turnOffUsernameEdit();
+  const saveUsernameChange = () => {
+    dispatchUsername();
+    turnOffUsernameEdit();
   }
 
   // Turn off conditionally-rendered bio edit
-  turnOffBioEdit = () => {
-    this.setState({editBio:false});
-  }
+  const turnOffBioEdit = () => setEditBio(false);
 
   // Turn off conditionally-rendered username edit
-  turnOffUsernameEdit = () => {
-    this.setState({editUsername:false});
-  }
+  const turnOffUsernameEdit = () => setEditUsername(false);
 
-  render(){
-    const details = this.props.reduxState;
-    return(
-      <div className="main-details-container">
-        {JSON.stringify(this.state)}
-          <div key={details.id} className="user-details-container">
-            <img 
-              className="avatar" 
-              onClick={this.editAvatar} 
-              src={details.avatar} 
-              alt={details.username} 
-            />
-            <div className="avatar-fab">
-              <AddIcon style={{fontSize:"10px",paddingTop:"5px"}} />
-            </div>
-            {this.state.editUsername && !this.state.editBio ? 
-              <input 
-                onChange={(event)=>this.handleChange(event, 'username')} 
-                onBlur={this.saveUsernameChange} 
-                value={this.state.username} 
-                style={{gridArea:"username"}}
-                autoFocus 
-              /> 
-              :
-              <span 
-                className="username" 
-                onClick={()=>this.editDetails('username', details.username, 'editUsername')}
-              >
-                {details.username}
-              </span>
-            }
-
-            {this.state.editBio && !this.state.editUsername ? 
-              <input 
-                onChange={(event)=>this.handleChange(event, 'bio')} 
-                onBlur={this.saveBioChange} 
-                value={this.state.bio} 
-                maxLength="100"
-                autoFocus 
-                style={{width:"200px",gridArea:"bio"}}
-              /> 
-              :
-              <span 
-                className="bio" 
-                onClick={()=>this.editDetails('bio', details.bio, 'editBio')}
-              >
-                {details.bio}
-              </span>
-            }
-            <Button 
-              variant="contained" 
-              color="primary" 
-              onClick={this.handleFollowing} 
-              style={{gridArea:"following",height:"25px",backgroundColor:"#bc75ff"}}
-            >
-              Following
-            </Button>
+  return(
+    <div className="main-details-container">
+        <div key={details.id} className="user-details-container">
+          <img 
+            className="avatar" 
+            onClick={editAvatar} 
+            src={details.avatar} 
+            alt={details.username} 
+          />
+          <div className="avatar-fab">
+            <AddIcon style={{fontSize:"10px",paddingTop:"5px"}} />
           </div>
-      </div>
-    );
-  }
+          {editUsername && !editBio ? 
+            <input 
+            onChange={(e)=>setUsername(e.target.value)} 
+            onBlur={saveUsernameChange} 
+              value={username} 
+              style={{gridArea:"username"}}
+              autoFocus 
+            /> 
+            :
+            <span 
+              className="username" 
+              onClick={()=>{
+                setUsername(details.username);
+                setEditUsername(true);
+                }
+              }
+            >
+              {details.username}
+            </span>
+          }
+
+          {editBio && !editUsername ? 
+            <input 
+              onChange={(e)=>setBio(e.target.value)} 
+              onBlur={saveBioChange} 
+              value={bio} 
+              maxLength="100"
+              autoFocus 
+              style={{width:"200px",gridArea:"bio"}}
+            /> 
+            :
+            <span 
+              className="bio" 
+              onClick={()=>{
+                setBio(details.bio);
+                setEditBio(true);
+                }
+              }
+            >
+              {details.bio}
+            </span>
+          }
+          <Button 
+            variant="contained" 
+            color="primary" 
+            onClick={handleFollowing} 
+            style={{gridArea:"following",height:"25px",backgroundColor:"#bc75ff"}}
+          >
+            Following
+          </Button>
+        </div>
+    </div>
+  );
 }
-
-const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.details.userDetails
-});
-
-export default withRouter(connect(putReduxStateOnProps)(UserDetails));
