@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import './RenderOtherUserImage.css';
 
 export default function RenderUserImage(props) {
 
   const dispatch = useDispatch();
+  const history = useHistory();
   const image = useSelector(state => state.image.allOtherUserImage);
 
   // Run on component mount
@@ -13,14 +14,20 @@ export default function RenderUserImage(props) {
     dispatch({type: `GET_ALL_OTHER_USER_IMAGE`, payload: props.id});
   }, []);
 
+  //Push history to view this image
+  const pushHistory = id => history.push(`/view-image/${id}`);
+
   return(
     <div>
       {image ? 
         image.map(image=>
           <span key={image.id}>
-            <Link to={"/view-image/"+image.id}>
-              <img className="other-user-img" src={image.image_url} alt={image.description} />
-            </Link>
+              <img 
+                className="other-user-img" 
+                src={image.image_url} 
+                alt={image.description} 
+                onClick={()=>pushHistory(image.id)} 
+              />
           </span>
         )
         :
