@@ -7,6 +7,7 @@ export default function ImageFeed() {
   const dispatch = useDispatch();
   const image = useSelector(state => state.image.imageFeed);
 
+  // Run on component mount
   useEffect(()=>{
     dispatch({type: `GET_IMAGE_FEED`});
   }, []);
