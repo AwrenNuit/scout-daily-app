@@ -1,19 +1,19 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {useHistory, useParams} from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 import RenderOtherUserImage from '../RenderOtherUserImage/RenderOtherUserImage';
 import OtherUserDetails from '../OtherUserDetails/OtherUserDetails';
 
-class OtherProfile extends Component{
+export default function OtherProfile() {
 
-  render(){
-    return(
-      <>
-        <OtherUserDetails id={this.props.match.params.id} />
-        <RenderOtherUserImage id={this.props.match.params.id} />
-        <NavBar history={this.props.history.location.pathname} />
-      </>
-    );
-  }
+  const history = useHistory();
+  const match = useParams();
+
+  return(
+    <>
+      <OtherUserDetails id={match.id} />
+      <RenderOtherUserImage id={match.id} />
+      <NavBar history={history.location.pathname} />
+    </>
+  );
 }
-
-export default OtherProfile;
