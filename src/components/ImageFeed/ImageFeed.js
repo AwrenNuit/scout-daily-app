@@ -1,33 +1,28 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import RenderImageFeed from '../RenderImageFeed/RenderImageFeed';
 
-class ImageFeed extends Component{
+export default function ImageFeed() {
 
-  componentDidMount(){
-    this.props.dispatch({type: `GET_IMAGE_FEED`});
-  }
+  const dispatch = useDispatch();
+  const image = useSelector(state => state.image.imageFeed);
 
-  render(){
-    return(
-      <>
-        {this.props.reduxState ? 
-          this.props.reduxState.map(image=>
-            <div key={image.id}>
-              <RenderImageFeed image={image} />
-            </div>
-          ) 
-          : 
-          <p>Follow someone</p>
-        }
-        <div className="bottom-whitespace"></div>
-      </>
-    );
-  }
+  useEffect(()=>{
+    dispatch({type: `GET_IMAGE_FEED`});
+  }, []);
+
+  return(
+    <>
+      {image ? 
+        image.map(image=>
+          <div key={image.id}>
+            <RenderImageFeed image={image} />
+          </div>
+        ) 
+        : 
+        <p>Follow someone</p>
+      }
+      <div className="bottom-whitespace"></div>
+    </>
+  );
 }
-
-const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.image.imageFeed
-});
-
-export default connect(putReduxStateOnProps)(ImageFeed);
