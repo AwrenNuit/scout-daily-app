@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import React from 'react';
+import {Link, useHistory} from 'react-router-dom';
 import './NavBar.css';
 import HomeIcon from '@material-ui/icons/Home';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
@@ -12,64 +11,59 @@ import PersonIcon from '@material-ui/icons/Person';
 import PersonOutlinedIcon from '@material-ui/icons/PersonOutlined';
 import Button from '@material-ui/core/Button';
 
-class NavBar extends Component{
-  render(){
-    return(
-      <footer className="nav">
-        {this.props.history === '/home' ? 
+export default function NavBar() {
+
+  const history = useHistory();
+
+  return(
+    <footer className="nav">
+      {history.location.pathname === '/home' ? 
+        <Button disableRipple={true} style={{width:"80px",gridArea:"home"}}>
+          <HomeIcon fontSize="large" style={{color:"#dfbdff"}} />
+        </Button>
+        :
+        <Link to='/home'>
           <Button disableRipple={true} style={{width:"80px",gridArea:"home"}}>
-            <HomeIcon fontSize="large" style={{color:"#dfbdff"}} />
+            <HomeOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
-          :
-          <Link to='/home'>
-            <Button disableRipple={true} style={{width:"80px",gridArea:"home"}}>
-              <HomeOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
-            </Button>
-            </Link>
+          </Link>
+      }
 
-        }
-
-        {this.props.history === '/search' ? 
+      {history.location.pathname === '/search' ? 
+        <Button disableRipple={true} style={{width:"80px",gridArea:"search"}}>
+          <SearchIcon fontSize="large" style={{color:"#dfbdff"}} />
+        </Button>
+        :
+        <Link to='/search'>
           <Button disableRipple={true} style={{width:"80px",gridArea:"search"}}>
-            <SearchIcon fontSize="large" style={{color:"#dfbdff"}} />
+            <SearchOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
-          :
-          <Link to='/search'>
-            <Button disableRipple={true} style={{width:"80px",gridArea:"search"}}>
-              <SearchOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
-            </Button>
-          </Link>
-        }
-        
-        {this.props.history === '/add-photo' ?
+        </Link>
+      }
+      
+      {history.location.pathname === '/add-photo' ?
+        <Button disableRipple={true} style={{width:"80px",gridArea:"photo"}}>
+          <AddAPhotoIcon fontSize="large" style={{color:"#dfbdff"}} />
+        </Button>
+        :
+        <Link to='/add-photo'>
           <Button disableRipple={true} style={{width:"80px",gridArea:"photo"}}>
-            <AddAPhotoIcon fontSize="large" style={{color:"#dfbdff"}} />
+            <AddAPhotoOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
-          :
-          <Link to='/add-photo'>
-            <Button disableRipple={true} style={{width:"80px",gridArea:"photo"}}>
-              <AddAPhotoOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
-            </Button>
-          </Link>
-        }
-        
-        {this.props.history === '/profile' ?
+        </Link>
+      }
+      
+      {history.location.pathname === '/profile' ?
+        <Button disableRipple={true} style={{width:"80px",gridArea:"profile"}}>
+          <PersonIcon fontSize="large" style={{color:"#dfbdff"}} />
+        </Button>
+        :
+        <Link to='/profile'>
           <Button disableRipple={true} style={{width:"80px",gridArea:"profile"}}>
-            <PersonIcon fontSize="large" style={{color:"#dfbdff"}} />
+            <PersonOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
           </Button>
-          :
-          <Link to='/profile'>
-            <Button disableRipple={true} style={{width:"80px",gridArea:"profile"}}>
-              <PersonOutlinedIcon fontSize="large" style={{color:"#EEE"}} />
-            </Button>
-          </Link>
-        }
-        
-      </footer>
-    );
-  }
+        </Link>
+      }
+    </footer>
+  );
 }
-
-const mapStateToProps = ({user}) => ({user});
-
-export default connect(mapStateToProps)(NavBar);
