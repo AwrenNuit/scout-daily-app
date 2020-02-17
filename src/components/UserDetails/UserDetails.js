@@ -21,7 +21,7 @@ export default function UserDetails() {
   }, []);
 
   // Dispatch bio updates to saga
-   const dispatchBio = () => dispatch({type: `UPDATE_BIO`, payload: bio});
+  const dispatchBio = () => dispatch({type: `UPDATE_BIO`, payload: bio});
 
   // Dispatch username updates to saga
   const dispatchUsername = () => dispatch({type: `UPDATE_USERNAME`, payload: username});
