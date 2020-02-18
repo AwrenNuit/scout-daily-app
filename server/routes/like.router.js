@@ -24,14 +24,14 @@ router.delete('/feed/:id', (req, res) => {
 });
 
 // GET likes
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res) => { ////////////////////////////////////////////// No longer works???
   const id = [req.user.id, req.params.id];
   const SQLquery = `SELECT l.liked, l.user_id, l.image_id, i.image_url FROM "like" l
                     FULL JOIN image i ON i.id = l.image_id
                     FULL JOIN "user" u ON u.id = l.user_id
                     WHERE l.user_id = $1 AND l.image_id = $2;`;
   pool.query(SQLquery, id)
-  .then(()=>res.send(response.rows[0]))
+  .then(response=>res.send(response.rows[0]))
   .catch(()=>res.sendStatus(500));
 });
 
