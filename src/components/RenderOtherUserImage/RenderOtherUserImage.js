@@ -12,7 +12,7 @@ export default function RenderUserImage(props) {
   // Run on component mount
   useEffect(()=>{
     dispatch({type: `GET_ALL_OTHER_USER_IMAGE`, payload: props.id});
-  }, [dispatch]);
+  }, [dispatch, props.id]);
 
   //Push history to view this image
   const pushHistory = id => history.push(`/view-image/${id}`);
