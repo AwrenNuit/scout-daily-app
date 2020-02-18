@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {useHistory} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import './UserDetails.css';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 
 export default function UserDetails() {
 
-  const details = useSelector(state => state.details.userDetails);
-  const dispatch = useDispatch();
+  const dispatch = useCallback(useDispatch());
   const history = useHistory();
+  const details = useSelector(state => state.details.userDetails);
   const [bio, setBio] = useState('');
   const [editBio, setEditBio] = useState(false);
   const [editUsername, setEditUsername] = useState(false);
@@ -18,7 +18,7 @@ export default function UserDetails() {
   // Run on component mount
   useEffect(()=>{
     dispatch({type: `GET_USER_DETAILS`});
-  }, []);
+  }, [dispatch]);
 
   // Dispatch bio updates to saga
   const dispatchBio = () => dispatch({type: `UPDATE_BIO`, payload: bio});

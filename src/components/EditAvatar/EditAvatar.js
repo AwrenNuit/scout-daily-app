@@ -18,12 +18,12 @@ export default function EditAvatar() {
   // Run on component mount
   useEffect(()=>{
     dispatch({type: `GET_USER_DETAILS`});
-  }, []);
+  }, [dispatch]);
 
   // Set file on update
   useEffect(()=>{
     setFile(userDetails.avatar);
-  }, [setFile]);
+  }, [setFile, userDetails.avatar]);
 
   // Get image from canvas
   const handleCanvas = () => {

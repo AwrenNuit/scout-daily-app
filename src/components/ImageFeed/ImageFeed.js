@@ -1,16 +1,16 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import RenderImageFeed from '../RenderImageFeed/RenderImageFeed';
 
 export default function ImageFeed() {
 
-  const dispatch = useDispatch();
+  const dispatch = useCallback(useDispatch());
   const image = useSelector(state => state.image.imageFeed);
 
   // Run on component mount
   useEffect(()=>{
     dispatch({type: `GET_IMAGE_FEED`});
-  }, []);
+  }, [dispatch]);
 
   return(
     <>

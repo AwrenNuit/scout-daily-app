@@ -1,5 +1,5 @@
 import React from 'react';
-import {useHistory, useParams} from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 import RenderOtherUserImage from '../RenderOtherUserImage/RenderOtherUserImage';
 import OtherUserDetails from '../OtherUserDetails/OtherUserDetails';

@@ -1,24 +1,22 @@
-import React, {useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useCallback, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import './Following.css';
 import NavBar from '../NavBar/NavBar';
 
 export default function Following() {
 
-  const dispatch = useDispatch();
+  const dispatch = useCallback(useDispatch());
   const history = useHistory();
   const avatar = useSelector(state => state.following.followingAvatar);
 
   // Run on component mount
   useEffect(()=>{
     dispatch({type: `GET_FOLLOWING`});
-  }, []);
+  }, [dispatch]);
 
   // View selected user's profile
-  const handleClick = id => {
-    history.push(`/profile/${id}`);
-  }
+  const handleClick = id => history.push(`/profile/${id}`);
 
   return(
     <>

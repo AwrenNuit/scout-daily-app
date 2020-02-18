@@ -1,20 +1,20 @@
 import React, {useState, useEffect, useCallback} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './Comment.css';
 import { TextField, Button } from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
-import { useDispatch, useSelector } from 'react-redux';
 
 export default function Comment(props) {
 
-  const [comment, setComment] = useState('');
   const dispatch = useCallback(useDispatch());
   const existingComment = useSelector(state => state.comment);
   const user = useSelector(state => state.user);
+  const [comment, setComment] = useState('');
 
   // Run on component mount
   useEffect(()=>{
     dispatch({type: `VIEW_THIS_IMAGE`, payload: props.params_id});
-  }, []);
+  }, [dispatch, props.params_id]);
 
   // Dispatch comment to saga
   const dispatchComment = () => dispatch({type: `POST_COMMENT`, payload: {id: props.params_id, comment: comment}});

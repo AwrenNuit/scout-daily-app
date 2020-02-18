@@ -1,17 +1,17 @@
-import React, {useEffect} from 'react';
-import {Link} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useCallback, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import './RenderUserImage.css';
 
 export default function RenderUserImage() {
 
-  const dispatch = useDispatch();
+  const dispatch = useCallback(useDispatch());
   const image = useSelector(state => state.image.allUserImage);
 
   // Run on component mount
   useEffect(()=>{
     dispatch({type: `GET_ALL_USER_IMAGE`});
-  }, []);
+  }, [dispatch]);
 
   return(
     <div>

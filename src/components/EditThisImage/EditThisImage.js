@@ -1,6 +1,6 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import './EditThisImage.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -20,7 +20,7 @@ export default function EditThisImage() {
   // Run on component mount
   useEffect(()=>{
     dispatch({type: `GET_THIS_IMAGE`, payload: match.id});
-  }, [dispatch]);
+  }, [dispatch, match.id]);
 
   // Run when image caption or id change
   useEffect(()=>{

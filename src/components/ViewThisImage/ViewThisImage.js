@@ -11,7 +11,7 @@ export default function ViewThisImage() {
 
   const dispatch = useCallback(useDispatch());
   const match = useParams();
-  const image = useSelector(state => state.viewThisImage);
+  // const image = useSelector(state => state.viewThisImage);
   const imageLike = useSelector(state => state.like);
   const details = useSelector(state => state.user);
   const [like, setLike] = useState(false);
@@ -20,7 +20,7 @@ export default function ViewThisImage() {
   useEffect(()=>{
     dispatch({type: `VIEW_THIS_IMAGE`, payload: match.id});
     dispatch({type: `GET_LIKE`, payload: match.id});
-  }, [dispatch]);
+  }, [dispatch, match.id]);
 
   // Run on like change
   useEffect(()=>{
@@ -30,7 +30,7 @@ export default function ViewThisImage() {
     else {
       setLike(true);
     }
-  }, [like]);
+  }, [imageLike.like]);
 
   // Dispatch like to saga
   const handleLike = image => !like ? dispatch({type: `ADD_LIKE`, payload: image}) : dispatch({type: `SUB_LIKE`, payload: image});

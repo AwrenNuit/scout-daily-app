@@ -14,7 +14,7 @@ export default function OtherUserDetails(props) {
   useEffect(()=>{
     dispatch({type: `GET_OTHER_USER_DETAILS`, payload: props.id});
     dispatch({type: `GET_FOLLOWING DETAILS`});
-  }, [dispatch]);
+  }, [dispatch, props.id]);
 
   // Checks if current user is following this user, conditionally renders follow/unfollow button based on result
   const seeIfFollowing = () => {

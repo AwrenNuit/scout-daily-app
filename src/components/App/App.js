@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
-import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import React, { useCallback, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import './App.css';
 import EditAvatar from '../EditAvatar/EditAvatar';
 import EditThisImage from '../EditThisImage/EditThisImage';
@@ -15,12 +15,12 @@ import ViewThisImage from '../ViewThisImage/ViewThisImage';
 
 export default function App() {
 
-  const dispatch = useDispatch();
+  const dispatch = useCallback(useDispatch());
 
   // Run on component mount
   useEffect(()=>{
     dispatch({type: `FETCH_USER`});
-  }, []);
+  }, [dispatch]);
 
   return (
     <Router>

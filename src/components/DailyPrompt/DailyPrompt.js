@@ -1,16 +1,16 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './DailyPrompt.css';
 
 export default function DailyPrompt() {
 
-  const dispatch = useDispatch();
+  const dispatch = useCallback(useDispatch());
   const prompt = useSelector(state => state.dailyPrompt.prompt);
 
   // Run on component mount
   useEffect(()=>{
     dispatch({type: `GET_PROMPT`});
-  }, []);
+  }, [dispatch]);
 
   return(
     <>

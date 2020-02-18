@@ -17,7 +17,7 @@ export default function SearchBar() {
   // Clear reducer
   useEffect(()=>{
     return () => dispatch({type: `CLEAR_SEARCH`});
-  }, []);
+  }, [dispatch]);
 
   // Dispatch user's search to saga
   const dispatchSearch = () => dispatch({type: 'SEARCH_GET', payload: search});
