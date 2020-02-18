@@ -1,24 +1,26 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './OtherUserDetails.css';
 import Button from '@material-ui/core/Button';
 
-class OtherUserDetails extends Component{
+export default function OtherUserDetails(props) {
 
-  state = {
-    following: false
-  }
+  const dispatch = useCallback(useDispatch());
+  const otherUser = useSelector(state => state.otherUserDetails);
+  const existingFollow = useSelector(state => state.followingDetails);
+  const user = useSelector(state => state.user);
 
-  componentDidMount(){
-    this.props.dispatch({type: `GET_OTHER_USER_DETAILS`, payload: this.props.id});
-    this.props.dispatch({type: `GET_FOLLOWING_DETAILS`});
-  }
+  // Run on component mount
+  useEffect(()=>{
+    dispatch({type: `GET_OTHER_USER_DETAILS`, payload: props.id});
+    dispatch({type: `GET_FOLLOWING DETAILS`});
+  }, [dispatch]);
 
   // Checks if current user is following this user, conditionally renders follow/unfollow button based on result
-  seeIfFollowing = () => {
+  const seeIfFollowing = () => {
     let details = [];
-    let id = this.props.reduxState.id;
-    for(let num of this.props.following){
+    let id = otherUser.id;
+    for(let num of existingFollow){
       details.push(num.connection_id);
     }
     if(details.includes(id)){
@@ -28,56 +30,44 @@ class OtherUserDetails extends Component{
   }
 
   // Either follows or unfollows
-  handleFollow = (id) => {
+  const handleFollow = id => {
     let details = [];
-    for(let num of this.props.following){
+    for(let num of existingFollow){
       details.push(num.connection_id);
     }
     if(!details.includes(id)){
-      this.props.dispatch({type: `ADD_FOLLOW`, payload: id});
+      dispatch({type: `ADD_FOLLOW`, payload: id});
     }
     else if(details.includes(id)){
-      this.props.dispatch({type: `REMOVE_FOLLOW`, payload: id});
+      dispatch({type: `REMOVE_FOLLOW`, payload: id});
     }
   }
 
-  render(){
-    const user_details = this.props.reduxState;
-
-    return(
-      <div className="main-details-container">
-          <div key={user_details.id} className="other-user-details-container">
-            <img className="avatar" src={user_details.avatar} alt={user_details.username} />
-            <span className="username">{user_details.username}</span>
-            <span className="bio">{user_details.bio}</span>
-            {this.props.user ?
-              <Button 
-                variant="contained" 
-                color="primary" 
-                onClick={()=>this.handleFollow(user_details.id)} 
-                style={{gridArea:"follow",height:"25px",backgroundColor:"#bc75ff"}}
-              >
-                {this.seeIfFollowing() ? 'Unfollow' : 'Follow'}
-              </Button>
-              :
-              <Button 
-                variant="contained" 
-                color="primary" 
-                style={{gridArea:"follow",height:"25px",backgroundColor:"#bc75ff"}}
-              >
-                Log in to follow
-              </Button>
-            }
-          </div>
-      </div>
-    )
-  }
+  return(
+    <div className="main-details-container">
+         <div key={otherUser.id} className="other-user-details-container">
+           <img className="avatar" src={otherUser.avatar} alt={otherUser.username} />
+           <span className="username">{otherUser.username}</span>
+           <span className="bio">{otherUser.bio}</span>
+          {user ?
+            <Button 
+              variant="contained" 
+              color="primary" 
+              onClick={()=>handleFollow(otherUser.id)} 
+              style={{gridArea:"follow",height:"25px",backgroundColor:"#bc75ff"}}
+            >
+              {seeIfFollowing() ? 'Unfollow' : 'Follow'}
+            </Button>
+            :
+            <Button 
+              variant="contained" 
+              color="primary" 
+              style={{gridArea:"follow",height:"25px",backgroundColor:"#bc75ff"}}
+            >
+              Log in to follow
+            </Button>
+          }
+         </div>
+    </div>
+  );
 }
-
-const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.details.otherUserDetails,
-  following: reduxState.following.followingDetails,
-  user: reduxState.user
-});
-
-export default connect(putReduxStateOnProps)(OtherUserDetails);
