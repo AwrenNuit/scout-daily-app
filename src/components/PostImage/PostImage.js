@@ -1,153 +1,108 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import React, { useCallback, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import './PostImage.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import NavBar from '../NavBar/NavBar';
 import AvatarEditor from 'react-avatar-editor';
 
-const styles = ({
-  cssOutlinedInput: {
-    '&$cssFocused $notchedOutline': {
-      borderWidth: '3px',
-      borderColor: `#bc75ff !important`,
-    }
-  },
-  cssFocused: {},
-  notchedOutline: {},
-});
+export default function PostImage() {
 
-class PostImage extends Component{
-
-  state = {
-    caption: '',
-    file: null,
-    scale: 1,
-  }
+  const dispatch = useCallback(useDispatch());
+  const editorRef = useRef(null);
+  const history = useHistory();
+  const [caption, setCaption] = useState('');
+  const [file, setFile] = useState(null);
+  const [scale, setScale] = useState(1);
 
   // Get image from canvas
-  handleCanvas = () => {
-    const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL('image/png');
-    this.props.dispatch({type: `POST_IMAGE`, payload: {image: canvasScaled, caption: this.state.caption}});
-  }
-
-  // Update caption text in local state
-  handleCaptionChange = (e) => {
-    this.setState({caption: e.target.value});
-  }
-
-  // Update selected file in local state
-  handleFileChange = (e) => {
-    this.setState({file: URL.createObjectURL(e.target.files[0])});
+  const handleCanvas = () => {
+    const canvasScaled = editorRef.current.getImageScaledToCanvas().toDataURL('image/png');
+    dispatch({type: `POST_IMAGE`, payload: {image: canvasScaled, caption: caption}});
   }
 
   // Set scale of image zoom
-  handleZoom = (e) => {
-    let scale = parseFloat(e.target.value);
-    this.setState({
-      scale: scale
-    });
+   const handleZoom = e => {
+    let newScale = parseFloat(e.target.value);
+    setScale(newScale);
   }
 
   // Save the image from canvas into database
-  onClickSave = () => {
-    if (this.editor) {
-      this.handleCanvas();
-      this.pushHistory();
+  const onClickSave = () => {
+    if(editorRef) {
+      handleCanvas();
+      pushHistory();
     }
   }
 
   // Return to user's profile
-  pushHistory = () => {
-    this.props.history.push('/profile');
-  }
+  const pushHistory = () => history.push('/profile');
 
-  // Set editor for canvas grab
-  setEditorRef = (editor) => this.editor = editor;
-
-  render(){
-    const { classes } = this.props;
-
-    return(
-      <center>
-        <div>
-          {this.state.file ?
-            <>
-              <div className="avatar-editor-div">
-                <AvatarEditor
-                  ref={this.setEditorRef}
-                  image={this.state.file}
-                  width={250}
-                  height={250}
-                  border={50}
-                  color={[0, 0, 0, 0.8]} // RGBA
-                  scale={this.state.scale}
-                  rotate={0}
+  return(
+    <center>
+      <div>
+        {file ?
+          <>
+            <div className="avatar-editor-div">
+              <AvatarEditor
+                ref={editorRef}
+                image={file}
+                width={250}
+                height={250}
+                border={50}
+                color={[0, 0, 0, 0.8]} // RGBA
+                scale={scale}
+                rotate={0}
+              />
+              <div>
+                <span>Zoom:</span> 
+                <input 
+                  type="range" 
+                  step="0.1" 
+                  min="1" 
+                  max="2" 
+                  name="scale" 
+                  value={scale} 
+                  onChange={handleZoom} 
                 />
-                <div>
-                  <span>Zoom:</span> 
-                  <input 
-                    type="range" 
-                    step="0.1" 
-                    min="1" 
-                    max="2" 
-                    name="scale" 
-                    value={this.state.scale} 
-                    onChange={this.handleZoom} 
-                  />
-                </div>
               </div>
-            </>
-            :
-            <div className="img-whitespace"></div>
-          }
-          <div>
-            <label htmlFor="file-upload" className="custom-file-upload">
-              <p className="browse-btn-txt">BROWSE</p>
-            </label>
-            <input id="file-upload" type="file" onChange={this.handleFileChange} />
-          </div>
-        </div>
+            </div>
+          </>
+          :
+          <div className="img-whitespace"></div>
+        }
         <div>
-          <TextField 
-            id="outlined-basic" 
-            placeholder="enter caption" 
-            variant="outlined"
-            onChange={this.handleCaptionChange} 
-            value={this.state.caption}
-            multiline 
-            InputProps={{
-              classes: {
-                root: classes.cssOutlinedInput,
-                focused: classes.cssFocused,
-                notchedOutline: classes.notchedOutline,
-              }
-            }}
-            style={{width:"80%",marginBottom:"20px"}} 
-          />
+          <label htmlFor="file-upload" className="custom-file-upload">
+            <p className="browse-btn-txt">BROWSE</p>
+          </label>
+          <input id="file-upload" type="file" onChange={(e)=>setFile(URL.createObjectURL(e.target.files[0]))} />
         </div>
-        <div>
-          <Button 
-            variant="contained" 
-            color="primary"
-            type="submit"
-            value="Save"
-            onClick={this.onClickSave}
-            style={{width:"80%",marginBottom:"50px",backgroundColor:"#bc75ff"}}
-          >
-            Post it!
-          </Button>
-        </div>
-        <NavBar history={this.props.history.location.pathname} />
-      </center>
-    );
-  }
+      </div>
+      <div>
+        <TextField 
+          id="outlined-basic" 
+          placeholder="enter caption" 
+          variant="outlined"
+          onChange={(e)=>setCaption(e.target.value)} 
+          value={caption}
+          multiline 
+          style={{width:"80%",marginBottom:"20px"}} 
+        />
+      </div>
+      <div>
+        <Button 
+          variant="contained" 
+          color="primary"
+          type="submit"
+          value="Save"
+          onClick={onClickSave}
+          style={{width:"80%",marginBottom:"50px",backgroundColor:"#bc75ff"}}
+        >
+          Post it!
+        </Button>
+      </div>
+      <NavBar history={history.location.pathname} />
+    </center>
+  );
 }
-
-PostImage.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(connect()(PostImage));
