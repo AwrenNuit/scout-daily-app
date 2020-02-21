@@ -6,17 +6,17 @@ import Button from '@material-ui/core/Button';
 export default function OtherUserDetails(props) {
 
   const dispatch = useCallback(useDispatch());
-  const otherUser = useSelector(state => state.otherUserDetails);
-  const existingFollow = useSelector(state => state.followingDetails);
+  const otherUser = useSelector(state => state.details.otherUserDetails);
+  const existingFollow = useSelector(state => state.following.followingDetails);
   const user = useSelector(state => state.user);
 
   // Run on component mount
   useEffect(()=>{
     dispatch({type: `GET_OTHER_USER_DETAILS`, payload: props.id});
-    dispatch({type: `GET_FOLLOWING DETAILS`});
+    dispatch({type: `GET_FOLLOWING_DETAILS`});
   }, [dispatch, props.id]);
 
-  // Checks if current user is following this user, conditionally renders follow/unfollow button based on result
+  // Check if current user is following this user, conditionally renders follow/unfollow button based on result
   const seeIfFollowing = () => {
     let details = [];
     let id = otherUser.id;
@@ -29,7 +29,7 @@ export default function OtherUserDetails(props) {
     return false;
   }
 
-  // Either follows or unfollows
+  // Either follow or unfollow this user
   const handleFollow = id => {
     let details = [];
     for(let num of existingFollow){
