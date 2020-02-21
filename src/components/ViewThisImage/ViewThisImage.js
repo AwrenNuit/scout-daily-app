@@ -21,14 +21,14 @@ export default function ViewThisImage() {
   }, [dispatch, match.id]);
 
   // Dispatch like to saga
-  const handleLike = image => {
+  const handleLike = imageID => {
     if(!like){
       setLike(true);
-      dispatch({type: `ADD_LIKE`, payload: image});
+      dispatch({type: `ADD_LIKE`, payload: imageID});
     }
     else {
       setLike(false);
-      dispatch({type: `SUB_LIKE`, payload: image});
+      dispatch({type: `SUB_LIKE`, payload: imageID});
     }
   }
 
