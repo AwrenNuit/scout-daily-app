@@ -11,9 +11,7 @@ export default function ViewThisImage() {
 
   const dispatch = useCallback(useDispatch());
   const match = useParams();
-  // const image = useSelector(state => state.viewThisImage);
-  const imageLike = useSelector(state => state.like);
-  const details = useSelector(state => state.user);
+  const image = useSelector(state => state.image.viewThisImage);
   const [like, setLike] = useState(false);
 
   // Run on component mount
@@ -22,47 +20,46 @@ export default function ViewThisImage() {
     dispatch({type: `GET_LIKE`, payload: match.id});
   }, [dispatch, match.id]);
 
-  // Run on like change
-  useEffect(()=>{
-    if(imageLike.like !== true){
-      setLike(false);
+  // Dispatch like to saga
+  const handleLike = image => {
+    if(!like){
+      setLike(true);
+      dispatch({type: `ADD_LIKE`, payload: image});
     }
     else {
-      setLike(true);
+      setLike(false);
+      dispatch({type: `SUB_LIKE`, payload: image});
     }
-  }, [imageLike.like]);
-
-  // Dispatch like to saga
-  const handleLike = image => !like ? dispatch({type: `ADD_LIKE`, payload: image}) : dispatch({type: `SUB_LIKE`, payload: image});
+  }
 
   return(
     <>
       <div className="view-card">
         <div>
-          <Link to={"/profile/"+details.user_id}>
-            <img className="view-avatar" src={details.avatar} alt={details.username} />
-            <span className="view-username">{details.username}</span>
+          <Link to={"/profile/"+image.user_id}>
+            <img className="view-avatar" src={image.avatar} alt={image.username} />
+            <span className="view-username">{image.username}</span>
           </Link>
         </div>
         <span>
           <center>
-            <img className="view-img" src={details.image_url} alt={details.caption} />
+            <img className="view-img" src={image.image_url} alt={image.caption} />
           </center>
           <div>
             {like ?
               <FavoriteIcon 
-                onClick={()=>handleLike(details.id)} 
+                onClick={()=>handleLike(image.id)} 
                 style={{marginLeft:"40px",cursor:"pointer",color:"#b50000"}}
               />
               :
               <FavoriteBorderIcon 
-                onClick={()=>handleLike(details.id)} 
+                onClick={()=>handleLike(image.id)} 
                 style={{marginLeft:"40px",cursor:"pointer"}}
               />
             }
-            <span className="view-likes">{details.likes} likes</span>
+            <span className="view-likes">{image.likes} likes</span>
           </div>
-          <div className="view-caption">{details.caption}</div>
+          <div className="view-caption">{image.caption}</div>
         </span>
       </div>
       <div className="comment-div">
