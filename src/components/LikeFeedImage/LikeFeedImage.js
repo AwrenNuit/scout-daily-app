@@ -11,7 +11,7 @@ export default function LikeFeedImage(props) {
   // Run on component mount
   useEffect(()=>{
     setLike(props.image.liked);
-  }, [setLike]);
+  }, [setLike, props.image.liked]);
 
   // Dispatch like to saga, toggle like state
   const handleLike = imageID => {
