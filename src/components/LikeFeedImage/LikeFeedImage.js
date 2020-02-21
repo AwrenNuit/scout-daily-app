@@ -1,60 +1,43 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { useCallback, useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
-class LikeFeedImage extends Component{
+export default function LikeFeedImage(props) {
 
-  state = {
-    like: false
+  const dispatch = useCallback(useDispatch());
+  const [like, setLike] = useState(false);
+
+  // Run on component mount
+  useEffect(()=>{
+    setLike(props.image.liked);
+  }, [setLike]);
+
+  // Dispatch like to saga, toggle like state
+  const handleLike = imageID => {
+    if(!like){
+      setLike(true);
+      dispatch({type: `ADD_FEED_LIKE`, payload: imageID});
+    }
+    else {
+      setLike(false);
+      dispatch({type: `SUB_FEED_LIKE`, payload: imageID});
+    }
   }
 
-  componentDidMount(){
-    this.setState({like: this.props.image.liked})
-  }
-
-  componentDidUpdate(prevProps){
-    if(this.props.image !== prevProps.image){
-      if(this.props.image.liked !== true){
-        this.setState({
-          like: false,
-        });
+  return(
+    <>
+      {like ?
+        <FavoriteIcon 
+          onClick={()=>handleLike(props.image.id)} 
+          style={{marginLeft:"40px",cursor:"pointer",color:"#b50000"}}
+        />
+        :
+        <FavoriteBorderIcon 
+          onClick={()=>handleLike(props.image.id)} 
+          style={{marginLeft:"40px",cursor:"pointer"}}
+        />
       }
-      else{
-        this.setState({
-          like: true,
-        });
-      }
-    }
-  }
-
-  // Dispatch like to saga
-  handleLike = (image) => {
-    if(this.state.like === false){
-      this.props.dispatch({type: `ADD_FEED_LIKE`, payload: image});
-    }
-    else{
-      this.props.dispatch({type: `SUB_FEED_LIKE`, payload: image});
-    }
-  }
-
-  render(){
-    return(
-      <>
-        {this.state.like ?
-          <FavoriteIcon 
-            onClick={()=>this.handleLike(this.props.image.id)} 
-            style={{marginLeft:"40px",cursor:"pointer",color:"#b50000"}}
-          />
-          :
-          <FavoriteBorderIcon 
-            onClick={()=>this.handleLike(this.props.image.id)} 
-            style={{marginLeft:"40px",cursor:"pointer"}}
-          />
-        }
-      </>
-    );
-  }
+    </>
+  );
 }
-
-export default connect()(LikeFeedImage);
