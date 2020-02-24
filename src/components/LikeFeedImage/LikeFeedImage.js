@@ -27,6 +27,8 @@ export default function LikeFeedImage(props) {
 
   return(
     <>
+            {JSON.stringify(like)}
+
       {like ?
         <FavoriteIcon 
           onClick={()=>handleLike(props.image.id)} 

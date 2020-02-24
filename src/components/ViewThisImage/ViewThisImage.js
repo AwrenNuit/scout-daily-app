@@ -12,6 +12,7 @@ export default function ViewThisImage() {
   const dispatch = useCallback(useDispatch());
   const match = useParams();
   const image = useSelector(state => state.image.viewThisImage);
+  const liked = useSelector(state => state.like);
   const [like, setLike] = useState(false);
 
   // Run on component mount
@@ -19,6 +20,11 @@ export default function ViewThisImage() {
     dispatch({type: `VIEW_THIS_IMAGE`, payload: match.id});
     dispatch({type: `GET_LIKE`, payload: match.id});
   }, [dispatch, match.id]);
+
+  // Run on component mount
+  useEffect(()=>{
+    setLike(liked.liked);
+  }, [setLike, liked]);
 
   // Dispatch like to saga
   const handleLike = imageID => {
@@ -39,6 +45,7 @@ export default function ViewThisImage() {
           <Link to={"/profile/"+image.user_id}>
             <img className="view-avatar" src={image.avatar} alt={image.username} />
             <span className="view-username">{image.username}</span>
+            {JSON.stringify(like)}
           </Link>
         </div>
         <span>
